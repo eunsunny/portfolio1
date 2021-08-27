@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="MemberDAO">
+
+	<!--  회원 정보 가져오기 -->
+	<select id="getMember" resultType="member">
+		SELECT * FROM member WHERE id=#{id}
+	</select>
+	
+	<select id="confirmID" resultType="String">
+		SELECT pwd FROM member WHERE id=#{id}
+	</select>
+	
+	<insert id="insertMember">
+		INSERT INTO member(id, pwd, name, nick_name, email, phone, zip_num, address, inter_kind)
+		VALUES(#{id}, #{pwd}, #{name}, #{nick_name}, #{email}, #{phone}, #{zip_num}, #{address}, #{inter_kind})
+	</insert>
+	
+	<!-- 아이디 중복체크 -->
+	<select id="checkOverId" parameterType="String" resultType="int">
+		SELECT COUNT(*) FROM member WHERE id=#{id}
+	</select>
+	
+	<!-- 닉네임 중복체크 -->
+	<select id="checkOverNickname" parameterType="String" resultType="int">
+		SELECT COUNT(*) FROM member WHERE nick_name=#{nick_name}
+	</select>
+	
+	<!-- 동이름으로 찾기 -->
+	<select id="selectAddressByDong" parameterType="String" resultType="jibun">
+		SELECT * FROM address_jibun WHERE dong LIKE '%'||#{dong}||'%'
+	</select>
+	
+	<!-- 지번으로 주소찾기 -->
+	<select id="selectAddressByDoro" parameterType="String" resultType="doro">
+		SELECT * FROM address_doro WHERE doro LIKE '%'||#{doro}||'%'
+	</select>
+	
+	<!-- 회원정보 변경하기 -->
+	<update id="updateMember">
+		UPDATE member SET nick_name=#{nick_name}, email=#{email}, phone=#{phone}, zip_num=#{zip_num}, address=#{address}, inter_kind=#{inter_kind} WHERE id=#{id}
+	</update>
+	
+	<!-- 사용자의 이름과 이메일을 조건으로 사용자 정보 조회 -->
+	<select id="getMemberByNameAndEmail" parameterType="hashMap" resultType="member">
+		SELECT * FROM member WHERE name=#{name} AND email=#{email}
+	</select>
+	
+	<!-- 사용자의 아이디, 이름, 이메일을 조건으로 사용자 정보 조회 -->
+	<select id="findPassword" parameterType="hashMap" resultType="member">
+		SELECT * FROM member WHERE id=#{id} AND name=#{name} AND email=#{email}
+	</select>
+	
+	<!-- 암호변경 업데이트 -->
+	<update id="changePassword">
+		UPDATE member SET pwd=#{pwd} WHERE id=#{id}
+	</update>
+
+</mapper>

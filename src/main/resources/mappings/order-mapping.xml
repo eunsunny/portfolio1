@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="OrderDAO">
+	
+	<!-- 상품관련 -->
+	<!-- 내 등록상품 관련 -->
+	<select id="myProductList" resultType="product">
+		SELECT p.*
+       ,(select cod_nm from com_cod where cod_grp_id = 'CATEGORY' and cod = p.kind) as kind_nm
+       ,(select cod_nm from com_cod where cod_grp_id = 'DELIVERY' and cod = p.kind2) as delivery_nm 
+		FROM product p 
+		WHERE id=#{id} ORDER BY regdate DESC
+	</select>
+	
+	<!--  주문(구매)내역 관련 -->
+	<select id="orderList" resultType="order">
+		SELECT * FROM order_view WHERE id=#{id} ORDER BY order_date DESC
+	</select>
+	
+	<insert id="insertOrder">
+		INSERT INTO order(oseq, id, pseq) VALUES(order_seq.NEXTVAL, #{id}, #{pseq})
+	</insert>
+	
+	<!-- 주문 상세내역 -->
+	<select id="orderDetail" resultType="order">
+		
+	</select>
+	
+	<!-- 삭제는 보류
+	<delete id="deleteOrder" parameterType="int">
+		DELETE FROM order WHERE oseq=#{oseq}
+	</delete>
+	 -->
+	 
+	<!-- 내상품 목록 페이징처리 -->
+	<select id="myProductListPaging" parameterType="hashMap" resultType="product">
+		<![CDATA[
+		SELECT pseq, name, title, price, soldyn, regdate, id, kind_nm
+		  FROM (SELECT row_number() over(ORDER BY regdate DESC) rn, pseq, name, title, price, soldyn, regdate, id, kind_nm
+		  		  FROM my_prod_view WHERE id=#{id})
+		  WHERE rn <= #{criteria.pageNum} * #{criteria.rowsPerPage} 
+     	  	AND rn > (#{criteria.pageNum}-1) * #{criteria.rowsPerPage}
+		]]>
+	</select>
+	
+	<select id="countMyProduct" parameterType="String" resultType="int">
+		SELECT COUNT(*) FROM product WHERE id=#{id}
+	</select>
+
+</mapper>

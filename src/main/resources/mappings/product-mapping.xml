@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ProductDAO">
+
+	<select id="getProductListByKind" resultType="product">		
+		SELECT * 
+		  FROM PRODUCT
+		 WHERE KIND = #{kind, jdbcType=VARCHAR}		
+		 ORDER BY PSEQ DESC
+	</select>
+	
+	<insert id="insertProduct">
+		INSERT INTO PRODUCT
+		           (PSEQ
+                    ,NAME
+                    ,KIND
+                    ,PRICE
+                    ,TITLE
+                    ,CONTENT
+                    ,ID
+                    ,KIND2)
+			  VALUES(product_seq.NEXTVAL
+				     ,#{name, jdbcType=VARCHAR}
+			         ,#{kind, jdbcType=VARCHAR}
+			         ,#{price, jdbcType=INTEGER}
+			         ,#{title, jdbcType=VARCHAR}
+			         ,#{content, jdbcType=VARCHAR}
+			         ,#{id, jdbcType=VARCHAR}
+			         ,#{kind2, jdbcType=VARCHAR}
+			       )
+	</insert>
+		
+	<insert id="insertImage" >
+		INSERT INTO product_image (
+			fseq, pseq, product_image 
+		)
+		VALUES(
+			fseq_seq.NEXTVAL, #{pseq}, #{product_image}
+		)
+		
+	</insert>
+	
+<!-- 	<select id="getProduct" resultType="product">	 -->
+<!-- 		SELECT * FROM product -->
+<!-- 		 WHERE pseq=#{pseq} -->
+<!-- 	</select> -->
+	
+	<select id="getProduct" resultType="product">
+		select p.*
+       ,(select cod_nm from com_cod where cod_grp_id = 'CATEGORY' and cod = p.kind) as kind_nm
+       ,(select cod_nm from com_cod where cod_grp_id = 'DELIVERY' and cod = p.kind2) as delivery_nm
+       ,(select product_image from product_image where (fseq) in (select min(fseq) from product_image where pseq=#{pseq})) as image
+		from product p
+		where pseq=#{pseq}
+	</select>
+	
+	<select id="try" resultType="product">
+		 select cod_nm as kind_nm
+		    from com_cod c
+		 where c.cod = #{kind}
+		 and cod_grp_id = 'CATEGORY'
+	</select>
+	
+	<delete id="deleteProduct" parameterType="int">
+		DELETE FROM PRODUCT 
+		WHERE pseq = #{pseq}
+	</delete>
+	
+	<delete id="deleteComment">
+		DELETE FROM product_comment
+		where pseq=#{pseq}
+	</delete>
+	
+	<delete id="deletePicture">
+		DELETE FROM product_image
+		where pseq=#{pseq}
+	</delete>
+	
+	<update id="updateProduct">
+		UPDATE product 
+		SET name=#{name}, title=#{title}, kind=#{kind}, kind2=#{kind2}, price=#{price}, content=#{content}
+		WHERE pseq=#{pseq} 
+	</update>
+	
+	<select id="listWithPaging" parameterType="hashMap" resultType="product">
+	<![CDATA[
+		SELECT pseq, name, kind, kind2, price, content, cnt, image
+		FROM
+		    (select row_number() over(order by p.regdate desc)rn, p.pseq, p.name, p.kind, p.kind2, p.price, p.content
+		    		, p.cnt, image.product_image as image
+		     from product p
+		     left outer join (select pseq, fseq, product_image as product_image
+						   from product_image
+						  where (pseq, fseq) in (select pseq, min(fseq)
+						                           from product_image
+						                          group by pseq)
+						) image
+			 on p.pseq = image.pseq
+		     WHERE p.name LIKE '%'||#{key}||'%' 
+		     	 		AND  p.kind=#{kind} 
+		     )
+		WHERE rn <=#{criteria.pageNum} * #{criteria.rowsPerPage}
+	 		AND rn > (#{criteria.pageNum}-1) * #{criteria.rowsPerPage}
+		]]>
+	</select>
+	
+<!-- 	<select id="countProductList" parameterType="String" resultType="int"> -->
+<!-- 		SELECT COUNT(*) FROM product -->
+<!-- 		WHERE name LIKE '%'||#{name}||'%' -->
+<!-- 	</select> -->
+
+	<select id="countProductList" parameterType="hashMap" resultType="int">
+		SELECT COUNT(*) FROM product
+		WHERE name LIKE '%'||#{name}||'%'
+		AND kind=#{kind}
+	</select>
+	
+	<update id="plusCount">
+		UPDATE product
+		SET cnt= #{cnt} + 1
+		WHERE pseq=#{pseq}
+	</update>
+	
+	<select id="selectCount" resultType="int">
+	  	select cnt from product 
+	  	where pseq=#{pseq}
+	</select>
+	
+	<select id="selectMaxPseq" resultType="int">
+	  	select max(pseq) as pseq
+	  	from product 
+	</select>
+	
+	<select id="getOnePicture" resultType="String">
+		select product_image
+		from product_image
+		where pseq = #{pseq} and rownum=1
+	</select>
+	
+	<select id="getOtherPicture" resultType="productImage">
+			select * from product_image
+			where pseq = #{pseq}
+			order by fseq asc
+	</select>
+</mapper>

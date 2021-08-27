@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="CommentDAO">
+
+	<select id="getCommentListWithPaging" parameterType="hashMap" resultType="comment">
+		<![CDATA[
+		SELECT pcseq, pseq, content, id, regdate
+		  FROM 
+			(SELECT rownum rn, pcseq, pseq, content, id, regdate
+			 FROM product_comment
+			 WHERE pseq=#{pseq})
+		  WHERE rn <= #{criteria.pageNum} * #{criteria.rowsPerPage}
+		    AND rn > (#{criteria.pageNum}-1) * #{criteria.rowsPerPage}
+		 ]]>
+	</select>
+	
+	<select id="countCommentList" parameterType="int" resultType="int">
+		SELECT COUNT(*)
+		 FROM product_comment
+		 WHERE pseq=#{pseq}
+	</select>
+	
+	<insert id="saveComment" parameterType="comment">
+		INSERT INTO product_comment(pcseq, pseq, content, id)					<!-- 왜 이것만 인서트 한다고 했더라? -->
+		VALUES(product_comment_seq.NEXTVAL, #{pseq}, #{content, jdbcType=VARCHAR}, #{id})
+	</insert>
+	
+	<delete id="deleteComment" parameterType="java.util.Map">
+		DELETE PRODUCT_COMMENT
+		WHERE PCSEQ = #{pcseq} 
+	</delete>
+	
+	<update id="updateComment" parameterType="java.util.Map">
+		UPDATE PRODUCT_COMMENT
+		SET CONTENT = #{content, jdbcType=VARCHAR}
+		WHERE PCSEQ = #{pcseq} 
+	</update>
+</mapper>
