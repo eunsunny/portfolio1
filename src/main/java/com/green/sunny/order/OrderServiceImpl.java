@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.green.sunny.dao.OrderDAO;
+import com.green.sunny.dto.OrderVO;
 import com.green.sunny.dto.ProductVO;
 import com.green.sunny.utils.Criteria;
 
@@ -31,6 +32,12 @@ public class OrderServiceImpl implements OrderService {
 	public List<ProductVO> myProductListPaging(Criteria criteria, String id) {
 		
 		return orderDao.myProductListPaging(criteria, id);
+	}
+
+	@Override
+	public List<OrderVO> orderList(OrderVO vo) {
+		
+		return orderDao.orderList(vo);
 	}
 
 }

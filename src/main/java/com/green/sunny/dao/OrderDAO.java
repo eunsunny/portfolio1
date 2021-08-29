@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.green.sunny.dto.OrderVO;
 import com.green.sunny.dto.ProductVO;
 import com.green.sunny.utils.Criteria;
 
@@ -35,6 +36,12 @@ public class OrderDAO {
 		
 		return mybatis.selectList("OrderDAO.myProductListPaging", map);
 		
+	}
+	
+	// 주문 결제내역 리스트
+	public List<OrderVO> orderList(OrderVO vo) {
+		
+		return mybatis.selectList("OrderDAO.orderList", vo);
 	}
 	
 }

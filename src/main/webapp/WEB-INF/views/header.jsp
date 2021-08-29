@@ -64,15 +64,18 @@
 											<li><span><a href="#" onclick="login_empty_check()">내등급</a></span></li>
 										</c:when>
 										<c:otherwise>
-											<li style="color:orange"><span>
+											<li style="color:orange">
+											<img src="grade_images/${sessionScope.loginUser.grade}.png" width="20" height="20" >
+											<span>
 												${sessionScope.loginUser.name}(${sessionScope.loginUser.id})
-											</span></li>
+											</span>
+											</li>
 											<li> | </li>
 											<li><span><a href="logout" onclick="logout()">logout</a></span></li>
 											<li> | </li>
 											<li><span><a href="jjim_list">찜목록</a></span></li>
 											<li> | </li>
-											<li><span><a href="#">내등급</a></span></li>
+											<li><span><a href="grade_detail">내등급</a></span></li>
 										</c:otherwise>
 									</c:choose>
 								</ul>
@@ -135,8 +138,8 @@
 												<li><a href="jjim_list">찜목록</a></li>
 												<li><a href="admin_product_write_form">상품등록</a></li>
 												<li><a href="my_prod_list">내상품조회/수정</a></li>
-												<li><a href="#">주문결제내역</a></li>
-												<li><a href="#">내등급관리</a></li>
+												<li><a href="orderList">주문결제내역</a></li>
+												<li><a href="grade_detail">내등급관리</a></li>
 		
 											</ul></li>
 									</c:otherwise>

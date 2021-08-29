@@ -276,13 +276,12 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value="/change_pwd", method=RequestMethod.GET)
-	public String changPwd(MemberVO vo, Model model) {
+	public String changePwd(MemberVO vo, Model model) {
 		
 		memberService.changePassword(vo);
 		
 		return "member/close";
 		
 	}
-	
 	
 }

@@ -20,6 +20,7 @@
 	<mvc:resources location="/WEB-INF/views/category/" mapping="/category/**"></mvc:resources>
 	<mvc:resources location="/WEB-INF/resources/sass/" mapping="/sass/**"></mvc:resources>
 	<mvc:resources location="/WEB-INF/resources/webfonts/" mapping="/webfonts/**"></mvc:resources>
+	<mvc:resources location="/WEB-INF/resources/grade_images/" mapping="/grade_images/**"></mvc:resources>
 	
 	<!-- JSP 소스 View Resolver -->
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">

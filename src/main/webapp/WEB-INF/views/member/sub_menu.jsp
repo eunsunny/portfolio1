@@ -70,7 +70,17 @@
     #ulli > li {
     	font-size: 13pt;
     }
-
+    
+    .gradebox {
+    	width: 43em;
+    	border: outset 1px gray; 
+    	padding: 1.5em; 
+    	margin: 1em;
+    	border-radius: 6px;
+    	color: #5D5D5D;
+    	background-color: #F5F5F5;
+    	font-weight: bold;
+    }
     
 </style>
 
@@ -95,10 +105,10 @@
 							<a class="collapsed d-flex" href="admin_product_write_form">상품 등록</a>
 						</li>
 						<li class="pb-3">
-							<a class="collapsed d-flex" href="#">주문/결제내역 </a>
+							<a class="collapsed d-flex" href="orderList">주문/결제내역 </a>
 						</li>
 						<li class="pb-3">
-							<a class="collapsed d-flex" href="#">나의 등급관리</a>
+							<a class="collapsed d-flex" href="grade_detail">나의 등급관리</a>
 						</li>
 					</ul>
 				</div>

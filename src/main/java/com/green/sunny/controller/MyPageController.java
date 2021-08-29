@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.green.sunny.dto.JjimVO;
 import com.green.sunny.dto.MemberVO;
+import com.green.sunny.dto.OrderVO;
 import com.green.sunny.dto.ProductVO;
 import com.green.sunny.jjim.JjimService;
+import com.green.sunny.member.MemberService;
 import com.green.sunny.order.OrderService;
 import com.green.sunny.utils.Criteria;
 import com.green.sunny.utils.PageMaker;
@@ -26,6 +28,8 @@ public class MyPageController {
 	private JjimService jjimService;
 	@Autowired
 	private OrderService orderService;
+	@Autowired
+	private MemberService memberService;
 	
 	/*
 	 * 찜목록 페이지설정하는 부분 추후 다시 구현예정(새로운 페이지 열어서 찜목록이동/닫기 구현)
@@ -184,6 +188,52 @@ public class MyPageController {
 			return "mypage/myProductList";
 		}
 		
+	}
+
+	@RequestMapping(value="/grade_detail")
+	public String gradeDetail(HttpSession session, MemberVO vo, Model model) {
+		
+		MemberVO loginUser = (MemberVO)session.getAttribute("loginUser");
+		
+		vo.setId(loginUser.getId());
+				
+		String[] gradeList = {"Welcome(Bronze)", "Silver", "Gold", "Platinum", "VIP(Diamond)"};
+		String gradeDetail = gradeList[0];
+		
+		MemberVO member = memberService.getMember(vo);
+		
+		int grade = Integer.parseInt(member.getGrade());
+		
+		switch(grade) {
+			case 1 :
+				gradeDetail = gradeList[0];
+				break;
+			case 2 :
+				gradeDetail = gradeList[1];
+				break;
+			case 3 :
+				gradeDetail = gradeList[2];
+				break;
+			case 4 :
+				gradeDetail = gradeList[3];
+				break;
+			case 5 :
+				gradeDetail = gradeList[4];
+				break;
+		}
+		
+		model.addAttribute("MemberVO", member);
+		model.addAttribute("gradeDetail", gradeDetail);
+	
+		return "mypage/myGrade";
+	}
+	
+	@RequestMapping(value="/order_list")
+	public String orderList(OrderVO vo, Model model) {
+		
+		
+		
+		return "mypage/orderList";
 	}
 
 }
