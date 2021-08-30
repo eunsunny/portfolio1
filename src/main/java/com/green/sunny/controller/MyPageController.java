@@ -229,11 +229,29 @@ public class MyPageController {
 	}
 	
 	@RequestMapping(value="/order_list")
-	public String orderList(OrderVO vo, Model model) {
+	public String orderList(HttpSession session, OrderVO vo, Model model) {
 		
+		MemberVO loginUser = (MemberVO)session.getAttribute("loginUser");
 		
+		vo.setId(loginUser.getId());
+		
+		List<OrderVO> orderList = orderService.orderList(vo);
+		
+		model.addAttribute("orderList", orderList);
 		
 		return "mypage/orderList";
+	}
+	
+	@RequestMapping(value="/order_set")
+	public String orderSet(HttpSession session, OrderVO vo) {
+		
+		MemberVO loginUser = (MemberVO)session.getAttribute("loginUser");
+		
+		vo.setId(loginUser.getId());
+		
+		orderService.orderSet(vo);
+		
+		return "redirect:order_list";
 	}
 
 }

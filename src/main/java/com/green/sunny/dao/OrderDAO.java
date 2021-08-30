@@ -44,4 +44,10 @@ public class OrderDAO {
 		return mybatis.selectList("OrderDAO.orderList", vo);
 	}
 	
+	// 주문 확정 버튼
+	public void orderSet(OrderVO vo) {
+		
+		mybatis.update("OrderDAO.orderUpdate", vo);
+	}
+	
 }

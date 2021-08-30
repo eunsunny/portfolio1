@@ -11,16 +11,16 @@
 			<div class="row">
 				<ul style="text-align:center; list-style-type:none; margin-bottom:2em;">
 					<li><img src="grade_images/${MemberVO.grade}.png" width="250" height="250" style="margin:0 0 1em 0;"></li>
-					<li>${MemberVO.id}(${MemberVO.name})님의 등급은 <span style="font-size:1.5em; font-weight:bold;">${gradeDetail}</span> 입니다.
+					<li>${MemberVO.id}(${MemberVO.name})님의 등급은 <span style="font-size:1.5em; font-weight:bold;">"${gradeDetail}"</span> 입니다.
 				</ul>
 				<table style="border-top: solid 1px black; border-bottom: solid 1px black;">
 					<tr style="text-align:center; font-size:1em;">
 						<th rowspan="2" style="border-right: solid 1px #dddddd">등급</th>
-						<td><img src="grade_images/1.png" width="100" height="100"></td>
-						<td><img src="grade_images/2.png" width="100" height="100"></td>
-						<td><img src="grade_images/3.png" width="100" height="100"></td>
-						<td><img src="grade_images/4.png" width="100" height="100"></td>
-						<td><img src="grade_images/5.png" width="100" height="100"></td>
+						<td><img src="grade_images/1.png" width="90" height="90"></td>
+						<td><img src="grade_images/2.png" width="90" height="90"></td>
+						<td><img src="grade_images/3.png" width="90" height="90"></td>
+						<td><img src="grade_images/4.png" width="90" height="90"></td>
+						<td><img src="grade_images/5.png" width="90" height="90"></td>
 					</tr>
 					<tr style="text-align:center; font-weight:bold;">
 						<td>Welcome(Bronze)</td>

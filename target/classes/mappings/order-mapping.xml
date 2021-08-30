@@ -17,6 +17,12 @@
 		SELECT * FROM order_view WHERE id=#{id} ORDER BY order_date DESC
 	</select>
 	
+	<!-- 주문 확정 버튼 -->
+	<update id="orderUpdate">
+		UPDATE orders SET rev_result='y' WHERE id=#{id} AND oseq=#{oseq}
+	</update>
+	
+	
 	<insert id="insertOrder">
 		INSERT INTO order(oseq, id, pseq) VALUES(order_seq.NEXTVAL, #{id}, #{pseq})
 	</insert>

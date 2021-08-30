@@ -23,12 +23,12 @@
 	<select id="jjimWithPaging" parameterType="hashMap" resultType="jjim">
 		<![CDATA[
 			SELECT jjseq, id, pseq, mname, pname, title, price, jjim_date, result, cod, cod_grp_id, cod_nm, image FROM 
-			(SELECT row_number() over(ORDER BY jjim_date) rn, jjseq, id, pseq, mname, pname, 
+			(SELECT row_number() over(ORDER BY jjim_date DESC) rn, jjseq, id, pseq, mname, pname, 
 					title, price, jjim_date, result, cod, cod_grp_id, cod_nm, image 
 				FROM jjim_view 
 				WHERE id=#{id})
 			WHERE rn <= #{criteria.pageNum} * #{criteria.rowsPerPage}
-			  AND rn > (#{criteria.pageNum}-1) * #{criteria.rowsPerPage}
+			  AND rn > (#{criteria.pageNum}-1) * #{criteria.rowsPerPage} ORDER BY jjim_date DESC
 		]]>
 				
 	</select>

@@ -31,7 +31,7 @@
 				 </c:when>
 				 
 				 <c:otherwise>
-				 <li class="page-item ">
+				 <li class="page-item">
 				 <a href="category${pageMaker.makeQuery(index)}&kind=${kind}"  class="page-link rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-dark">${index}</a>
 				 </li>
 				 </c:otherwise>

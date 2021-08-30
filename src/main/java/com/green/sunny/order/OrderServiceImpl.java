@@ -40,4 +40,10 @@ public class OrderServiceImpl implements OrderService {
 		return orderDao.orderList(vo);
 	}
 
+	@Override
+	public void orderSet(OrderVO vo) {
+		
+		orderDao.orderSet(vo);
+	}
+
 }

@@ -20,7 +20,7 @@
 <link rel="stylesheet" href="css/main.css" />
 <script type="text/javascript" src="js/product.js"></script>
 
-<style>
+<!-- <style>
 	
 	fieldset > #row_row {
 		padding-top : 0;
@@ -82,7 +82,7 @@
     	font-weight: bold;
     }
     
-</style>
+</style> -->
 
 </head>
 <body>
