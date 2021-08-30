@@ -2,6 +2,10 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%-- 수정해야함 --%>
+<%-- 수정해야함 --%>
+<%-- 수정해야함 --%>
+<%-- 수정해야함 --%>
+<%-- 수정해야함 --%>
 <div class="row">
 	<div style="text-align:center;">
 	
