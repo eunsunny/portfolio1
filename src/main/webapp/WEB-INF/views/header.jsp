@@ -145,16 +145,16 @@
 									</c:otherwise>
 								</c:choose>
 								<li><a class="icon solid fa-sitemap" href="#"><span>Flea-Board</span></a></li>
-								<li><a class="icon solid fa-cog" href="#"><span>NOTICE</span></a>
+								<li><a class="icon solid fa-cog" href="notice_list"><span>NOTICE</span></a>
 									<ul>
-										<li><a href="#">공지사항</a></li>
-										<li><a href="#">자주묻는 질문</a></li>
+										<li><a href="notice_list">공지사항</a></li>
+										<li><a href="question_list">자주묻는 질문</a></li>
 									<c:choose>
 										<c:when test="${empty sessionScope.loginUser}">
 											<li><a href="#" onclick="login_empty_check()">1:1 문의하기</a></li>
 										</c:when>
 										<c:otherwise>
-											<li><a href="#">1:1 문의하기</a></li>
+											<li><a href="oneone_list">1:1 문의하기</a></li>
 										</c:otherwise>
 									</c:choose>
 									</ul></li>

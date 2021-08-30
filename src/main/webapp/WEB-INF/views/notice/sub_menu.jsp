@@ -20,9 +20,25 @@
 <link rel="stylesheet" href="css/main.css" />
 <script type="text/javascript" src="js/product.js"></script>
 
-<!-- <style>
+<script type="text/javascript">
+	function oneone_check() {
+		
+		if($("#title").val() == "") {
+			alert("제목을 입력해주세요.");
+			return false;
+		} else if($("#content").val() == "") {
+			alert("문의하실 내용을 입력해주세요.");
+			return false;
+		} else {	
+			alert("1:1 문의 질문이 등록되었습니다.");
+			$("#oneWrite").attr("action", "oneone_insert").submit();
+		}
+	}
+</script>
+
+<style>
 	
-	fieldset > #row_row {
+	/* fieldset > #row_row {
 		padding-top : 0;
 		margin-top : 0;
 	}
@@ -65,13 +81,13 @@
     
     #infotable > thead > tr > th {
     	padding: 0;
-    }
+    } */
     
     #ulli > li {
     	font-size: 13pt;
     }
     
-    .gradebox {
+   /*  .gradebox {
     	width: 43em;
     	border: outset 1px gray; 
     	padding: 1.5em; 
@@ -80,9 +96,9 @@
     	color: #5D5D5D;
     	background-color: #F5F5F5;
     	font-weight: bold;
-    }
+    } */
     
-</style> -->
+</style>
 
 </head>
 <body>
@@ -90,25 +106,21 @@
 		<div class="container py-5">
 			<div class="row">
 				<div class="col-2">
-					<h2 class="h2 pb-5">MY PAGE</h2>
+					<h2 class="h2 pb-5">NOTICE</h2>
 					<ul class="list-unstyled templatemo-accordion" id="ulli">
 						<li class="pb-3">
-							<a class="collapsed d-flex" href="member_update_form">회원정보 변경</a>
+							<a class="collapsed d-flex" href="notice_list">공지사항</a>
 						</li>
 						<li class="pb-3">
-							<a class="collapsed d-flex" href="jjim_list">찜목록</a>
+							<a class="collapsed d-flex" href="question_list">자주묻는 질문</a>
 						</li>
-						<li class="pb-3">
-							<a class="collapsed d-flex" href="my_prod_list">내상품조회/수정</a>
-						</li>
-						<li class="pb-3">
-							<a class="collapsed d-flex" href="admin_product_write_form">상품 등록</a>
-						</li>
-						<li class="pb-3">
-							<a class="collapsed d-flex" href="order_list">주문/결제내역 </a>
-						</li>
-						<li class="pb-3">
-							<a class="collapsed d-flex" href="grade_detail">나의 등급관리</a>
-						</li>
+						<c:choose>
+							<c:when test="${empty sessionScope.loginUser}">
+								<li><a href="#" onclick="login_empty_check()">1:1 문의하기</a></li>
+							</c:when>
+							<c:otherwise>
+								<li><a href="oneone_list">1:1 문의하기</a></li>
+							</c:otherwise>
+						</c:choose>
 					</ul>
 				</div>

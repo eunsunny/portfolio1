@@ -1,16 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="../header.jsp"%>
-<%@ include file="../member/sub_menu.jsp"%>
+<%@ include file="../notice/sub_menu.jsp"%>
 <!DOCTYPE html>
 
 <!-- Start Content -->
 <div class="col-lg-10">
-	<h2 style="letter-spacing: 0;">공지사항</h2><br>
-	<form name="frm" id="prod_form" method="get">
+	<h2 style="letter-spacing: 0;">1:1 문의하기
+		<div align="right" width="70">
+			<input type="button" value="문의하기" onclick="location='oneone_insert_view'" style="font-size:14px; padding:0.5em 1.5em 0.5em 1.5em; margin-right: 3.5em;">
+		</div>
+	</h2><br>
+	<form name="frm" id="" method="get">
 		<div class="container py-5">
 			<div class="row">
 				<div class="row">
+					
 					<table>
 						<thead>
 						<tr style="text-align: center; padding: 0;">
@@ -37,7 +42,7 @@
 												<c:otherwise>답변 완료</c:otherwise>
 											</c:choose>
 										</td>
-										<td><fmt:formatDate value="${productVO.regdate}"/></td>
+										<td><fmt:formatDate value="${OneoneVO.regdate}"/></td>
 									</tr>
 								</c:forEach>
 							</c:otherwise>
@@ -48,7 +53,6 @@
 					</div>
 				</div>
 			</form>
-			<%@ include file="../myProdPage_area.jsp"%>
 		</div>
 	</div>
 </div>

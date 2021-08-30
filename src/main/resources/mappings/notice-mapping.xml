@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="NoticeDAO">
+	
+	<!-- 공지사항 리스트 -->
+	<select id="noticeList" resultType="gongzi">
+		SELECT * FROM gongzi
+	</select>
+	<!-- 페이징처리포함 -->
+	<select id="noticeListPaging" parameterType="hashMap" resultType="gongzi">
+		<![CDATA[
+		SELECT * FROM 
+			(SELECT row_number() over(ORDER BY regdate) rn, gseq, title, content, image, regdate, count 
+				FROM gongzi)
+			WHERE rn <= #{criteria.pageNum} * #{criteria.rowsPerPage}
+			  AND rn > (#{criteria.pageNum}-1) * #{criteria.rowsPerPage} ORDER BY regdate DESC
+		]]>
+	</select>
+	<!-- 공지사항 전체 게시물수 카운트 -->
+	<select id="countNotice" resultType="int">
+		SELECT COUNT(*) FROM gongzi
+	</select>
+	
+	<!-- 조회수 처리 -->
+	<update id="plusCntNotice">
+		UPDATE gongzi SET count = #{count}+1 WHERE gseq=#{gseq}
+	</update>
+	<select id="noticeCnt" resultType="int">
+		SELECT count FROM gongzi WHERE gseq=#{gseq}
+	</select>	
+	
+	<!-- 공지사항 상세보기 -->
+	<select id="noticeDetail" resultType="gongzi">
+		SELECT * FROM gongzi WHERE gseq=#{gseq}
+	</select>
+	
+	<!-- 자주묻는질문 리스트 -->
+	<select id="questionList" resultType="question">
+		SELECT * FROM question
+	</select>
+	
+	<!-- 1:1 질문 -->
+	<!-- 질문 등록 -->
+	<insert id="insertOneone">
+		INSERT INTO oneone(onseq, title, content, id, rep) VALUES(oneone_seq.NEXTVAL, #{title}, #{content}, #{id}, 'n')
+	</insert>
+	
+	<!-- 1:1질문 등록완료??? -> 어드민에서 해야할듯 -->
+	
+	<!-- 질문 상세 -->
+	<select id="oneoneDetail" resultType="oneone">
+		SELECT * FROM oneone WHERE id=#{id} AND onseq=#{onseq}
+	</select>
+	
+	<!-- 질문 리스트 가져오기 -->
+	<select id="oneoneList" resultType="oneone">
+		SELECT * FROM oneone WHERE id=#{id} ORDER BY onseq DESC
+	</select>
+
+</mapper>
