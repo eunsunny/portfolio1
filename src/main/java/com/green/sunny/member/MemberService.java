@@ -9,6 +9,7 @@ import com.green.sunny.dto.MemberVO;
 public interface MemberService {
 
 	// 회원 상세정보
+	// 등급표시용으로도 사용
 	MemberVO getMember(MemberVO vo);
 
 	// 회원 ID 존재 확인

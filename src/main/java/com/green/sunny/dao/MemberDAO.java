@@ -18,6 +18,7 @@ public class MemberDAO {
 	private SqlSessionTemplate mybatis;
 	
 	// 회원 상세정보
+	// 등급표시용으로도 사용
 	public MemberVO getMember(MemberVO vo) {
 		
 		return mybatis.selectOne("MemberDAO.getMember", vo);
@@ -116,6 +117,12 @@ public class MemberDAO {
 	public void changePassword(MemberVO vo) {
 		
 		mybatis.update("MemberDAO.changePassword", vo);
+	}
+	
+	// 등급
+	public List<MemberVO> gradeSelect(MemberVO vo){
+		
+		return mybatis.selectOne("MemberDAO.gradeSelect", vo); 
 	}
 	
 }

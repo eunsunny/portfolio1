@@ -7,7 +7,7 @@
 <!-- Start Content -->
 <div class="col-lg-9">
 	<h2 style="letter-spacing: 0;">나의 찜목록</h2><br>
-	<form name="frm" id="prod_form" method="post">
+	<form name="frm" id="prod_form" method="get">
 		<div class="container py-5">
 			<div class="row">
 				<div class="row">
@@ -22,7 +22,7 @@
 							<c:when test="${jjimListSize == 0}">
 								<tr>
 									<td width="100%" colspan="6" align="center" height="23" style="color: red; text-align: center;">
-										<br>장바구니가 비었습니다.
+										<br>장바구니가 비었습니다.<br>
 									</td>
 								</tr>
 							</c:when>
