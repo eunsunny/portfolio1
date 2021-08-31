@@ -15,11 +15,11 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/templatemo.css">
     <link rel="stylesheet" href="css/custom.css">
-    <link rel="stylesheet" href="css/main.css" />
+
     <!-- Load fonts style after rendering the layout styles -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
     <link rel="stylesheet" href="css/fontawesome.min.css">
-    
+    <link rel="stylesheet" href="css/main.css" />
     <script type="text/javascript" src="js/product.js"></script>
 
 </head>
@@ -210,7 +210,7 @@
                     <div class="col-md-6">
                         <ul class="list-inline shop-top-menu pb-3 pt-1">
                             <li class="list-inline-item">
-                                <a class="h3 text-dark text-decoration-none mr-3" href="#">${productTry.kind_nm}</a>
+                            
                             </li>
                             <li class="list-inline-item">
                                 <a class="h3 text-dark text-decoration-none mr-3" href="#"></a>
@@ -233,8 +233,8 @@
                 </div>
                 
   <form name="frm" id="prod_form" method="post"> 
-  <input type="hidden" id="kind" name="kind" value="${productVO.kind}">
-  <input type="hidden" id="cnt" name="cnt" value="${productVO.cnt}">
+  
+  
    <c:choose>
     <c:when test="${productListSize<=0}">
     <tr>
@@ -243,9 +243,9 @@
       </td>      
     </tr>
     </c:when>
-	<c:otherwise>             
+	<c:otherwise>            
                 <div class="row">
-                <c:forEach items="${productList}"  var="productVO">
+                <c:forEach items="${map.productList}"  var="productVO">
                     <div class="col-md-4">
                         <div class="card mb-4 product-wap rounded-0">
                             <div class="card rounded-0">
@@ -293,7 +293,7 @@
 </form> 
                 <br>
                 <br>
-              	<%@ include file="../page_area.jsp" %>
+              	<%@ include file="../page_area2.jsp" %>
                 <input class="btn" type="button" name="btn_write" value="상품등록" onClick="go_wrt()">
                 </div>
                 

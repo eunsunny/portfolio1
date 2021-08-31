@@ -52,5 +52,13 @@
 	<select id="countMyProduct" parameterType="String" resultType="int">
 		SELECT COUNT(*) FROM product WHERE id=#{id}
 	</select>
+	
+	<select id="selectAllByPseq" resultType="java.util.Map">
+	select o.*, p.price 
+	 from orders o
+	 inner join product p
+	 on o.pseq = p.pseq
+	 and o.pseq = #{pseq}
+	</select>
 
 </mapper>

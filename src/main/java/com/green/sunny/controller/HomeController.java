@@ -13,7 +13,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.green.sunny.dto.ProductImageVO;
 import com.green.sunny.dto.ProductVO;
+import com.green.sunny.product.ProductService;
 
 
 
@@ -23,8 +25,8 @@ import com.green.sunny.dto.ProductVO;
 @Controller
 public class HomeController {
 	
-//	@Autowired
-//	private ProductService productService;
+	@Autowired
+	private ProductService productService;
 	
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
 	public String home(Model model) {	
@@ -36,15 +38,18 @@ public class HomeController {
 //		
 //		//베스트 상품 조회 서비스
 //		List<ProductVO> bestProdList = productService.getBestProductList();
-//		model.addAttribute("bestProductList", bestProdList);		
+//		model.addAttribute("bestProductList", bestProdList);	
+		
+		List<ProductImageVO> allPicture = productService.getAllPicture();
+		model.addAttribute("allPicture", allPicture);
+		
+		System.out.println(allPicture);
 		return "index";		
 	}
 	
-	@RequestMapping(value = "/admin_index", method = RequestMethod.GET)
+	@RequestMapping(value="/admin_index")
 	public String admin_home() {
-		
 		return "admin/login";
 	}
-	
 	
 }
