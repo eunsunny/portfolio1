@@ -22,6 +22,14 @@
 	<mvc:resources location="/WEB-INF/resources/webfonts/" mapping="/webfonts/**"></mvc:resources>
 	<mvc:resources location="/WEB-INF/resources/grade_images/" mapping="/grade_images/**"></mvc:resources>
 	
+	<mvc:resources location="/WEB-INF/views/admin/" mapping="/admin/**"></mvc:resources>
+	<mvc:resources location="/WEB-INF/resources/admin_css/" mapping="/admin_css/**"></mvc:resources>
+	<mvc:resources location="/WEB-INF/resources/admin_img/" mapping="/admin_img/**"></mvc:resources>
+	<mvc:resources location="/WEB-INF/resources/admin_js/" mapping="/admin_js/**"></mvc:resources>
+	<mvc:resources location="/WEB-INF/resources/admin_scss/" mapping="/admin_scss/**"></mvc:resources>
+	<mvc:resources location="/WEB-INF/resources/admin_vendor/" mapping="/admin_vendor/**"></mvc:resources>
+	<mvc:resources location="/WEB-INF/resources/upload_images/" mapping="/upload_images/**"></mvc:resources>	
+	
 	<!-- JSP 소스 View Resolver -->
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/views/"></property>

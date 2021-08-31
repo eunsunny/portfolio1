@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="QuestionDAO">
+	<!-- 자주묻는 질문 -->
+	<select id="getAllQuestion" resultType="question">
+		SELECT * FROM question
+	</select>
+	
+	<select id="getQuestion" parameterType="int" resultType="question">
+		SELECT * FROM question WHERE qseq=#{qseq}
+	</select>
+	
+	<insert id="insertQuestion">
+		INSERT INTO question VALUES(question_seq.NEXTVAL, #{title}, #{content}, #{image})
+	</insert>
+	
+	<update id="updateQuestion">
+		UPDATE question SET title=#{title}, content=#{content}, image=#{image} WHERE qseq=#{qseq}
+	</update>
+	
+	<delete id="deleteQuestion">
+		DELETE FROM question WHERE qseq=#{qseq}
+	</delete>
+</mapper>

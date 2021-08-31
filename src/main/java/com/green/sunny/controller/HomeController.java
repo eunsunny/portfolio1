@@ -40,4 +40,11 @@ public class HomeController {
 		return "index";		
 	}
 	
+	@RequestMapping(value = "/admin_index", method = RequestMethod.GET)
+	public String admin_home() {
+		
+		return "admin/login";
+	}
+	
+	
 }

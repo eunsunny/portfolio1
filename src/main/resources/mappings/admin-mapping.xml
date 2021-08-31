@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="AdminDAO">
+	<select id="adminCheck" parameterType="String" resultType="String"> 
+	<!-- resultType : 조회한 값을 반환하는 타입 /parameterType : 조건을 입력하는 값의 타입  -->
+		SELECT pwd FROM admin WHERE id=#{id}
+	</select>
+	
+	<select id="getAdmin" parameterType="String" resultType="admin">
+		SELECT * FROM admin WHERE id=#{id} 
+	</select>
+	
+	<!-- Product Section -->
+	<select id="getAllProductPaging" parameterType="hashMap" resultType="product">
+		<![CDATA[
+		SELECT pseq, name, kind, price, title, soldyn, regdate
+		  FROM
+    		(SELECT row_number() over(ORDER BY name) rn, pseq, name, kind, price, title, soldyn, regdate
+      		   FROM product
+     		  WHERE name LIKE '%'||#{key}||'%')
+          WHERE rn <= #{criteria.pageNum} * #{criteria.rowsPerPage}
+		    AND rn > (#{criteria.pageNum}-1) * #{criteria.rowsPerPage}
+	    ]]> 
+	</select>
+	
+	<select id="getTotalProduct" parameterType="String" resultType="int">
+		SELECT COUNT(*) FROM product WHERE name LIKE '%'||#{name}||'%'
+	</select>
+	
+	<select id="getProductDetail" parameterType="int" resultType="product">
+		SELECT * FROM product WHERE pseq=#{pseq}
+	</select>
+	
+	<select id="getProductImage" resultType="productImage">
+		SELECT * FROM product_image WHERE pseq=#{pseq}
+	</select>
+	
+	<!-- Member Section -->
+	<select id="getAllMemberPaging" parameterType="hashMap" resultType="member">
+		<![CDATA[
+		SELECT id, name, nick_name, email, phone, regdate
+		  FROM
+    		(SELECT row_number() over(ORDER BY name) rn, id, name, nick_name, email, phone, regdate
+      		   FROM member
+     		  WHERE name LIKE '%'||#{key}||'%')
+          WHERE rn <= #{criteria.pageNum} * #{criteria.rowsPerPage}
+		    AND rn > (#{criteria.pageNum}-1) * #{criteria.rowsPerPage}
+	    ]]> 
+	</select>
+	
+	<select id="getTotalMember" parameterType="String" resultType="int">
+		SELECT COUNT(*) FROM member WHERE name LIKE '%'||#{name}||'%'
+	</select>
+	
+	<select id="getMemberDetail" parameterType="String" resultType="member">
+		SELECT * FROM member WHERE id=#{id}
+	</select>
+	
+	<!-- Board Section -->
+	<select id="getAllBoardPaging" parameterType="hashMap" resultType="board">
+		<![CDATA[
+		SELECT bseq, title, id, content, image, regdate, count
+		  FROM
+    		(SELECT row_number() over(ORDER BY id) rn, bseq, title, id, content, image, regdate, count
+      		   FROM board
+     		  WHERE title LIKE '%'||#{key}||'%')
+          WHERE rn <= #{criteria.pageNum} * #{criteria.rowsPerPage}
+		    AND rn > (#{criteria.pageNum}-1) * #{criteria.rowsPerPage}
+	    ]]> 
+	</select>
+	
+	<select id="getTotalBoard" parameterType="String" resultType="int">
+		SELECT COUNT(*) FROM board WHERE title LIKE '%'||#{title}||'%'
+	</select>
+	
+	<select id="getBoardDetail" resultType="board">
+		SELECT * FROM board WHERE bseq=#{bseq}
+	</select>
+	
+	<delete id="deleteBoard" parameterType="int">
+		DELETE FROM board WHERE bseq=#{bseq}
+	</delete>
+	
+	<!-- Oneone Section -->
+	<select id="getAllOneonePaging" parameterType="hashMap" resultType="oneone">
+		<![CDATA[
+		SELECT onseq, title, id, content, regdate, rep
+		  FROM
+    		(SELECT row_number() over(ORDER BY id) rn, onseq, title, id, content, regdate, rep
+      		   FROM oneone
+     		  WHERE title LIKE '%'||#{key}||'%')
+          WHERE rn <= #{criteria.pageNum} * #{criteria.rowsPerPage}
+		    AND rn > (#{criteria.pageNum}-1) * #{criteria.rowsPerPage}
+	    ]]> 
+	</select>
+	
+	<select id="getOneoneDetail" resultType="oneone">
+		SELECT * FROM oneone WHERE onseq=#{onseq}
+	</select>
+	
+	<update id="updateOneoneReply">
+		UPDATE oneone SET reply=#{reply}, rep='y' WHERE onseq=#{onseq}
+	</update>
+	
+	<select id="getTotalOneone" parameterType="String" resultType="int">
+		SELECT COUNT(*) FROM oneone WHERE id LIKE '%'||#{id}||'%'
+	</select>
+	
+	<!-- Order Section -->
+	<select id="getAllOrderPaging" parameterType="hashMap" resultType="order">
+		<![CDATA[
+		SELECT oseq, id, pseq, order_date, pay_result, rev_result
+		  FROM
+    		(SELECT row_number() over(ORDER BY id) rn, oseq, id, pseq, order_date, pay_result, rev_result
+      		   FROM orders
+     		  WHERE id LIKE '%'||#{key}||'%')
+          WHERE rn <= #{criteria.pageNum} * #{criteria.rowsPerPage}
+		    AND rn > (#{criteria.pageNum}-1) * #{criteria.rowsPerPage}
+	    ]]>
+	</select>
+	
+	<select id="getTotalOrder" parameterType="String" resultType="int">
+		SELECT COUNT(*) FROM orders WHERE id LIKE '%'||#{id}||'%'
+	</select>
+	
+	<!-- Report Section -->
+	<select id="getAllReportPaging" parameterType="hashMap" resultType="report">
+		<![CDATA[
+		SELECT rseq, id, report_id, rp_kind, content, result, report_date
+		  FROM
+    		(SELECT row_number() over(ORDER BY rseq) rn, rseq, id, report_id, rp_kind, content, result, report_date
+      		   FROM report
+     		  WHERE id LIKE '%'||#{key}||'%')
+          WHERE rn <= #{criteria.pageNum} * #{criteria.rowsPerPage}
+		    AND rn > (#{criteria.pageNum}-1) * #{criteria.rowsPerPage}
+	    ]]>
+	</select>
+	
+	<select id="getTotalReport" parameterType="String" resultType="int">
+		SELECT COUNT(*) FROM report WHERE id LIKE '%'||#{id}||'%'
+	</select>
+	
+	<select id="getReportDetail" parameterType="int" resultType="report">
+		SELECT * FROM report WHERE rseq=#{rseq}
+	</select>
+	
+	<update id="updateReportResult" parameterType="int">
+		UPDATE report SET result='y' WHERE rseq=#{rseq}
+	</update>
+</mapper>
