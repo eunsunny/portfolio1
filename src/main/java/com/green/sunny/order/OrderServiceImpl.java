@@ -1,6 +1,7 @@
 package com.green.sunny.order;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -44,6 +45,11 @@ public class OrderServiceImpl implements OrderService {
 	public void orderSet(OrderVO vo) {
 		
 		orderDao.orderSet(vo);
+	}
+
+	@Override
+	public Map<String,Object> selectAllByPseq(int pseq) {
+		return orderDao.selectAllByPseq(pseq);
 	}
 
 }

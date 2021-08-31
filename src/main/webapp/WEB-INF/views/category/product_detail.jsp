@@ -27,14 +27,27 @@
     <link rel="stylesheet" type="text/css" href="css/slick-theme.css">
     
     <link rel="stylesheet" href="css/main.css" />
+    <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
     <script type="text/javascript" src="js/product.js"></script>
+    
+    <style>
+    
+		.link-icon { position: relative; display: inline-block; width: auto;    font-size: 14px; font-weight: 500; color: #333; margin-right: 10px;  }
+		.link-icon.twitter {  background-repeat: no-repeat; }
+		.link-icon.facebook {  background-repeat: no-repeat; } 
+		.link-icon.kakao {  background-repeat: no-repeat; }
+    </style>
 </head>
 
 
 <body>
 <form name="formm" id="theform" method="post">
-<input type="hidden" name="pseq" value="${productVO.pseq}">
+<input type="hidden" name="pseq" id="pseq" value="${productVO.pseq}">
 <input type="hidden" name="kind" value="${productVO.kind}">
+<input type="hidden" name="price" value="${productVO.price}">
+<input type="hidden" name="id" value="${productVO.id}">
+<input type="hidden" name="name" value="${productVO.name}">
+<input type="hidden" name="name" value="${productVO.regdate}">
    <div class="modal fade bg-white" id="templatemo_search" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="w-100 pt-1 mb-5 text-right">
@@ -164,7 +177,19 @@
                 <div class="col-lg-7 mt-5">
                     <div class="card">
                         <div class="card-body">
-                            <h1 class="h2">${productVO.name} </h1>
+                        	<div style="display : inline-flex;">
+                        	<div>
+                            <h1 class="h2">${productVO.title} </h1>
+                            </div>
+                            <span style="width:500px;"></span>
+                            <div>
+                            
+                            
+                          	<a id="btnTwitter" class="link-icon twitter" href="javascript:shareTwitter();"><img alt="" src="images/icon-twitter.png"></a>
+							<a id="btnFacebook" class="link-icon facebook" href="javascript:shareFacebook();"><img alt="" src="images/icon-facebook.png"></a>    
+							<a id="btnKakao" class="link-icon kakao" href="javascript:shareKakao();"><img alt="" src="images/icon-kakao.png"></a>   
+							</div>
+                            </div>
                             <p class="h3 py-2">${productVO.price}원</p>
                             <p class="py-2">
                                 <i class="fa fa-star text-warning"></i>
@@ -172,7 +197,7 @@
                                 <i class="fa fa-star text-warning"></i>
                                 <i class="fa fa-star text-warning"></i>
                                 <i class="fa fa-star text-secondary"></i>
-                                <span class="list-inline-item text-dark">Rating 4.8 | 36 Comments</span>
+                                <span class="list-inline-item text-dark">Rating 4.8 | ${totalComment} Comments</span>
                             </p>
                             <ul class="list-inline">
                                 <li class="list-inline-item">
@@ -180,6 +205,16 @@
                                 </li>
                                 <li class="list-inline-item">
                                     <p class="text-muted"><strong>:  ${productVO.id}</strong></p>
+                                    
+                                </li>
+                            </ul>
+                            
+                            <ul class="list-inline">
+                                <li class="list-inline-item">
+                                    <h6>registration date</h6>
+                                </li>
+                                <li class="list-inline-item">
+                                    <p class="text-muted"><strong>:  ${productVO.regdate}</strong></p>
                                     
                                 </li>
                             </ul>
@@ -235,43 +270,45 @@
 <!--                                 <li>Excepteur sint</li> -->
 <!--                             </ul> -->
 
+
+
                             <form action="" method="GET">
                                 <input type="hidden" name="product-title" value="Activewear">
                                 
-                                <div class="row">
-                                    <div class="col-auto">
-                                        <ul class="list-inline pb-3">
-                                            <li class="list-inline-item">Size :
-                                                <input type="hidden" name="product-size" id="product-size" value="S">
-                                            </li>
-                                            <li class="list-inline-item"><span class="btn btn-success btn-size">S</span></li>
-                                            <li class="list-inline-item"><span class="btn btn-success btn-size">M</span></li>
-                                            <li class="list-inline-item"><span class="btn btn-success btn-size">L</span></li>
-                                            <li class="list-inline-item"><span class="btn btn-success btn-size">XL</span></li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-auto">
-                                        <ul class="list-inline pb-3">
-                                            <li class="list-inline-item text-right">
-                                                Quantity
-                                                <input type="hidden" name="product-quanity" id="product-quanity" value="1">
-                                            </li>
-                                            <li class="list-inline-item"><span class="btn btn-success" id="btn-minus">-</span></li>
-                                            <li class="list-inline-item"><span class="badge bg-secondary" id="var-value">1</span></li>
-                                            <li class="list-inline-item"><span class="btn btn-success" id="btn-plus">+</span></li>
-                                        </ul>
-                                    </div>
-                                </div>
+                            
+<!--                                 <div class="row"> -->
+<!--                                     <div class="col-auto"> -->
+<!--                                         <ul class="list-inline pb-3"> -->
+<!--                                             <li class="list-inline-item">Size : -->
+<!--                                                 <input type="hidden" name="product-size" id="product-size" value="S"> -->
+<!--                                             </li> -->
+<!--                                             <li class="list-inline-item"><span class="btn btn-success btn-size">S</span></li> -->
+<!--                                             <li class="list-inline-item"><span class="btn btn-success btn-size">M</span></li> -->
+<!--                                             <li class="list-inline-item"><span class="btn btn-success btn-size">L</span></li> -->
+<!--                                             <li class="list-inline-item"><span class="btn btn-success btn-size">XL</span></li> -->
+<!--                                         </ul> -->
+<!--                                     </div> -->
+<!--                                     <div class="col-auto"> -->
+<!--                                         <ul class="list-inline pb-3"> -->
+<!--                                             <li class="list-inline-item text-right"> -->
+<!--                                                 Quantity -->
+<!--                                                 <input type="hidden" name="product-quanity" id="product-quanity" value="1"> -->
+<!--                                             </li> -->
+<!--                                             <li class="list-inline-item"><span class="btn btn-success" id="btn-minus">-</span></li> -->
+<!--                                             <li class="list-inline-item"><span class="badge bg-secondary" id="var-value">1</span></li> -->
+<!--                                             <li class="list-inline-item"><span class="btn btn-success" id="btn-plus">+</span></li> -->
+<!--                                         </ul> -->
+<!--                                     </div> -->
+<!--                                 </div> -->
                                 <div class="row pb-3">
                                     <div class="col d-grid">
-                                        <button type="submit" class="btn btn-success btn-lg" name="submit" value="buy">구매하기</button>
+                                       <button type="button" class="btn btn-success btn-lg" id="but" name="submit" onclick="movePayForm()">구매하기</button>
                                     </div>
 										<div class="col d-grid">
                                  <c:choose>
                                     <c:when test="${empty sessionScope.loginUser}">
                                        <button type="button" class="btn btn-success btn-lg"
-                                          id="empty_check" name="submit"
-                                          onclick="login_empty_check()">찜 등록</button>
+                                          id="empty_check" name="submit" onclick="login_empty_check()">찜 등록</button>
                                     </c:when>
                                     <c:when test="${sessionScope.loginUser.id == productVO.id}">
                                        <button type="button" class="btn btn-success btn-lg"
@@ -357,6 +394,46 @@
                 }
             ]
         });
+        
+        function shareTwitter() {
+
+        	var t =  document.getElementById("pseq").value;
+        	
+         	var sendText = "써니플리마켓에서 공유할 중고거래를 소개합니다."; // 전달할 텍스트
+            var sendUrl = "http://localhost:8181/sunny/product_detail?pseq="+ t; // 전달할 URL
+            window.open("https://twitter.com/intent/tweet?text=" + sendText + "&url=" + sendUrl);
+        }
+        
+        function shareFacebook() {
+        	var t =  document.getElementById("pseq").value;
+        	
+        	var sendUrl = "http://localhost:8181/sunny/product_detail?pseq="+ t; // 전달할 URL
+            window.open("http://www.facebook.com/sharer/sharer.php?u=" + sendUrl);
+        }
+        
+
+        function shareKakao() {
+        var t =  document.getElementById("pseq").value;
+        
+          // 사용할 앱의 JavaScript 키 설정
+          Kakao.init('34fc5afec38496128b56a0ed781010a0');
+         
+          // 카카오링크 버튼 생성
+          Kakao.Link.createDefaultButton({
+            container: '#btnKakao', // 카카오공유버튼ID
+            objectType: 'feed',
+            content: {
+              title: "써니플리마켓", // 보여질 제목
+              description: "써니플리마켓에서 공유할 중고거래를 소개합니다.", // 보여질 설명
+              imageUrl: "http://localhost:8181/sunny/product_detail?pseq="+t, // 콘텐츠 URL
+              link: {
+                 mobileWebUrl: "http://192.168.137.1:8181/sunny/index",
+                 webUrl: "http://localhost:8181/sunny/product_detail?pseq="+t
+              }
+            }
+          });
+        }
+        
     </script>
     <!-- End Slider Script -->
 	

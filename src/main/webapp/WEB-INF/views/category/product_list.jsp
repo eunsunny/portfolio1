@@ -15,43 +15,15 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/templatemo.css">
     <link rel="stylesheet" href="css/custom.css">
-
+    <link rel="stylesheet" href="css/main.css" />
     <!-- Load fonts style after rendering the layout styles -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
     <link rel="stylesheet" href="css/fontawesome.min.css">
-    <link rel="stylesheet" href="css/main.css" />
+    
     <script type="text/javascript" src="js/product.js"></script>
 
 </head>
-<script type="text/javascript">
-function changeSelectBox(){
-	// 상품평 목록 불러오기 
-	function getCommentList() {
-		$.ajax({
-			type: 'GET',
-			url: 'comments/list', 
-			dataType: 'json',
-			data:{
-				searchSelectBox : $('#searchBox').val(),
-				category : $('#kind').val()
-			},
-			contentType: 'application/x-www-form-urlencoded; charset=utf-8',
-			success: function(data) {
-				var pageMaker = data.pageInfo;
-			 	var totalCount = data.total;
-			 	var commentList = data.commentList;
-			 	
-				showHTML(pageMaker, commentList, totalCount);
-			},
-			error: function() {
-				alert("상품평 목록을 조회하지 못했습니다.")
-			}
-		});
-	}
-	
-// 	alert($('#searchBox').val());
-}
-</script>
+
 <body>
   <!-- Modal -->
     <div class="modal fade bg-white" id="templatemo_search" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -253,7 +225,7 @@ function changeSelectBox(){
                             <select class="form-control" id="searchBox" name="searchBox" onchange="changeSelectBox()">
                                 <option selected value="1">전체</option>
                                 <option value="2">조회순</option>
-                                <option value="3">추천순</option>
+                                <option value="3">최신순</option>
                                 <option value="4">찜순</option>
                             </select>
                         </div>
@@ -318,13 +290,14 @@ function changeSelectBox(){
                 </div>
    	</c:otherwise>	
 </c:choose>  
+</form> 
                 <br>
                 <br>
               	<%@ include file="../page_area.jsp" %>
                 <input class="btn" type="button" name="btn_write" value="상품등록" onClick="go_wrt()">
                 </div>
                 
-   </form>              
+              
                
             
 

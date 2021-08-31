@@ -9,7 +9,7 @@ import com.green.sunny.dto.MemberVO;
 public interface MemberService {
 	
 	// 아이디 가져오기
-	public MemberVO getIdMember(MemberVO vo);
+	public String getIdMember(String id);
 	
 	// 회원 상세정보
 	// 등급표시용으로도 사용

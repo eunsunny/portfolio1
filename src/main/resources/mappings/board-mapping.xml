@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="BoardDAO">
+	<select id="selectBoardList" resultType="java.util.Map">
+		SELECT BSEQ
+		     , TITLE
+		     , ID
+		     , CONTENT
+		     , IMAGE
+		     , TO_CHAR(REGDATE, 'YYYY-MM-DD') AS REGDATE
+		     , COUNT
+		  FROM BOARD
+	</select>
+	
+	<select id="selectBoardDetail" resultType="java.util.Map">
+		SELECT BSEQ
+		     , TITLE
+		     , ID
+		     , CONTENT
+		     , IMAGE
+		     , TO_CHAR(REGDATE, 'YYYY-MM-DD') AS REGDATE
+		     , COUNT
+		  FROM BOARD
+		WHERE bseq=#{bseq}
+	</select>
+	
+	<select id="selectCount" resultType="int">
+	  	select count from BOARD 
+	  	where bseq=#{bseq}
+	</select>
+	
+	<update id="plusCount">
+		UPDATE BOARD
+		SET count= #{count} + 1
+		WHERE bseq=#{bseq}
+	</update>
+	
+	<delete id="deleteBoard" parameterType="int">
+		DELETE FROM BOARD 
+		WHERE bseq = #{bseq}
+	</delete>
+	
+	<insert id="insertBoardInfo" parameterType="java.util.Map" >
+		INSERT INTO BOARD (
+							BSEQ
+						  , TITLE
+						  , ID
+						  , CONTENT
+						  , REGDATE
+						  , COUNT
+						  )
+				   VALUES (BOARD_SEQ.NEXTVAL
+				         , #{title}
+				         , #{id}
+				         , #{content}
+				         , SYSDATE
+				         , 0
+				         )
+	</insert>
+</mapper>

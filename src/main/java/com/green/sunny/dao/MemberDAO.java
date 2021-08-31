@@ -18,9 +18,9 @@ public class MemberDAO {
 	private SqlSessionTemplate mybatis;
 	
 	// 아이디 가져오기
-	public MemberVO getIdMember(MemberVO vo) {
+	public String getIdMember(String id) {
 		
-		return mybatis.selectOne("MemberDAO.getIdMember", vo);
+		return mybatis.selectOne("MemberDAO.getIdMember", id);
 	}
 	// 회원 상세정보
 	// 등급표시용으로도 사용

@@ -1,6 +1,7 @@
 package com.green.sunny.product;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -111,5 +112,28 @@ public class ProductServiceImpl implements ProductService {
 	public void deletePicture(int pseq) {
 		
 		pDao.deletePicture(pseq);
+	}
+
+	@Override
+	public List<ProductVO> listWithPaging2(Criteria criteria, String keyword, String search_option) {
+		
+		return pDao.listWithPaging2(criteria, keyword, search_option);
+	}
+
+	@Override
+	public int countProductList2(String search_option, String keyword) {
+		
+		return pDao.countProductList2(search_option, keyword);
+	}
+
+	@Override
+	public List<ProductImageVO> getAllPicture() {
+		
+		return pDao.getAllPicture();
+	}
+	
+	@Override
+	public int insertPayInfo(Map<String,Object> paramMap) {
+		return pDao.insertPayInfo(paramMap);
 	}
 }

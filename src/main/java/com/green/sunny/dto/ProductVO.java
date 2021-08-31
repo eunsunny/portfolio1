@@ -3,7 +3,7 @@ package com.green.sunny.dto;
 import java.sql.Date;
 
 public class ProductVO {
-	private int pseq;
+	public int pseq;
 	private String name;
 	private String kind;
 	private String kind2;
