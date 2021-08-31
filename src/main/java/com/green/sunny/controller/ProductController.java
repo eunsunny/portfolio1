@@ -2,6 +2,7 @@ package com.green.sunny.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -10,16 +11,23 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.ModelAndView;
 
+import com.green.sunny.comment.CommentService;
 import com.green.sunny.dto.MemberVO;
+import com.green.sunny.dto.OrderVO;
+import com.green.sunny.dto.ProductCommentVO;
 import com.green.sunny.dto.ProductImageVO;
 import com.green.sunny.dto.ProductVO;
 import com.green.sunny.member.MemberService;
+import com.green.sunny.order.OrderService;
 import com.green.sunny.product.ProductService;
 import com.green.sunny.utils.Criteria;
 import com.green.sunny.utils.PageMaker;
@@ -31,6 +39,10 @@ public class ProductController {
 	private ProductService productService;
 	@Autowired
 	private MemberService memberService;
+	@Autowired
+	private CommentService commentService;
+	@Autowired
+	private OrderService orderService;
 	
 	@RequestMapping(value="/category", method=RequestMethod.GET)
 	public String productKindAction(ProductVO vo, Model model, @RequestParam(value="key", defaultValue="") String key,
@@ -41,7 +53,6 @@ public class ProductController {
 		System.out.println("vo=" +vo);
 		//페이징 처리 
 		List<ProductVO> prodList = productService.getListWithPaging(criteria, key, kind);
-		
 //		if(vo.getKind().equals("1")) {
 //			vo.setKind_nm("패션의류/잡화");
 //		}
@@ -76,13 +87,15 @@ public class ProductController {
 		productService.plusCount(vo);
 		ProductVO product = productService.getProduct(vo);	
 		
+		//댓글 수 
+		int totalComment = commentService.countCommentList(vo.getPseq());
+		
 		//다른사진 불러오기
 		List<ProductImageVO> productImageList = productService.getOtherPicture(pvo);
 		
 		model.addAttribute("productVO", product);
 		model.addAttribute("productImageList", productImageList);
-		
-	
+		model.addAttribute("totalComment", totalComment);
 		
 		return "category/product_detail";
 	}
@@ -116,7 +129,7 @@ public class ProductController {
 		String kindList[] = {"패션의류/잡화", "뷰티", "출산/유아동", "식품", "주방/생활용품", "인테리어", "가전디지털", "스포츠/레저", "자동차용품", "도서/음반/DVD", "완구/문구/취미", "반려동물", "헬스/건강식품", "무료나눔"};
 		String kindList2[] = {"직거래", "안전거래", "모두가능"};
 		model.addAttribute("kindList", kindList);
-		model.addAttribute("kindList2", kindList2);
+//		model.addAttribute("kindList2", kindList2);
 		
 		return "category/product_write";
 		}
@@ -159,7 +172,7 @@ public class ProductController {
 		}
 	}
 	
-	@RequestMapping(value="/test")
+	@RequestMapping(value="/cancel")
 	public String test() {
 		
 		return "category/cancel";
@@ -240,4 +253,95 @@ public class ProductController {
 			        return "redirect:category?kind="+vo.getKind();
 		}
 	}
-}
+	
+	//검색
+	@RequestMapping("list.do")
+	public ModelAndView list(Criteria criteria,
+			@RequestParam(defaultValue="user_id") String search_option, //기본 검색 옵션값을 작성자로 한다.
+
+            @RequestParam(defaultValue="") String keyword   //키워드의 기본값을 ""으로 한다.
+            )
+        throws Exception{
+		
+		List<ProductVO> prodList = productService.listWithPaging2(criteria, keyword, search_option);
+		//System.out.println("prodList:"+prodList);
+		
+		ModelAndView mav = new ModelAndView();
+        Map<String,Object> map = new HashMap<>(); 
+       
+        PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(criteria); 	//현재 페이지와 페이지당 항목 수 설정 
+		
+		int totalCount = productService.countProductList2(search_option, keyword);
+		pageMaker.setTotalCount(totalCount);
+		
+		map.put("criteria", criteria);
+        map.put("productListSize", prodList.size());
+        map.put("productList", prodList);  
+        map.put("search_option", search_option);
+        map.put("pageMaker", pageMaker);
+        map.put("keyword", keyword);
+        map.put("search_option", search_option);
+        map.put("keyword", keyword);
+        mav.addObject("map", map);
+        
+        
+        System.out.println("map : "+map);
+        mav.setViewName("category/product_list2");
+		
+		return mav;
+	}
+	
+	@RequestMapping(value="/move_pay_form", method =RequestMethod.POST) 
+	public String paypage(Model model, ProductVO vo, HttpSession session) {
+		MemberVO loginUser = (MemberVO)session.getAttribute("loginUser");
+		if (loginUser == null) return "/member/login";
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		
+		paramMap.put("loginUserName", loginUser.getName());  
+		paramMap.put("email", loginUser.getEmail()); 
+		paramMap.put("phone", loginUser.getPhone()); 
+		paramMap.put("address", loginUser.getAddress()); 
+		paramMap.put("pseq", vo.getPseq());
+		paramMap.put("price", vo.getPrice());
+		paramMap.put("kind", vo.getKind());
+		model.addAttribute("buyerInfo", paramMap);
+		return "category/product_payform";
+	}
+	
+	@RequestMapping(value="/call_iamport_success", method =RequestMethod.GET) 
+	public String callPaySuccessPage(int pseq,
+						Model model, ProductVO vo, HttpSession session) {
+		MemberVO loginUser = (MemberVO)session.getAttribute("loginUser");
+		if (loginUser == null) return "/member/login";
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		
+		resultMap = orderService.selectAllByPseq(pseq);
+		
+		paramMap.put("loginUserName", loginUser.getName());  
+		paramMap.put("email", loginUser.getEmail()); 
+		paramMap.put("phone", loginUser.getPhone()); 
+		paramMap.put("address", resultMap.get("BUYER_ADDRESS")); 
+		paramMap.put("price", resultMap.get("PRICE"));
+		
+		model.addAttribute("buyerInfo", paramMap);
+		
+		
+		return "category/product_pay_success";
+	}
+	
+	@RequestMapping(value="/call_iamport_fail", method =RequestMethod.GET) 
+	public String callPayFailPage(Model model, ProductVO vo, HttpSession session) {
+		return "category/product_pay_fail";
+	}
+	
+	@RequestMapping(value="/pay_save")
+	@ResponseBody
+	public boolean paySave(@RequestParam Map<String,Object> paramMap, HttpSession session) {
+		MemberVO loginUser = (MemberVO)session.getAttribute("loginUser");
+		paramMap.put("id", loginUser.getId());
+		
+		return productService.insertPayInfo(paramMap) == 1 ? true : false; 
+	}
+}	

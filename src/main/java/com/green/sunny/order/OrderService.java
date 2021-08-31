@@ -1,6 +1,7 @@
 package com.green.sunny.order;
 
 import java.util.List;
+import java.util.Map;
 
 import com.green.sunny.dto.OrderVO;
 import com.green.sunny.dto.ProductVO;
@@ -19,4 +20,6 @@ public interface OrderService {
 	
 	// 주문 확정 버튼
 	public void orderSet(OrderVO vo);
+	
+	public Map<String,Object> selectAllByPseq(int pseq);
 }

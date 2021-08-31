@@ -2,6 +2,7 @@ package com.green.sunny.dao;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,5 +50,11 @@ public class OrderDAO {
 		
 		mybatis.update("OrderDAO.orderUpdate", vo);
 	}
+	
+	public Map<String,Object> selectAllByPseq(int pseq) {
+		
+		return mybatis.selectOne("OrderDAO.selectAllByPseq", pseq);
+	}
+	
 	
 }

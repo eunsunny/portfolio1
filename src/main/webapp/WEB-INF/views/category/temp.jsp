@@ -30,6 +30,7 @@
     <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
     <script type="text/javascript" src="js/product.js"></script>
     
+    
     <style>
     
 		.link-icon { position: relative; display: inline-block; width: auto;    font-size: 14px; font-weight: 500; color: #333; margin-right: 10px;  }
@@ -38,29 +39,28 @@
 		.link-icon.kakao {  background-repeat: no-repeat; }
     </style>
 </head>
-
-
 <body>
-<form name="formm" id="theform" method="post">
+<form name="formm" id="theform" method="post" >
 <input type="hidden" name="pseq" id="pseq" value="${productVO.pseq}">
 <input type="hidden" name="kind" value="${productVO.kind}">
 <input type="hidden" name="price" value="${productVO.price}">
 <input type="hidden" name="id" value="${productVO.id}">
 <input type="hidden" name="name" value="${productVO.name}">
 <input type="hidden" name="name" value="${productVO.regdate}">
+
    <div class="modal fade bg-white" id="templatemo_search" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="w-100 pt-1 mb-5 text-right">
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="" method="get" class="modal-content modal-body border-0 p-0">
-                <div class="input-group mb-2">
+<!--             <form action="" method="get" class="modal-content modal-body border-0 p-0"> -->
+<!--                 <div class="input-group mb-2"> -->
                     <input type="text" class="form-control" id="inputModalSearch" name="q" placeholder="Search ...">
-                    <button type="submit" class="input-group-text bg-success text-light">
-                        <i class="fa fa-fw fa-search text-white"></i>
-                    </button>
-                </div>
-            </form>
+<!--                     <button type="submit" class="input-group-text bg-success text-light"> -->
+<!--                         <i class="fa fa-fw fa-search text-white"></i> -->
+<!--                     </button> -->
+<!--                 </div> -->
+<!--             </form> -->
         </div>
     </div>
 
@@ -184,7 +184,7 @@
                             <span style="width:500px;"></span>
                             <div>
                             
-                            
+
                           	<a id="btnTwitter" class="link-icon twitter" href="javascript:shareTwitter();"><img alt="" src="images/icon-twitter.png"></a>
 							<a id="btnFacebook" class="link-icon facebook" href="javascript:shareFacebook();"><img alt="" src="images/icon-facebook.png"></a>    
 							<a id="btnKakao" class="link-icon kakao" href="javascript:shareKakao();"><img alt="" src="images/icon-kakao.png"></a>   
@@ -272,8 +272,8 @@
 
 
 
-                            <form action="" method="GET">
-                                <input type="hidden" name="product-title" value="Activewear">
+<!--                             <form action="" method="GET"> -->
+<!--                                 <input type="hidden" name="product-title" value="Activewear"> -->
                                 
                             
 <!--                                 <div class="row"> -->
@@ -302,7 +302,7 @@
 <!--                                 </div> -->
                                 <div class="row pb-3">
                                     <div class="col d-grid">
-                                       <button type="button" class="btn btn-success btn-lg" id="but" name="submit" onclick="movePayForm()">구매하기</button>
+                                        <input type="button" class="btn btn-success btn-lg" onClick="pay()" value="구매하기"></button>
                                     </div>
 										<div class="col d-grid">
                                  <c:choose>
@@ -335,7 +335,7 @@
 								</c:if>
 								</div>	
                                 	
-                            </form>
+                            
 
                         </div>
                     </div>
@@ -433,7 +433,7 @@
             }
           });
         }
-        
+
     </script>
     <!-- End Slider Script -->
 	

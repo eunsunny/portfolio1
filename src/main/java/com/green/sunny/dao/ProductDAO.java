@@ -22,8 +22,6 @@ public class ProductDAO {
 	}
 	
 	public void insertProduct(ProductVO vo) {
-		
-		
 		mybatis.insert("ProductDAO.insertProduct", vo);
 	}
 	
@@ -74,6 +72,15 @@ public class ProductDAO {
 		return mybatis.selectList("ProductDAO.listWithPaging", map);
 	}
 	
+	public List<ProductVO> listWithPaging2(Criteria criteria, String keyword, String search_option) {
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("criteria", criteria);
+		map.put("keyword", keyword);
+		map.put("search_option", search_option);
+		
+		return mybatis.selectList("ProductDAO.listWithPaging2", map);
+	}
+	
 	public List<ProductImageVO> getOtherPicture(ProductImageVO pvo) {
 		
 		return mybatis.selectList("ProductDAO.getOtherPicture", pvo);
@@ -85,6 +92,14 @@ public class ProductDAO {
 		map.put("name", name);
 		map.put("kind", kind);
 		return mybatis.selectOne("ProductDAO.countProductList", map);
+	}
+	
+	public int countProductList2(String search_option, String keyword) {
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("keyword", keyword);
+		map.put("search_option", search_option);
+		
+		return mybatis.selectOne("ProductDAO.countProductList2", map);
 	}
 	
 	public void plusCount(ProductVO vo) {
@@ -105,5 +120,12 @@ public class ProductDAO {
 		return mybatis.selectOne("ProductDAO.getOnePicture", pseq);
 	}
 	
+	public List<ProductImageVO> getAllPicture() {
+		
+		return mybatis.selectList("ProductDAO.getAllPicture");
+	}
 
+	public int insertPayInfo(Map<String, Object> paramMap) {
+		return mybatis.insert("ProductDAO.insertPayInfo", paramMap);
+	}
 }

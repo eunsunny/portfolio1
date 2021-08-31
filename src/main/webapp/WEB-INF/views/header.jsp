@@ -12,8 +12,6 @@
   <script src="js/jquery-migrate-1.2.1.min.js"></script>
   <script type="text/javascript" src="member/member.js"></script>
   <script type="text/javascript" src="js/product.js"></script>
-  
-
   <link rel="stylesheet" href="css/main.css" />
 
 	<%--<meta charset="UTF-8">
@@ -84,7 +82,7 @@
 							</nav>
 						<!-- Logo -->
 							<h1 id="logo"><a href="index.html">Sunny Flea Market</a></h1>
-							<p>A responsive HTML5 site template. Manufactured by HTML5 UP.</p>
+							<p>안전한 중고거래, 써니 플리마켓</p>
 							
 						
 						<!-- Nav -->
@@ -145,7 +143,16 @@
 											</ul></li>
 									</c:otherwise>
 								</c:choose>
-								<li><a class="icon solid fa-sitemap" href="#"><span>Flea-Board</span></a></li>
+								
+								<c:choose>
+									<c:when test="${empty sessionScope.loginUser}">
+								<li><a class="icon solid fa-sitemap" href="#" onclick="login_empty_check()"><span>Flea-Board</span></a></li>
+								</c:when>
+								<c:otherwise>
+								<li><a class="icon solid fa-sitemap" href="moveBoard"><span>Flea-Board</span></a></li>
+								</c:otherwise>
+								</c:choose>
+								
 								<li><a class="icon solid fa-cog" href="notice_list"><span>NOTICE</span></a>
 									<ul>
 										<li><a href="notice_list">공지사항</a></li>
@@ -161,9 +168,38 @@
 									</ul></li>
 								</ul>
 							</nav>
+							<br>
+							
+<br>
+<br>						
+<form name="form1" method="post" action="list.do">
+<div style="display: inline-flex;">
+    <select  class="form-control" name="search_option" >
+        <option value="id"
+<c:if test="${map.search_option == 'user_id'}">selected</c:if>
+   >작성자</option>
+
+        <option value="title" 
+<c:if test="${map.search_option == 'title'}">selected</c:if>
+        >제목</option>
+
+        <option value="content" 
+<c:if test="${map.search_option == 'content'}">selected</c:if>
+        >내용</option>
+
+        <option value="all" 
+<c:if test="${map.search_option == 'all'}">selected</c:if>
+        >전체</option>
+
+    </select>
+    <input name="keyword" value="${map.keyword}" size="70" placeholder="검색어를 입력하세요">
+    <input type="submit" value="조회">
+</div>
+</form>
 
 					</div>
 				</section>
-				</div>
+			</div>
+			
   </body>
 </html>
