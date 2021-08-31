@@ -17,7 +17,7 @@
 				<section id="features">
 					<div class="container">
 						<header>
-							<h2>재수정 <strong>재수정</strong>!</h2>
+							<h2>체크하는중	<strong>체크하는중</strong>!</h2>
 						</header>
 						<div class="row aln-center">
 							<div class="col-4 col-6-medium col-12-small">
