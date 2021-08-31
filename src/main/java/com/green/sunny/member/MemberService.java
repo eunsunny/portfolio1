@@ -7,7 +7,10 @@ import com.green.sunny.dto.AddressJibunVO;
 import com.green.sunny.dto.MemberVO;
 
 public interface MemberService {
-
+	
+	// 아이디 가져오기
+	public MemberVO getIdMember(MemberVO vo);
+	
 	// 회원 상세정보
 	// 등급표시용으로도 사용
 	MemberVO getMember(MemberVO vo);

@@ -113,14 +113,28 @@ public class MemberController {
 	
 	// 회원가입 완료
 	@RequestMapping(value="/join", method=RequestMethod.POST)
-	public String joinAction(@RequestParam(value="addr1") String addr1,
+	public String joinAction(@RequestParam(value="id") String id,
+							 @RequestParam(value="addr1") String addr1,
 							 @RequestParam(value="addr2") String addr2,
 							 MemberVO vo) {
 		
-		vo.setAddress(addr1+" "+addr2);
-		memberService.insertMember(vo);
+		MemberVO member = memberService.getIdMember(vo);
 		
-		return "member/login";
+		System.out.println("가져온아이디"+id);
+		System.out.println("원래아이디"+member.getId());
+		
+		if(id == member.getId()) {
+			return "member/join_fail";
+			
+		} else {
+			
+			vo.setAddress(addr1+" "+addr2);
+			memberService.insertMember(vo);
+			
+			return "member/login";
+		}
+		
+		
 	}
 	
 	@RequestMapping(value="/find_zip_num_dong")
