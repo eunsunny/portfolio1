@@ -57,11 +57,28 @@ function NumFormat(t) {
 }
 
 function go_mov() {
-	$("#write_form").attr("action", "test").submit();
+	$("#write_form").attr("action", "cancel").submit();
+}
+
+function go_cancel(){
+
+	$("#formm").attr("action", "cancel").submit();
 }
 
 function go_delete() {
 	document.formm.action = "product_delete";
+	document.formm.submit();
+}
+
+function movePayForm() {
+	document.formm.action = "move_pay_form";
+	document.formm.submit();
+}
+
+function callIamport() {
+	
+	
+	document.formm.action = "call_iamport";
 	document.formm.submit();
 }
 
@@ -150,3 +167,4 @@ function go_mod_save(pseq) {
 //		
 //	}
 }
+

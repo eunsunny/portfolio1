@@ -104,15 +104,48 @@
 		]]>
 	</select>
 	
-<!-- 	<select id="countProductList" parameterType="String" resultType="int"> -->
-<!-- 		SELECT COUNT(*) FROM product -->
-<!-- 		WHERE name LIKE '%'||#{name}||'%' -->
-<!-- 	</select> -->
-
+	<sql id="search">
+        <choose>
+            <when test="search_option = 'all'">
+                where  
+                      id like '%'||#{keyword}||'%' or content like '%' || #{keyword}||'%' or title like '%'||#{keyword}||'%'   
+            </when>
+            <otherwise>
+                where #{search_option} like '%'||#{keyword}||'%'
+            </otherwise>
+        </choose>
+    </sql>
+	
+	<select id="listWithPaging2" parameterType="hashMap" resultType="product">
+		SELECT pseq, name, kind, kind2, price, content, cnt, image
+		FROM
+		    (select row_number() over(order by p.regdate desc)rn, p.pseq, p.name, p.kind, p.kind2, p.price, p.content
+		    		, p.cnt, image.product_image as image
+		     from product p
+		     left outer join (select pseq, fseq, product_image as product_image
+						   from product_image
+						  where (pseq, fseq) in (select pseq, min(fseq)
+						                           from product_image
+						                          group by pseq)) image
+			 on p.pseq = image.pseq
+			 <include refid="search"/>
+			 )
+	<![CDATA[
+		WHERE rn <= #{criteria.pageNum} * #{criteria.rowsPerPage}
+	 		AND rn > (#{criteria.pageNum}-1) * #{criteria.rowsPerPage}
+		]]>
+	</select>
+	
+    
 	<select id="countProductList" parameterType="hashMap" resultType="int">
 		SELECT COUNT(*) FROM product
 		WHERE name LIKE '%'||#{name}||'%'
 		AND kind=#{kind}
+	</select>
+	
+	<select id="countProductList2" parameterType="hashMap" resultType="int">
+		SELECT COUNT(*) FROM product
+		<include refid="search"/>
 	</select>
 	
 	<update id="plusCount">
@@ -142,4 +175,30 @@
 			where pseq = #{pseq}
 			order by fseq asc
 	</select>
+	
+	<select id="getAllPicture" resultType="productImage">
+		select * from product_image
+        where (pseq, fseq) in (select pseq, min(fseq) from product_image group by pseq)
+	</select>
+	
+	<insert id="insertPayInfo" parameterType="java.util.Map" >
+		INSERT INTO ORDERS(
+							OSEQ, 
+							ID, 
+							ORDER_DATE, 
+							PSEQ, 
+							PAY_RESULT, 
+							REV_RESULT, 
+							BUYER_ADDRESS
+						   )
+							VALUES (
+							order_seq.NEXTVAL,
+							#{id},                  
+							SYSDATE,
+							#{pseq}, 
+							'y',
+							'n',
+							#{buyer_address}
+							)
+	</insert>
 </mapper>

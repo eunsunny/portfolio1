@@ -102,7 +102,7 @@
 			<tr>
 			  <th>가격</th>
 			  <td width="70">
-			    <input type="text" name="price" id="price" size="11"onKeyUp='NumFormat(this)'  value="${productVO.price}">
+			    <input type="text" name="price" id="price" size="11" onKeyUp='NumFormat(this)'  value="${productVO.price}">
 			  </td>
 			</tr>
 			    

@@ -90,9 +90,11 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public MemberVO getIdMember(MemberVO vo) {
+	public String getIdMember(String id) {
 		
-		return memberDao.getIdMember(vo);
+		return memberDao.getIdMember(id);
 	}
+
+	
 
 }
