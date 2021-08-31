@@ -17,7 +17,6 @@
         <typeAlias type="com.green.sunny.dto.QuestionVO" alias="question"></typeAlias>
         <typeAlias type="com.green.sunny.dto.OneoneVO" alias="oneone"></typeAlias>
         <typeAlias type="com.green.sunny.dto.AdminVO" alias="admin"/>
-		<typeAlias type="com.green.sunny.dto.GongziVO" alias="gongzi"/>
 		<typeAlias type="com.green.sunny.dto.QuestionVO" alias="question"/>
 		<typeAlias type="com.green.sunny.dto.ReportVO" alias="report"/>		
 		<typeAlias type="com.green.sunny.dto.BoardVO" alias="board"/>	

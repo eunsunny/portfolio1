@@ -13,7 +13,7 @@
             </a>
 
             <!-- Divider -->
-            <hr class="sidebar-divider my-0">
+            <hr class="sidebar-divider my-0">       
 
             <!-- Divider -->
             <hr class="sidebar-divider">
@@ -49,12 +49,12 @@
 
             <!-- Nav Item - 게시판 관리 사이드 메뉴 -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
-                    aria-expanded="true" aria-controls="collapsePages">
-                    <i class="fas fa-fw fa-chart-area"></i>
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+                    aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-fw fa-cog"></i>
                     <span>게시판 관리</span>
                 </a>
-				<div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Board Screens:</h6>
                         <a class="collapse-item" href="board">자유게시판</a>                        
@@ -81,7 +81,7 @@
                 관리자 페이지입니다.
                 </p>
                 <a class="btn btn-success btn-sm" href="#">Upgrade to Pro!</a>
-            </div>
+            </div> 
 
         </ul>
         <!-- End of Sidebar -->
