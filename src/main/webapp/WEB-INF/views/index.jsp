@@ -108,7 +108,7 @@
 				<section id="features">
 					<div class="container">
 						<header>
-							<h2>Gentlemen, behold! This is <strong>Strongly Typed</strong>!</h2>
+							<h2>깃깃깃깃<strong>Strongly Typed</strong>!</h2>
 						</header>
 						
 						
