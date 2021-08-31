@@ -89,4 +89,10 @@ public class MemberServiceImpl implements MemberService {
 		memberDao.changePassword(vo);
 	}
 
+	@Override
+	public MemberVO getIdMember(MemberVO vo) {
+		
+		return memberDao.getIdMember(vo);
+	}
+
 }

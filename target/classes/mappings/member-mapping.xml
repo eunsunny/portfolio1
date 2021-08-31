@@ -2,6 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="MemberDAO">
 
+	<!-- 회원아이디 가져오기 -->
+	<select id="getIdMember" resultType="String">
+		SELECT id FROM member
+	</select>
+
 	<!--  회원 정보 가져오기 -->
 	<select id="getMember" resultType="member">
 		SELECT * FROM member WHERE id=#{id}

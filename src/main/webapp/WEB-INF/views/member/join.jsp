@@ -172,8 +172,8 @@
         			<input type="button" value="주소 찾기" class="dup" onclick="post_zip()">
         			</div>
         			<div class="col-8" style="margin-top:-2em; margin-left: 12.7em;">
-        		    <input type="text" name="addr1" size="30" placeholder="주소" readonly style="margin-bottom: 0.5em;"> 
-        		    <input type="text" name="addr2" size="50" placeholder="상세주소">
+        		    <input type="text" name="addr1" class="form-control input-md" placeholder="주소" readonly style="margin-bottom: 0.5em;"> 
+        		    <input type="text" name="addr2" class="form-control input-md" placeholder="상세주소">
 			    	</div>
 				</div>
 				<div class="col-11 row" id="row_row" style="margin-top:-2em; margin-bottom: 20px;">

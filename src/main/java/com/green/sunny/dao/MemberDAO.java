@@ -17,6 +17,11 @@ public class MemberDAO {
 	@Autowired
 	private SqlSessionTemplate mybatis;
 	
+	// 아이디 가져오기
+	public MemberVO getIdMember(MemberVO vo) {
+		
+		return mybatis.selectOne("MemberDAO.getIdMember", vo);
+	}
 	// 회원 상세정보
 	// 등급표시용으로도 사용
 	public MemberVO getMember(MemberVO vo) {
