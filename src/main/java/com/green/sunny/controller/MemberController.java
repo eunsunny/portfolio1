@@ -39,8 +39,9 @@ public class MemberController {
 	 * 사용자 로그인 처리
 	 */
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String loginAction(MemberVO vo, Model model, @RequestParam(value = "id") String id,
-			@RequestParam(value = "pwd") String pwd) {
+	public String loginAction(MemberVO vo, Model model, 
+							  @RequestParam(value = "id") String id,
+							  @RequestParam(value = "pwd") String pwd) {
 
 		MemberVO loginUser = null;
 
@@ -180,8 +181,8 @@ public class MemberController {
 			return "member/login";
 		} else {
 
-			String[] kindList = { "패션의류/잡화", "뷰티", "출산/유아동", "식품", "주방/생활용품", "인테리어", "가전디지털", "스포츠/레저", "자동차용품",
-					"도서/음반/DVD", "완구/문구/취미", "반려동물", "헬스/건강식품" };
+			String[] kindList = { "패션의류/잡화", "뷰티", "출산/유아동", "식품", "주방/생활용품", "인테리어", "가전디지털", "스포츠/레저", 
+								"자동차용품", "도서/음반/DVD", "완구/문구/취미", "반려동물", "헬스/건강식품" };
 
 			model.addAttribute("inter_kindList", kindList);
 
