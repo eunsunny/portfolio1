@@ -5,26 +5,25 @@
 <configuration>
 	<typeAliases>
 		<!-- <typeAlias type="com.green.biz.dto.ProductVO" alias="product"></typeAlias>  -->
-		<typeAlias type="com.green.sunny.dto.ProductVO" alias="product"></typeAlias>
-		<typeAlias type="com.green.sunny.dto.ProductImageVO" alias="productImage"></typeAlias>
-		<typeAlias type="com.green.sunny.dto.MemberVO" alias="member"></typeAlias>
-		<typeAlias type="com.green.sunny.dto.JjimVO" alias="jjim"></typeAlias>
-		<typeAlias type="com.green.sunny.dto.OrderVO" alias="order"></typeAlias>
-		<typeAlias type="com.green.sunny.dto.ProductCommentVO" alias="comment"></typeAlias>
-		<typeAlias type="com.green.sunny.dto.AddressJibunVO" alias="jibun"></typeAlias>
-        <typeAlias type="com.green.sunny.dto.AddressDoroVO" alias="doro"></typeAlias>
-        <typeAlias type="com.green.sunny.dto.GongziVO" alias="gongzi"></typeAlias>
-        <typeAlias type="com.green.sunny.dto.QuestionVO" alias="question"></typeAlias>
-        <typeAlias type="com.green.sunny.dto.OneoneVO" alias="oneone"></typeAlias>
+		<typeAlias type="com.green.sunny.dto.ProductVO" alias="product"/>
+		<typeAlias type="com.green.sunny.dto.ProductImageVO" alias="productImage"/>
+		<typeAlias type="com.green.sunny.dto.MemberVO" alias="member"/>
+		<typeAlias type="com.green.sunny.dto.JjimVO" alias="jjim"/>
+		<typeAlias type="com.green.sunny.dto.OrderVO" alias="order"/>
+		<typeAlias type="com.green.sunny.dto.ProductCommentVO" alias="comment"/>
+		<typeAlias type="com.green.sunny.dto.AddressJibunVO" alias="jibun"/>
+        <typeAlias type="com.green.sunny.dto.AddressDoroVO" alias="doro"/>
+        <typeAlias type="com.green.sunny.dto.GongziVO" alias="gongzi"/>
+        <typeAlias type="com.green.sunny.dto.QuestionVO" alias="question"/>
+        <typeAlias type="com.green.sunny.dto.OneoneVO" alias="oneone"/>
         <typeAlias type="com.green.sunny.dto.AdminVO" alias="admin"/>
-		<typeAlias type="com.green.sunny.dto.QuestionVO" alias="question"/>
 		<typeAlias type="com.green.sunny.dto.ReportVO" alias="report"/>		
 		<typeAlias type="com.green.sunny.dto.BoardVO" alias="board"/>	
 	</typeAliases>
 
 	<mappers>
 		<!-- <mapper resource="mappings/product-mapping.xml" />  -->
-		<mapper resource="mappings/product-mapping.xml" />
+		<mapper resource="mappings/product-mapping.xml"/>
 		<mapper resource="mappings/member-mapping.xml"/>
 		<mapper resource="mappings/jjim-mapping.xml"/>
 		<mapper resource="mappings/order-mapping.xml"/>

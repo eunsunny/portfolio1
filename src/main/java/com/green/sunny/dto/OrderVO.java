@@ -14,7 +14,15 @@ public class OrderVO {
 	private String cod;
 	private String cod_grp_id;
 	private String cod_nm;
+	private String oid;
+	private String price;
 	
+	public String getPrice() {
+		return price;
+	}
+	public void setPrice(String price) {
+		this.price = price;
+	}
 	public int getOseq() {
 		return oseq;
 	}
@@ -81,12 +89,20 @@ public class OrderVO {
 	public void setCod_nm(String cod_nm) {
 		this.cod_nm = cod_nm;
 	}
+	public String getOid() {
+		return oid;
+	}
+	public void setOid(String oid) {
+		this.oid = oid;
+	}
+
 	
 	@Override
 	public String toString() {
 		return "OrderVO [oseq=" + oseq + ", id=" + id + ", orders_date=" + order_date + ", pseq=" + pseq
 				+ ", pay_result=" + pay_result + ", rev_result=" + rev_result + ", name=" + name + ", title=" + title
-				+ ", cod=" + cod + ", cod_grp_id=" + cod_grp_id + ", cod_nm=" + cod_nm + "]";
+				+ ", cod=" + cod + ", cod_grp_id=" + cod_grp_id + ", cod_nm=" + cod_nm + ", oid=" + oid + ", price="
+				+ price + "]";
 	}
 	
 }

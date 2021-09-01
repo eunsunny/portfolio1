@@ -5,19 +5,49 @@
 <html>
 <head>
 <style>
-	.menu a {
-		cursor:pointer;
+	.menu {
+		cursor: pointer;
+		font-wight: bold;
+		border-top: 1px solid #BDBDBD;
+		border-bottom: 1px solid #BDBDBD;
+		padding-top: 1em;
+		padding-bottom: 1em;
 	}
 	
-	.menu .hide {
-		display:none;
+	.menu span {
+		font-weight: bold;
+		font-size: 20px;
+		color: black;
 	}
+	
+	.hide {
+		display: none;
+		font-size: 18px;
+	}
+	
+	ul>li {
+		list-style: none;
+	}
+	
+	.inputicon {
+		position: relative;
+	}
+	
+ 	.inputicon > i {
+		position: absolute;
+		top: 50%;
+		margin-left: 17px;
+		margin-top: -7px;
+		z-index: 1;
+		color: #4f5b66;
+	}
+	
 </style>
 <script type="text/javascript">
 	// html 이 다 로딩된 후 실행
 	$(document).ready(function(){
-		$(".menu>a").click(function(){
-			var submenu = $(this).next("ul");
+		$(".menu").click(function(){
+			var submenu = $(this).next(".hide");
 			
 			if(submenu.is(":visible")) {
 				submenu.slideUp();
@@ -26,44 +56,60 @@
 			}
 		});
 	});
+	
+ 	$("#key").keyup(function(event){
+		if(event.keyCode == 13) {
+			$('#que_form').attr("action", "question_list").submit();
+		}
+	}); 
+	
 </script>
 </head>
 <body>
 <!-- Start Content -->
-<%@ include file="../notice/sub_menu.jsp"%>
-<div class="col-lg-10">
-	<h2 style="letter-spacing: 0;">자주 묻는 질문</h2><br>
-	<div align="right" width="500">
-		<select>
-			<option value="title">제목</option>
-			<option value="content">내용</option>
-		</select>
-			<input type="text" placeholder="검색어 입력" name="key" id="key">
-			<input type="button" value="검색" onclick="location='oneone_insert_view'" style="font-size:14px; padding:0.5em 1.5em 0.5em 1.5em; margin-right: 3.5em;">
-	</div>
-	<form name="frm" id="" method="get">
-		<div class="container py-5">
-			<div class="row">
-				<div class="row">
-					<ul>
-					<li class="menu">
-					
-					<a>타잍,ㄹ${questionVO.title}</a>
-					<ul class="hide">
-						<li>ddfff</li>
-						<li>내용${questionVO.content}</li>
-					</ul>
-					</li>
-					</ul>
-						</div>
+	<%@ include file="../notice/sub_menu.jsp"%>
+	<div class="col-lg-10">
+		<h2 style="letter-spacing: 0;">자주 묻는 질문</h2>
+		<br>
+		<form name="frm" id="que_form" method="get">
+			<div>
+				<div style="display: inline-block; width: 100%;">
+					<div class="inputicon"
+						style="width: 30%; float: right; margin-bottom: 1em;">
+						<i class="fa fa-search" aria-hidden="true"></i>
+						<input style="background-color: white; padding-left: 2.5em" type="text"
+								placeholder="질문을 검색해주세요." name="key" id="key" size="30">
 					</div>
 				</div>
-			</form>
-		</div>
+				<div>
+					<c:choose>
+						<c:when test="${queList.size() == 0}">
+							<ul>
+								<li class="menu" style="text-align:center; border: 0px;"><br><br>
+									<span>해당하는 질문이 없습니다.</span></li>
+							</ul>
+						</c:when>
+						<c:otherwise>
+							<c:forEach items="${queList}" var="questionVO">
+								<ul>
+									<li class="menu" style="clear: left;"><span
+										style="color: red; font-size: 25px;">Q.&nbsp;&nbsp;</span><span>${questionVO.title}
+											&nbsp;&nbsp; <i class="fa fa-angle-down" aria-hidden="true"></i>
+									</span>
+									<li class="hide">${questionVO.content}<br> <img
+										src="upload_images/question/${questionVO.image}">
+									</li>
+								</ul>
+							</c:forEach>
+						</c:otherwise>
+					</c:choose>
+				</div>
+			</div>
+		</form>
+		<br><br>
+		<%@ include file="../questionPage_area.jsp"%> 
 	</div>
-</div>
-
-</article>
+	</article>
 
 </body>
 </html>

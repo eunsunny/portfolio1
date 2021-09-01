@@ -14,7 +14,7 @@
 	
 	<!--  주문(구매)내역 관련 -->
 	<select id="orderList" resultType="order">
-		SELECT * FROM order_view WHERE id=#{id} ORDER BY order_date DESC
+		SELECT * FROM order_view WHERE oid=#{id} ORDER BY order_date DESC
 	</select>
 	
 	<!-- 주문 확정 버튼 -->
