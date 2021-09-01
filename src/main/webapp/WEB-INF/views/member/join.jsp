@@ -57,36 +57,6 @@
 			}
 		});
 	});
-	
-	/* $(document).on("change", "input[name='nick_name']", function(){
-		var nick_name = $('#nick_name').val();
-		
-		$.ajax({
-			// 요청 url
-			url : "nickNameCheck",
-			type : "post",
-			dataType: "JSON",
-			// 좌항-변수, 우항- 입력된 데이터
-			data : {nick_name:nick_name},
-			// return 받을 시 실행되는 메소드
-			success : function(data) {
-				if(nick_name == "") {
-					$("#nick_text").css("color", "gray");
-					$("#nick_text").text("아이디를 입력해주세요.");
-				} else if(data == 0) {
- 					$("#nick_text").css("color", "blue");
-					$("#nick_text").text(nick_name+"는 사용 가능한 닉네임 입니다.");
-				} else if(data == 1) {
- 					$("#nick_text").css("color", "red");
-					$("#nick_text").text(nick_name+"는 이미 사용중인 닉네임 입니다."); 
-				} 
-			},
-			//에러시 실행되는 메소드
-			error : function(error) {
-				alert("error : "+error);
-			}
-		});
-	}); */
 
 </script>
 <style>

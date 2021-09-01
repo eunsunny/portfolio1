@@ -9,10 +9,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.green.sunny.dto.GongziVO;
 import com.green.sunny.dto.MemberVO;
 import com.green.sunny.dto.OneoneVO;
+import com.green.sunny.dto.QuestionVO;
 import com.green.sunny.notice.NoticeService;
 import com.green.sunny.utils.Criteria;
 import com.green.sunny.utils.PageMaker;
@@ -61,12 +63,21 @@ public class NoticeController {
 		return "notice/noticeDetail";
 	}
 	
-	
-	
-	
-	// 자주묻는 질문
+	// 자주묻는 질문(페이징 포함)
 	@RequestMapping("/question_list")
-	public String questionList() {
+	public String questionList(@RequestParam(value="key", defaultValue="") String key,
+								Criteria criteria, Model model) {
+		System.out.println("검색값 : "+key);
+		List<QuestionVO> queList = noticeService.questionList(criteria, key);
+		
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(criteria);
+		
+		int totalCount = noticeService.questionCount(key);
+		pageMaker.setTotalCount(totalCount);
+		
+		model.addAttribute("queList", queList);
+		model.addAttribute("pageMaker", pageMaker);
 		
 		return "notice/questionList";
 	}
