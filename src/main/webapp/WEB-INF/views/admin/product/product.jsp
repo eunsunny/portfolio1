@@ -87,12 +87,28 @@
 			<c:forEach items="${productList}" var="productVO">
 			    <tr>
 			      <td height="23" align="center" >${number=number+1}</td>
-			      <td style="text-align: left; padding-left: 50px; padding-right: 0px;">   
+			      <td style="text-align: left; padding-right: 0px;">   
 			         <a href="admin_product_detail${pageMaker.makeQuery(pageMaker.cri.pageNum)}&pseq=${productVO.pseq}"> 
 			    	 	${productVO.name}     
 			   		 </a>
 			   	  </td>
-			      <td>${productVO.kind}</td>
+			      <td>
+			      	<c:choose>
+			      		<c:when test="${productVO.kind eq 1}">패션의류/잡화</c:when>
+			      		<c:when test="${productVO.kind eq 2}">뷰티</c:when>
+			      		<c:when test="${productVO.kind eq 3}">출산/유아동</c:when>
+			      		<c:when test="${productVO.kind eq 4}">식품</c:when>
+			      		<c:when test="${productVO.kind eq 5}">주방/생활용품</c:when>
+			      		<c:when test="${productVO.kind eq 6}">인테리어</c:when>
+			      		<c:when test="${productVO.kind eq 7}">가전디지털</c:when>
+			      		<c:when test="${productVO.kind eq 8}">스포츠/레저</c:when>
+			      		<c:when test="${productVO.kind eq 9}">자동차용품</c:when>
+			      		<c:when test="${productVO.kind eq 10}">도서/음반/DVD</c:when>
+			      		<c:when test="${productVO.kind eq 11}">완구/문구/취미</c:when>
+			      		<c:when test="${productVO.kind eq 12}">반려동물용품</c:when>
+			      		<c:when test="${productVO.kind eq 13}">헬스/건강식품</c:when>
+			      	</c:choose>
+			      </td>
 			      <td><fmt:formatNumber value="${productVO.price}"/></td>
 			      <td>${productVO.title}</td>
 			      <td><fmt:formatDate value="${productVO.regdate}"/></td>
@@ -101,7 +117,8 @@
 			   	 		<c:when test='${productVO.soldyn=="n"}'>미사용</c:when>
 			   	 		<c:otherwise>사용</c:otherwise>  	 		
 			   	 	</c:choose>
-			   	  </td> 
+			   	  </td>
+			   	  <td>${productVO.id}</td>
 			    </tr>
 		    </c:forEach>
 			</c:otherwise>	
