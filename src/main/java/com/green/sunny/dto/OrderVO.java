@@ -95,7 +95,6 @@ public class OrderVO {
 	public void setOid(String oid) {
 		this.oid = oid;
 	}
-
 	
 	@Override
 	public String toString() {
