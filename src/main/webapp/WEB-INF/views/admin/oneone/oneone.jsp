@@ -99,7 +99,12 @@
 				   	  </td>
 				      <td>${oneoneVO.id}</td>
 				      <td><fmt:formatDate value="${oneoneVO.regdate}"/></td>
-				      <td>${oneoneVO.rep}</td>				     
+				      <td>
+				      	<c:choose>
+				      		<c:when test="${oneoneVO.rep=='n'}">미답변</c:when>
+				      		<c:otherwise>답변완료</c:otherwise>
+				      	</c:choose>
+				      </td>
 				    </tr>
 	   			</c:forEach>
 				</c:otherwise>	

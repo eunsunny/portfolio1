@@ -54,7 +54,22 @@
                 <label>등록자 아이디</label>
                 <p>${Product.id}</p>                 
                 <label>카테고리</label>
-                <p>${Product.kind}</p>
+                <p>
+			      	<c:choose>
+			      		<c:when test="${Product.kind eq 1}">패션의류/잡화</c:when>
+			      		<c:when test="${Product.kind eq 2}">뷰티</c:when>
+			      		<c:when test="${Product.kind eq 3}">출산/유아동</c:when>
+			      		<c:when test="${Product.kind eq 4}">식품</c:when>
+			      		<c:when test="${Product.kind eq 5}">주방/생활용품</c:when>
+			      		<c:when test="${Product.kind eq 6}">인테리어</c:when>
+			      		<c:when test="${Product.kind eq 7}">가전디지털</c:when>
+			      		<c:when test="${Product.kind eq 8}">스포츠/레저</c:when>
+			      		<c:when test="${Product.kind eq 9}">자동차용품</c:when>
+			      		<c:when test="${Product.kind eq 10}">도서/음반/DVD</c:when>
+			      		<c:when test="${Product.kind eq 11}">완구/문구/취미</c:when>
+			      		<c:when test="${Product.kind eq 12}">반려동물용품</c:when>
+			      	</c:choose>
+                </p>
                 <label>가격</label>
                 <p>${Product.price}</p>
                 <label>상품 등록제목</label>
@@ -70,7 +85,12 @@
                 <label>등록일</label>
                 <p><fmt:formatDate value="${Product.regdate}" type="date"/></p>
                 <label>판매여부</label>
-                <p> ${Product.soldyn}</p>
+                <p>
+               		<c:choose>
+			   	 		<c:when test='${Product.soldyn=="n"}'>판매중</c:when>
+			   	 		<c:otherwise>판매완료</c:otherwise>  	 		
+			   	 	</c:choose>
+                </p>
 				
 				<br><br>
                 <input type="button" onclick="location.href='admin_product_delete?pseq=${Product.pseq}'" value="삭제"/> &nbsp; &nbsp;                

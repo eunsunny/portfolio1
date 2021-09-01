@@ -50,7 +50,11 @@
             <label>작성자 아이디</label> &nbsp; ${oneone.id}<br>           
             <label>내용</label> &nbsp; ${oneone.content}<br>
             <label>등록일</label> &nbsp; <fmt:formatDate value="${oneone.regdate}" type="date"/><br>
-            <label>답변 여부</label> &nbsp; ${oneone.rep}<br>
+            <label>답변 여부</label> &nbsp;
+				<c:choose>
+		      		<c:when test="${oneone.rep=='n'}">미답변</c:when>
+		      		<c:otherwise>답변완료</c:otherwise>
+		      	</c:choose><br>
             <label>답변</label> &nbsp; ${oneone.reply}<br>
 
 			<br><br>
