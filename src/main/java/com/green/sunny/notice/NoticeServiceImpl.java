@@ -54,9 +54,15 @@ public class NoticeServiceImpl implements NoticeService {
 	}
 
 	@Override
-	public List<QuestionVO> questionList(QuestionVO vo) {
+	public List<QuestionVO> questionList(Criteria criteria, String key) {
 		
-		return noticeDao.questionList(vo);
+		return noticeDao.questionList(criteria, key);
+	}
+
+	@Override
+	public int questionCount(String key) {
+		
+		return noticeDao.questionCount(key);
 	}
 
 	@Override
