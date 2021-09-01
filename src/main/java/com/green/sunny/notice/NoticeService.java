@@ -26,7 +26,8 @@ public interface NoticeService {
 	public int countNotice();
 		
 	// 자주묻는질문 리스트
-	List<QuestionVO> questionList(QuestionVO vo);
+	List<QuestionVO> questionList(Criteria criteria, String key);
+	public int questionCount(String key);
 
 	// 1:1 질문 등록
 	void inserOneone(OneoneVO vo);

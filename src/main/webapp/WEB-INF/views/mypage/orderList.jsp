@@ -30,7 +30,7 @@
 								<c:forEach items="${orderList}" var="orderVO">
 									<tr>
 										<td height="23" align="center">${orderVO.oseq}</td>
-										<td>${orderVO.kind_nm}</td>
+										<td>${orderVO.cod_nm}</td>
 										<td><a href="product_detail?pseq=${orderVO.pseq}">${orderVO.name}</a></td>
 										<td><a href="product_detail?pseq=${orderVO.pseq}">${orderVO.title}</a></td>
 										<td><fmt:formatNumber value="${orderVO.price}"/></td>

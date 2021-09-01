@@ -59,9 +59,19 @@ public class NoticeDAO {
 	}
 	
 	// 자주묻는질문 리스트
-	public List<QuestionVO> questionList(QuestionVO vo) {
+	public List<QuestionVO> questionList(Criteria criteria, String key) {
 		
-		return mybatis.selectList("NoticeDAO.questionList", vo);
+		HashMap<String, Object> map = new HashMap<>();
+		
+		map.put("criteria", criteria);
+		map.put("key", key);
+		
+		return mybatis.selectList("NoticeDAO.questionPaging", map);
+	}
+	
+	public int questionCount(String key) {
+		
+		return mybatis.selectOne("NoticeDAO.questionCount", key);
 	}
 	
 	// 1:1 질문 등록
