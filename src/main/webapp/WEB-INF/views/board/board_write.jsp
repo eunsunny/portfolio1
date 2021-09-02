@@ -30,6 +30,16 @@ $(document).ready(function(){
 			maxHeight : null, // set maximum height of editor
 			focus : true,
 			lang : 'ko-KR' // 기본 메뉴언어 US->KR로 변경
+			
+// 			callbacks : { 
+//             	onImageUpload : function(files, editor, welEditable) {
+//             // 파일 업로드(다중업로드를 위해 반복문 사용)
+//             for (var i = files.length - 1; i >= 0; i--) {
+//             uploadSummernoteImageFile(files[i],
+//             this);
+//             		}
+//             	}
+//             }
 		});
 });
 
@@ -56,6 +66,24 @@ function boardWirte(){
    	});
 	
 }
+
+function uploadSummernoteImageFile(file, el) {
+	alert(0);
+	data = new FormData();
+	data.append("file", file);
+	$.ajax({
+		data : data,
+		type : "POST",
+		url : "uploadSummernoteImageFile",
+		contentType : false,
+		enctype : 'multipart/form-data',
+		processData : false,
+		success : function(data) {
+			$(el).summernote('editor.insertImage', data.url);
+		}
+	});
+}
+
 </script>
 </head>
 <body>
