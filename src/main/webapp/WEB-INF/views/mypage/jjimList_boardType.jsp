@@ -33,7 +33,7 @@
 										<td><a href="product_detail?pseq=${jjimVO.pseq}">${jjimVO.pname}</a></td>
 										<td><a href="product_detail?pseq=${jjimVO.pseq}">${jjimVO.title}</a></td>
 										<td><fmt:formatNumber value="${jjimVO.price}"/></td>
-										<td><input type="button" class="btn btn-success btn-lg" value="바로구매" onclick=""/></td>
+										<td><input type="button" class="btn btn-success btn-lg" value="바로구매" onclick="movePayForm()"/></td>
 										<td>
 											<input type="button" class="btn btn-success btn-lg" value="삭제" onclick="location='jjim_delete?jjseq=${jjimVO.jjseq}'"/>
 										</td>

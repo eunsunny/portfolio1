@@ -39,8 +39,9 @@ public class MemberController {
 	 * 사용자 로그인 처리
 	 */
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String loginAction(MemberVO vo, Model model, @RequestParam(value = "id") String id,
-			@RequestParam(value = "pwd") String pwd) {
+	public String loginAction(MemberVO vo, Model model, 
+							  @RequestParam(value = "id") String id,
+							  @RequestParam(value = "pwd") String pwd) {
 
 		MemberVO loginUser = null;
 
@@ -73,8 +74,7 @@ public class MemberController {
 	@RequestMapping(value = "/contract")
 	public String contractView() {
 
-		return "member/contract"; // 버튼 안나와서 잠시 잠금
-//		return "member/join";
+		return "member/contract";
 	}
 
 	// 회원가입 페이지 출력
@@ -97,19 +97,6 @@ public class MemberController {
 
 	}
 
-	// 닉네임 중복체크 컨트롤러
-//	@RequestMapping(value="/nickNameCheck", method=RequestMethod.POST)
-//	@ResponseBody
-//	public int nickNameCheck(@RequestParam(value="nick_name") String nick_name) throws Exception {
-//		
-//		int result = memberService.userNicknameCheck(nick_name);
-//		
-//		System.out.println(result);
-//		
-//		return result;
-//		
-//	}
-
 	// 회원가입 완료
 	@RequestMapping(value = "/join", method = RequestMethod.POST)
 	public String joinAction(@RequestParam(value = "addr1") String addr1,
@@ -118,10 +105,8 @@ public class MemberController {
 
 		String id = memberService.getIdMember(vo.getId());
 
-		System.out.println("vo" + vo);
-		//System.out.println("원래아이디" + member.getId());
-
-		System.out.println("id="+id);
+//		System.out.println("vo" + vo);
+//		System.out.println("id="+id);
 		
 		 if(vo.getId().equals(id)) { 
 			 
@@ -180,8 +165,8 @@ public class MemberController {
 			return "member/login";
 		} else {
 
-			String[] kindList = { "패션의류/잡화", "뷰티", "출산/유아동", "식품", "주방/생활용품", "인테리어", "가전디지털", "스포츠/레저", "자동차용품",
-					"도서/음반/DVD", "완구/문구/취미", "반려동물", "헬스/건강식품" };
+			String[] kindList = { "패션의류/잡화", "뷰티", "출산/유아동", "식품", "주방/생활용품", "인테리어", "가전디지털", "스포츠/레저", 
+								"자동차용품", "도서/음반/DVD", "완구/문구/취미", "반려동물", "헬스/건강식품" };
 
 			model.addAttribute("inter_kindList", kindList);
 

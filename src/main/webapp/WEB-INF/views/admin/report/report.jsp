@@ -101,7 +101,12 @@
 				         <a href="admin_report_detail${pageMaker.makeQuery(pageMaker.cri.pageNum)}&rseq=${reportVO.rseq}">${reportVO.rp_kind}</a>
 				   	  </td>
 				   	  <td><fmt:formatDate value="${reportVO.report_date}" type="date"/></td>
-				      <td>${reportVO.result}</td>				     
+				      <td>
+				      	<c:choose>
+				      		<c:when test="${reportVO.result=='n'}">미처리</c:when>
+				      		<c:otherwise>처리완료</c:otherwise>
+				      	</c:choose>
+				      </td>				     
 				    </tr>
 	   			</c:forEach>
 				</c:otherwise>	

@@ -58,7 +58,7 @@
 			<artifactId>ojdbc</artifactId>
 			<version>18.3</version>
 			<scope>system</scope>
-			<systemPath>D:\OracleDB\ojdbc8.jar</systemPath>
+			<systemPath>D:\Study\OracleDB\ojdbc8.jar</systemPath>
 		</dependency>
 		
 		<!-- DBCP 설정 -->

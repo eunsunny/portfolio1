@@ -66,8 +66,11 @@ function report_success(){
             <label>신고 사유</label> &nbsp; ${Report.rp_kind}<br>
             <label>신고 날짜</label> &nbsp; <fmt:formatDate value="${Report.report_date}" type="date"/><br>
             <label>내용</label> &nbsp; ${Report.content}<br>
-            <label>처리 여부</label> &nbsp; ${Report.result}<br>
-
+            <label>처리 여부</label> &nbsp;
+		      	<c:choose>
+		      		<c:when test="${Report.result=='n'}">미처리</c:when>
+		      		<c:otherwise>처리완료</c:otherwise>
+		      	</c:choose><br>
 			<br><br>
 			<c:if test="${Report.result == 'n'}">
 				<input type="hidden" id="rseq" name="rseq" value="${Report.rseq}"/>
