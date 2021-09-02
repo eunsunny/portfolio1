@@ -5,6 +5,7 @@ import java.util.List;
 import com.green.sunny.dto.GongziVO;
 import com.green.sunny.dto.OneoneVO;
 import com.green.sunny.dto.QuestionVO;
+import com.green.sunny.dto.ReportVO;
 import com.green.sunny.utils.Criteria;
 
 public interface NoticeService {
@@ -37,5 +38,8 @@ public interface NoticeService {
 
 	//1:1 질문 리스트
 	List<OneoneVO> oneoneList(OneoneVO vo);
+	
+	// 신고하기
+	public void insertReport(ReportVO vo);
 
 }

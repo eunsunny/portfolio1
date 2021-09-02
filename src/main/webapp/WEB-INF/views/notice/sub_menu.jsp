@@ -20,84 +20,12 @@
 <link rel="stylesheet" href="css/main.css" />
 <script type="text/javascript" src="js/product.js"></script>
 
-<script type="text/javascript">
-	function oneone_check() {
-		
-		if($("#title").val() == "") {
-			alert("제목을 입력해주세요.");
-			return false;
-		} else if($("#content").val() == "") {
-			alert("문의하실 내용을 입력해주세요.");
-			return false;
-		} else {	
-			alert("1:1 문의 질문이 등록되었습니다.");
-			$("#oneWrite").attr("action", "oneone_insert").submit();
-		}
-	}
-</script>
-
 <style>
-	
-	/* fieldset > #row_row {
-		padding-top : 0;
-		margin-top : 0;
-	}
-	
-	div > label {
-       text-align : right;
-       margin-top : 0.5em;
-       padding-top : 0;
-    }
-    
-    fieldset > legend {
-    	font-size : 25px;
-    	font-weight : bold;
-    	margin : 10px 0 0 8em;
-    }
-    
-    #infotable {
-    	margin:0 0 30px 0;
-    	padding: 0;
-    }
-    
-    #infotable > tr > th {
-    	text-align: cneter;
-    }
-    
-    #infotable > tr:last-child {
-    	border-bottom: solid 1px black;
-    }
-    
-    #infotable > tr:first-child {
-    	border-top: solid 1px black;
-    }
-    
-    table > .jjimListbody, .prodListBody:last-child {
-    
-	    border-bottom: solid 2px #505050;
-	    color: #black;
-    
-    }
-    
-    #infotable > thead > tr > th {
-    	padding: 0;
-    } */
     
     #ulli > li {
     	font-size: 13pt;
     }
-    
-   /*  .gradebox {
-    	width: 43em;
-    	border: outset 1px gray; 
-    	padding: 1.5em; 
-    	margin: 1em;
-    	border-radius: 6px;
-    	color: #5D5D5D;
-    	background-color: #F5F5F5;
-    	font-weight: bold;
-    } */
-    
+
 </style>
 
 </head>
@@ -116,10 +44,20 @@
 						</li>
 						<c:choose>
 							<c:when test="${empty sessionScope.loginUser}">
-								<li><a href="#" onclick="login_empty_check()">1:1 문의하기</a></li>
+								<li class="pb-3">
+									<a class="collapsed d-flex" href="#" onclick="login_empty_check()">1:1 문의하기</a>
+								</li>
+								<li class="pb-3">
+									<a class="collapsed d-flex" href="#" onclick="login_empty_check()">신고하기</a>
+								</li>
 							</c:when>
 							<c:otherwise>
-								<li><a href="oneone_list">1:1 문의하기</a></li>
+								<li class="pb-3">
+									<a class="collapsed d-flex" href="oneone_list">1:1 문의하기</a>
+								</li>
+								<li class="pb-3">
+									<a class="collapsed d-flex" href="report_write_view">신고하기</a>
+								</li>
 							</c:otherwise>
 						</c:choose>
 					</ul>

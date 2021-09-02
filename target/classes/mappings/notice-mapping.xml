@@ -70,4 +70,9 @@
 		SELECT * FROM oneone WHERE id=#{id} ORDER BY onseq DESC
 	</select>
 
+	<!-- 신고하기 -->
+	<insert id="insertReport" parameterType="report">
+		INSERT INTO report(id, rp_kind, content, rseq, report_id) VALUES(#{id}, #{rp_kind}, #{content}, report_seq.NEXTVAL, #{report_id})
+	</insert>
+	
 </mapper>

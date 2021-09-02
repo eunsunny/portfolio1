@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.green.sunny.dto.GongziVO;
 import com.green.sunny.dto.OneoneVO;
 import com.green.sunny.dto.QuestionVO;
+import com.green.sunny.dto.ReportVO;
 import com.green.sunny.utils.Criteria;
 
 @Repository
@@ -92,5 +93,10 @@ public class NoticeDAO {
 		return mybatis.selectList("NoticeDAO.oneoneList", vo);
 	}
 	
+	// 신고하기
+	public void insertReport(ReportVO vo) {
+		
+		mybatis.insert("NoticeDAO.insertReport", vo);
+	}
 	
 }
