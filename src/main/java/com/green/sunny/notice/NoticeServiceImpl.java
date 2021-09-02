@@ -9,6 +9,7 @@ import com.green.sunny.dao.NoticeDAO;
 import com.green.sunny.dto.GongziVO;
 import com.green.sunny.dto.OneoneVO;
 import com.green.sunny.dto.QuestionVO;
+import com.green.sunny.dto.ReportVO;
 import com.green.sunny.utils.Criteria;
 
 @Service("noticeService")
@@ -81,6 +82,12 @@ public class NoticeServiceImpl implements NoticeService {
 	public List<OneoneVO> oneoneList(OneoneVO vo) {
 		
 		return noticeDao.oneoneList(vo);
+	}
+
+	@Override
+	public void insertReport(ReportVO vo) {
+		
+		noticeDao.insertReport(vo);
 	}
 
 
