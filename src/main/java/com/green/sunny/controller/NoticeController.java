@@ -15,6 +15,8 @@ import com.green.sunny.dto.GongziVO;
 import com.green.sunny.dto.MemberVO;
 import com.green.sunny.dto.OneoneVO;
 import com.green.sunny.dto.QuestionVO;
+import com.green.sunny.dto.ReportVO;
+import com.green.sunny.member.MemberService;
 import com.green.sunny.notice.NoticeService;
 import com.green.sunny.utils.Criteria;
 import com.green.sunny.utils.PageMaker;
@@ -24,6 +26,9 @@ public class NoticeController {
 	
 	@Autowired
 	private NoticeService noticeService;
+	
+	@Autowired
+	private MemberService memberService;
 	
 	// 공지사항(페이징처리 포함)
 	@RequestMapping("/notice_list")
@@ -131,6 +136,26 @@ public class NoticeController {
 		model.addAttribute("OneoneVO", oneone);
 		
 		return "notice/oneOneDetail";
+	}
+	
+	// 신고하기 페이지 넘어가기
+	@RequestMapping("/report_write_view")
+	public String reportWriteView() {
+		
+		return "notice/reportWrite";
+	}
+	
+	// 신고하기페이지
+	@RequestMapping("/report_write")
+	public String reportWrite(HttpSession session, ReportVO vo) {
+		
+		MemberVO loginUser = (MemberVO)session.getAttribute("loginUser");
+		
+		vo.setId(loginUser.getId());
+		
+		noticeService.insertReport(vo);
+		
+		return "redirect:report_write_view";
 	}
 	
 }

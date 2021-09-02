@@ -1,10 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="../header.jsp"%>
-<%@ include file="../notice/sub_menu.jsp"%>
 <!DOCTYPE html>
+<html>
+<head>
 
-<!-- Start Content -->
+</head>
+<body>
+<%@ include file="../notice/sub_menu.jsp"%>
 <div class="col-lg-10">
 	<h2 style="letter-spacing: 0;">1:1 문의하기
 		<div align="right" width="70">

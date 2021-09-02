@@ -12,14 +12,17 @@
    <div class="container py-5">
 	<div class="row aln-center">
 		<div class="col-lg-3">
+	<div>
+		<h1 style="margin-top:2.7em; margin-bottom:1em; font-size:35px;">LOGIN</h1>
+	</div>
 			<form id="login" method="post" action="login">
-				<div style="margin-top:5em;">
+				<div>
 					<input name="id" id="id" placeholder="아이디" type="text" size="40" autofocus/>
 				</div>
 				<div style="margin-top:0.6em;">
 					<input name="pwd" id="pwd" placeholder="비밀번호" type="password" size="40"/>
 				</div>
-				<div class="aln-right" style="margin-top:1em;">
+				<div align="center" style="margin-top:1em;">
 					<button type="button" class="submit" onclick="loginCheck()">LOGIN</button>
 				</div>
 				<div class="row aln-center">
