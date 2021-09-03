@@ -1,13 +1,29 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="../header.jsp"%>
-<%@ include file="../member/sub_menu.jsp"%>
 <!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript" src="js/product.js"></script>
+<style>
 
-<!-- Start Content -->
+    tr, th, td {
+    	text-align:center;
+    }
+    
+    tr > td {
+    	font-size: 0.9em;
+    	padding : 0;
+    	margin : 0;
+    }
+  
+</style>
+</head>
+<body>
+<%@ include file="../member/sub_menu.jsp"%>
 <div class="col-lg-9">
 	<h2 style="letter-spacing: 0;">나의 찜목록</h2><br>
-	<form name="frm" id="prod_form" method="get">
+	<form name="frm" id="prod_form" method="POST" action="move_pay_form">
 		<div class="container py-5">
 			<div class="row">
 				<div class="row">
@@ -29,13 +45,21 @@
 							<c:otherwise>
 								<c:forEach items="${jjimList}" var="jjimVO">
 									<tr>
-										<td height="23" align="center">${jjimVO.cod_nm}</td>
-										<td><a href="product_detail?pseq=${jjimVO.pseq}">${jjimVO.pname}</a></td>
-										<td><a href="product_detail?pseq=${jjimVO.pseq}">${jjimVO.title}</a></td>
-										<td><fmt:formatNumber value="${jjimVO.price}"/></td>
-										<td><input type="button" class="btn btn-success btn-lg" value="바로구매" onclick="movePayForm()"/></td>
-										<td>
-											<input type="button" class="btn btn-success btn-lg" value="삭제" onclick="location='jjim_delete?jjseq=${jjimVO.jjseq}'"/>
+										<td height="23" align="center" width="15%">${jjimVO.cod_nm}
+											<input type="hidden" name="kind" value="${jjimVO.kind}">
+										</td>
+										<td width="13%"><a href="product_detail?pseq=${jjimVO.pseq}">${jjimVO.pname}
+											<input type="hidden" name="pseq" value="${jjimVO.pseq}">
+											</a></td>
+										<td width="20%"><a href="product_detail?pseq=${jjimVO.pseq}">${jjimVO.title}</a></td>
+										<td width="15%"><fmt:formatNumber value="${jjimVO.price}"/>
+											<input type="hidden" name="price" value="${jjimVO.price}">
+										</td>
+										<td width="15%">
+											<button type="submit" class="btn btn-success btn-lg">바로구매</button>
+										</td>
+										<td width="12%">
+											<button type="button" class="btn btn-success btn-lg" onclick="location='jjim_delete?jjseq=${jjimVO.jjseq}'">삭제</button>
 										</td>
 									</tr>
 								</c:forEach>

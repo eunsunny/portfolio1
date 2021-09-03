@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="../header.jsp"%>
+<%@ include file="../header2.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,7 +19,7 @@
 			<div class="row">
 				<div class="row">
 					
-					<table>
+					<table style="border-top: solid 1px black; border-bottom: solid 1px black;">
 						<thead>
 						<tr style="text-align: center; padding: 0;">
 							<th>번호</th><th>제목</th><th>답변여부</th><th><th>등록일</th>

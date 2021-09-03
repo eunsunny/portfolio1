@@ -42,9 +42,29 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	@Override
+	public int countMyOrder(String id) {
+		
+		return orderDao.countMyOrder(id);
+	}
+
+	@Override
+	public List<OrderVO> orderListPaging(Criteria criteria, String id) {
+		
+		return orderDao.orderListPaging(criteria, id);
+	}
+	
+	// 주문 확정버튼
+	@Override
 	public void orderSet(OrderVO vo) {
 		
 		orderDao.orderSet(vo);
+	}
+	
+	// 주문 등급용도 카운트
+	@Override
+	public int orderSetCount(String id) {
+		
+		return orderDao.orderSetCount(id);
 	}
 
 	@Override

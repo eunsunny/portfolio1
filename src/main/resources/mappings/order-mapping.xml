@@ -14,17 +14,22 @@
 	
 	<!--  주문(구매)내역 관련 -->
 	<select id="orderList" resultType="order">
-		SELECT * FROM order_view WHERE oid=#{id} ORDER BY order_date DESC
+		SELECT name, title, price, id, oid, order_date, pseq, rev_result, oseq, cod, cod_grp_id, cod_nm 
+		  FROM order_view 
+		 WHERE oid=#{id} ORDER BY order_date DESC
 	</select>
 	
-	<!-- 주문 확정 버튼 -->
-	<update id="orderUpdate">
+	<!-- 구매 확정 버튼 -->
+	<update id="orderUpdate" parameterType="order">
 		UPDATE orders SET rev_result='y' WHERE id=#{id} AND oseq=#{oseq}
 	</update>
 	
+	<select id="orderSetCount" parameterType="order" resultType="int">
+		SELECT COUNT(*) FROM order_view WHERE id=#{id} AND rev_result='y'
+	</select>
 	
 	<insert id="insertOrder">
-		INSERT INTO order(oseq, id, pseq) VALUES(order_seq.NEXTVAL, #{id}, #{pseq})
+		INSERT INTO orders(oseq, id, pseq) VALUES(order_seq.NEXTVAL, #{id}, #{pseq})
 	</insert>
 	
 	<!-- 주문 상세내역 -->
@@ -41,16 +46,32 @@
 	<!-- 내상품 목록 페이징처리 -->
 	<select id="myProductListPaging" parameterType="hashMap" resultType="product">
 		<![CDATA[
-		SELECT pseq, name, title, price, soldyn, regdate, id, kind_nm
-		  FROM (SELECT row_number() over(ORDER BY regdate DESC) rn, pseq, name, title, price, soldyn, regdate, id, kind_nm
+		SELECT pseq, name, title, price, soldyn, regdate, id, kind_nm, oid, oseq
+		  FROM (SELECT row_number() over(ORDER BY regdate DESC) rn, pseq, name, title, price, soldyn, regdate, id, kind_nm, oid, oseq
 		  		  FROM my_prod_view WHERE id=#{id})
-		  WHERE rn <= #{criteria.pageNum} * #{criteria.rowsPerPage} 
-     	  	AND rn > (#{criteria.pageNum}-1) * #{criteria.rowsPerPage}
+		 WHERE rn <= #{criteria.pageNum} * #{criteria.rowsPerPage} 
+     	   AND rn > (#{criteria.pageNum}-1) * #{criteria.rowsPerPage}
 		]]>
 	</select>
 	
 	<select id="countMyProduct" parameterType="String" resultType="int">
 		SELECT COUNT(*) FROM product WHERE id=#{id}
+	</select>
+	
+	<!-- 내 주문상품 목록 페이징처리 -->
+	<select id="orderListPaging" parameterType="hashMap" resultType="order">
+		<![CDATA[
+		SELECT name, title, price, id, oid, order_date, pseq, rev_result, oseq, cod, cod_grp_id, cod_nm
+		  FROM (SELECT row_number() over(ORDER BY order_date DESC) rn, name, title, price, 
+		  			   id, oid, order_date, pseq, rev_result, oseq, cod, cod_grp_id, cod_nm
+		  		  FROM order_view WHERE oid=#{id})
+		 WHERE rn <= #{criteria.pageNum} * #{criteria.rowsPerPage} 
+     	   AND rn > (#{criteria.pageNum}-1) * #{criteria.rowsPerPage} ORDER BY order_date DESC
+		]]>
+	</select>
+	
+	<select id="countMyOrder" parameterType="String" resultType="int">
+		SELECT COUNT(*) FROM orders WHERE id=#{id}
 	</select>
 	
 	<select id="selectAllByPseq" resultType="java.util.Map">
