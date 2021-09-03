@@ -74,8 +74,7 @@ public class MemberController {
 	@RequestMapping(value = "/contract")
 	public String contractView() {
 
-		return "member/contract"; // 버튼 안나와서 잠시 잠금
-//		return "member/join";
+		return "member/contract";
 	}
 
 	// 회원가입 페이지 출력
@@ -98,19 +97,6 @@ public class MemberController {
 
 	}
 
-	// 닉네임 중복체크 컨트롤러
-//	@RequestMapping(value="/nickNameCheck", method=RequestMethod.POST)
-//	@ResponseBody
-//	public int nickNameCheck(@RequestParam(value="nick_name") String nick_name) throws Exception {
-//		
-//		int result = memberService.userNicknameCheck(nick_name);
-//		
-//		System.out.println(result);
-//		
-//		return result;
-//		
-//	}
-
 	// 회원가입 완료
 	@RequestMapping(value = "/join", method = RequestMethod.POST)
 	public String joinAction(@RequestParam(value = "addr1") String addr1,
@@ -119,10 +105,8 @@ public class MemberController {
 
 		String id = memberService.getIdMember(vo.getId());
 
-		System.out.println("vo" + vo);
-		//System.out.println("원래아이디" + member.getId());
-
-		System.out.println("id="+id);
+//		System.out.println("vo" + vo);
+//		System.out.println("id="+id);
 		
 		 if(vo.getId().equals(id)) { 
 			 

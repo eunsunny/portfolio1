@@ -31,36 +31,7 @@ public class MyPageController {
 	@Autowired
 	private MemberService memberService;
 	
-	/*
-	 * 찜목록 페이지설정하는 부분 추후 다시 구현예정(새로운 페이지 열어서 찜목록이동/닫기 구현)
-	@RequestMapping(value="/jjim_check_form", method=RequestMethod.GET)
-	public String jjimCheckView(HttpSession session) {
 		
-			return "mypage/jjim_check";
-	}
-	*/
-	
-	/* 
-	 * 나중에 다시 실현~~~~!!! 위에꺼랑 연관된 부분
-	@RequestMapping(value="/jjim_insert", method=RequestMethod.GET)
-	public String JjimInsert(HttpSession session, JjimVO vo) {
-		
-		MemberVO loginUser = (MemberVO)session.getAttribute("loginUser");
-		
-		if (loginUser == null) {
-			return "member/login";
-		} else {
-			
-			vo.setId(loginUser.getId());
-			
-			jjimService.insertJjim(vo);
-			
-			return "category/cancel";
-		}
-		
-	}
-	*/
-	
 	// 찜목록 추가
 	@RequestMapping(value="/jjim_insert_list", method=RequestMethod.GET)
 	public String jjimInsertList(HttpSession session,
@@ -112,8 +83,8 @@ public class MyPageController {
 		}
 	
 		// 찜리스트(페이징 포함)
-	@RequestMapping(value="/jjim_list", method=RequestMethod.GET)
-	public String jjimList(String id, Criteria criteria, HttpSession session, Model model) {
+		@RequestMapping(value="/jjim_list", method=RequestMethod.GET)
+		public String jjimList(String id, Criteria criteria, HttpSession session, Model model) {
 		
 		MemberVO loginUser = (MemberVO)session.getAttribute("loginUser");
 		

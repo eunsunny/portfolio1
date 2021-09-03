@@ -160,9 +160,11 @@
 									<c:choose>
 										<c:when test="${empty sessionScope.loginUser}">
 											<li><a href="#" onclick="login_empty_check()">1:1 문의하기</a></li>
+											<li><a href="#" onclick="login_empty_check()">신고 하기</a></li>
 										</c:when>
 										<c:otherwise>
 											<li><a href="oneone_list">1:1 문의하기</a></li>
+											<li><a href="report_write_view">신고 하기</a></li>
 										</c:otherwise>
 									</c:choose>
 									</ul></li>

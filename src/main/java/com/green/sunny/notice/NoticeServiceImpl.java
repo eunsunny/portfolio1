@@ -9,6 +9,7 @@ import com.green.sunny.dao.NoticeDAO;
 import com.green.sunny.dto.GongziVO;
 import com.green.sunny.dto.OneoneVO;
 import com.green.sunny.dto.QuestionVO;
+import com.green.sunny.dto.ReportVO;
 import com.green.sunny.utils.Criteria;
 
 @Service("noticeService")
@@ -54,9 +55,15 @@ public class NoticeServiceImpl implements NoticeService {
 	}
 
 	@Override
-	public List<QuestionVO> questionList(QuestionVO vo) {
+	public List<QuestionVO> questionList(Criteria criteria, String key) {
 		
-		return noticeDao.questionList(vo);
+		return noticeDao.questionList(criteria, key);
+	}
+
+	@Override
+	public int questionCount(String key) {
+		
+		return noticeDao.questionCount(key);
 	}
 
 	@Override
@@ -75,6 +82,12 @@ public class NoticeServiceImpl implements NoticeService {
 	public List<OneoneVO> oneoneList(OneoneVO vo) {
 		
 		return noticeDao.oneoneList(vo);
+	}
+
+	@Override
+	public void insertReport(ReportVO vo) {
+		
+		noticeDao.insertReport(vo);
 	}
 
 

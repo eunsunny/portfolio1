@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.green.sunny.dto.GongziVO;
 import com.green.sunny.dto.OneoneVO;
 import com.green.sunny.dto.QuestionVO;
+import com.green.sunny.dto.ReportVO;
 import com.green.sunny.utils.Criteria;
 
 @Repository
@@ -59,9 +60,19 @@ public class NoticeDAO {
 	}
 	
 	// 자주묻는질문 리스트
-	public List<QuestionVO> questionList(QuestionVO vo) {
+	public List<QuestionVO> questionList(Criteria criteria, String key) {
 		
-		return mybatis.selectList("NoticeDAO.questionList", vo);
+		HashMap<String, Object> map = new HashMap<>();
+		
+		map.put("criteria", criteria);
+		map.put("key", key);
+		
+		return mybatis.selectList("NoticeDAO.questionPaging", map);
+	}
+	
+	public int questionCount(String key) {
+		
+		return mybatis.selectOne("NoticeDAO.questionCount", key);
 	}
 	
 	// 1:1 질문 등록
@@ -82,5 +93,10 @@ public class NoticeDAO {
 		return mybatis.selectList("NoticeDAO.oneoneList", vo);
 	}
 	
+	// 신고하기
+	public void insertReport(ReportVO vo) {
+		
+		mybatis.insert("NoticeDAO.insertReport", vo);
+	}
 	
 }

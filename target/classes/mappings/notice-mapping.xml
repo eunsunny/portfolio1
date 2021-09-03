@@ -35,9 +35,22 @@
 	</select>
 	
 	<!-- 자주묻는질문 리스트 -->
-	<select id="questionList" resultType="question">
-		SELECT * FROM question
+	<select id="questionCount" resultType="int">
+		SELECT COUNT(*) FROM question
 	</select>
+	
+	<select id="questionPaging" parameterType="hashMap" resultType="question">
+		<![CDATA[
+			SELECT * 
+				FROM (SELECT row_number() over(ORDER BY title) rn, qseq, title, content, image  
+						FROM question 
+					   WHERE title LIKE '%'||#{key}||'%')
+			   WHERE rn <= #{criteria.pageNum} * #{criteria.rowsPerPage}
+				 AND rn > (#{criteria.pageNum}-1) * #{criteria.rowsPerPage}
+		]]>
+	</select>
+	
+	
 	
 	<!-- 1:1 질문 -->
 	<!-- 질문 등록 -->
@@ -57,4 +70,9 @@
 		SELECT * FROM oneone WHERE id=#{id} ORDER BY onseq DESC
 	</select>
 
+	<!-- 신고하기 -->
+	<insert id="insertReport" parameterType="report">
+		INSERT INTO report(id, rp_kind, content, rseq, report_id) VALUES(#{id}, #{rp_kind}, #{content}, report_seq.NEXTVAL, #{report_id})
+	</insert>
+	
 </mapper>
