@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="../header.jsp"%>
+<%@ include file="../header2.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,7 +14,7 @@
 		<div class="container py-5">
 			<div class="row">
 				<div class="row">
-					<table>
+					<table style="border-top: solid 1px black; border-bottom: solid 1px black;">
 						<tr>
 							<th>아이디 : </th>
 							<td>${OneoneVO.id}</td>

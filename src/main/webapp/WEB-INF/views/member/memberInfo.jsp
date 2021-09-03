@@ -1,15 +1,27 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="../header.jsp"%>
-<%@ include file="sub_menu.jsp"%>
 <!DOCTYPE html>
+<html>
+<head>
 
+<style>
+	
+	th, td {
+		text-align:left;
+	}
+	
+</style>
+
+</head>
+<body>
+<%@ include file="sub_menu.jsp"%>
 <div class="col-lg-9">
 	<h2 style="letter-spacing: 0;">회원 정보</h2>
 	<form id="member_update_form" method="get" action="member_update_form">
 		<div class="container py-5">
 			<table id="infotable">
-				<tr style="border-top: solid 1px black;">
+				<tr style="text-align:left; border-top: solid 1px black;">
 					<th>아이디</th>
 					<td>${MemberVO.id}
 					<input type="hidden" id="id" value="${MemberVO.id}">

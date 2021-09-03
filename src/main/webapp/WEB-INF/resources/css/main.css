@@ -1740,7 +1740,6 @@ input::-moz-focus-inner {
 		}
 
 		table th {
-			text-align: left;
 			font-weight: bold;
 			padding: 0.75em 1em 0.75em 1em;
 		}

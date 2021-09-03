@@ -17,6 +17,21 @@ public class ProductVO {
 	private String delivery_nm;
 	private int cnt;
 	private String image;
+	private String oid;
+	private int oseq;
+	
+	public String getOid() {
+		return oid;
+	}
+	public void setOid(String oid) {
+		this.oid = oid;
+	}
+	public int getOseq() {
+		return oseq;
+	}
+	public void setOseq(int oseq) {
+		this.oseq = oseq;
+	}
 	public String getImage() {
 		return image;
 	}
@@ -101,12 +116,13 @@ public class ProductVO {
 	public void setCnt(int cnt) {
 		this.cnt = cnt;
 	}
+	
 	@Override
 	public String toString() {
 		return "ProductVO [pseq=" + pseq + ", name=" + name + ", kind=" + kind + ", kind2=" + kind2 + ", price=" + price
 				+ ", title=" + title + ", content=" + content + ", soldyn=" + soldyn + ", regdate=" + regdate + ", id="
 				+ id + ", kind_nm=" + kind_nm + ", delivery_nm=" + delivery_nm + ", cnt=" + cnt + ", image=" + image
-				+ "]";
+				+ ", oid=" + oid + ", oseq=" + oseq + "]";
 	}
 	
 }

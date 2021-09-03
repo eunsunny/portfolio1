@@ -200,27 +200,42 @@ public class MyPageController {
 	}
 	
 	@RequestMapping(value="/order_list")
-	public String orderList(HttpSession session, OrderVO vo, Model model) {
+	public String orderList(HttpSession session, Criteria criteria, String id, Model model) {
 		
 		MemberVO loginUser = (MemberVO)session.getAttribute("loginUser");
 		
-		vo.setId(loginUser.getId());
+		id = loginUser.getId();
 		
-		List<OrderVO> orderList = orderService.orderList(vo);
+		List<OrderVO> orderList = orderService.orderListPaging(criteria, id);
+		
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(criteria);
+		
+		int totalCount = orderService.countMyOrder(id);
+		pageMaker.setTotalCount(totalCount);
 		
 		model.addAttribute("orderList", orderList);
+		model.addAttribute("pageMaker", pageMaker);
 		
 		return "mypage/orderList";
 	}
 	
 	@RequestMapping(value="/order_set")
-	public String orderSet(HttpSession session, OrderVO vo) {
+	public String orderSet(@RequestParam(value="oseq") int oseq, OrderVO vo,
+						   @RequestParam(value="id")String id, 
+						   HttpSession session) {
 		
 		MemberVO loginUser = (MemberVO)session.getAttribute("loginUser");
 		
 		vo.setId(loginUser.getId());
+		vo.setOseq(oseq);
 		
 		orderService.orderSet(vo);
+		
+		int count = orderService.orderSetCount(id);  // 등급관련 추가예정
+		
+		System.out.println(count);
+		
 		
 		return "redirect:order_list";
 	}
