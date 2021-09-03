@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -22,6 +23,7 @@ import com.green.sunny.dto.AdminVO;
 import com.green.sunny.dto.BoardVO;
 import com.green.sunny.dto.GongziVO;
 import com.green.sunny.dto.MemberVO;
+import com.green.sunny.dto.MostOrderMember;
 import com.green.sunny.dto.OneoneVO;
 import com.green.sunny.dto.OrderVO;
 import com.green.sunny.dto.ProductImageVO;
@@ -68,8 +70,21 @@ public class AdminController {
 	
 	// 메인 페이지로 이동
 	@RequestMapping(value="/admin_main")
-	public String adminMainView() {
+	public String adminMainView() {		
 		return "admin/main";
+	}
+	
+	// 최다 주문 회원 조회 메소드
+	@RequestMapping(value="/most_order_chart", produces="application/json; charset=utf-8", method=RequestMethod.GET)
+	@ResponseBody
+	public List<MostOrderMember> getMostOrderMember() {
+		System.out.println("make chart...");
+		List<MostOrderMember> mostOrder = adminService.getMostOrderMember();
+		
+		for(MostOrderMember item : mostOrder) {
+			System.out.println(item);
+		}
+		return mostOrder;
 	}
 	
 	// 회원관리 페이지로 이동
