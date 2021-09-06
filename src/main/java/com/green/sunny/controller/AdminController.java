@@ -22,6 +22,7 @@ import com.green.sunny.admin.QuestionService;
 import com.green.sunny.dto.AdminVO;
 import com.green.sunny.dto.BoardVO;
 import com.green.sunny.dto.GongziVO;
+import com.green.sunny.dto.KindCount;
 import com.green.sunny.dto.MemberVO;
 import com.green.sunny.dto.MostOrderMember;
 import com.green.sunny.dto.OneoneVO;
@@ -70,21 +71,55 @@ public class AdminController {
 	
 	// 메인 페이지로 이동
 	@RequestMapping(value="/admin_main")
-	public String adminMainView() {		
+	public String adminMainView(Model model) {
+		int todayProduct = adminService.getTodayProduct();
+		int todayOrder = adminService.getTodayOrder();
+		int noOneone = adminService.getNoRepOneone();
+		int noReport = adminService.getNoResultReport();
+		
+		model.addAttribute("todayProduct", todayProduct);
+		model.addAttribute("todayOrder", todayOrder);
+		model.addAttribute("noOneone", noOneone);
+		model.addAttribute("noReport", noReport);
+		
 		return "admin/main";
 	}
 	
 	// 최다 주문 회원 조회 메소드
-	@RequestMapping(value="/most_order_chart", produces="application/json; charset=utf-8", method=RequestMethod.GET)
+	@RequestMapping(value="/most_order_chart", produces="application/json; charset=UTF-8")
 	@ResponseBody
-	public List<MostOrderMember> getMostOrderMember() {
-		System.out.println("make chart...");
+	public List<MostOrderMember> getMostOrderMember() {		
 		List<MostOrderMember> mostOrder = adminService.getMostOrderMember();
 		
-		for(MostOrderMember item : mostOrder) {
-			System.out.println(item);
-		}
 		return mostOrder;
+	}
+	
+	// 카테고리별 상품 갯수 조회 메소드
+	@RequestMapping(value="/kind_count_chart", produces="application/json; charset=utf-8")
+	@ResponseBody
+	public List<KindCount> getKindCount(){
+		List<KindCount> kindCount = adminService.getKindCount();
+
+		for(KindCount item : kindCount) {
+			switch(item.getKind()) {
+				case "1": item.setKind("패션의류/잡화"); break;
+				case "2": item.setKind("뷰티"); break;
+				case "3": item.setKind("출산/유아동"); break;
+				case "4": item.setKind("식품"); break;
+				case "5": item.setKind("주방/생활용품"); break;
+				case "6": item.setKind("인테리어"); break;
+				case "7": item.setKind("가전디지털"); break;
+				case "8": item.setKind("스포츠레저"); break;
+				case "9": item.setKind("자동차용품"); break;
+				case "10": item.setKind("도서/음반/DVD"); break;
+				case "11": item.setKind("완구/문구/취미"); break;
+				case "12": item.setKind("반려동물용품"); break;
+				case "13": item.setKind("헬스/건강식품"); break;
+				default: break;
+			}
+		}
+		
+		return kindCount;
 	}
 	
 	// 회원관리 페이지로 이동

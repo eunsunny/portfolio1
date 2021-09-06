@@ -20,58 +20,10 @@
     <!-- Custom styles for this template-->
     <link href="admin_css/sb-admin-2.min.css" rel="stylesheet">
     
-    <!-- Google Chart -->
+     <!-- Google Chart -->
+    <script src="admin_js/jquery-3.6.0.min.js"></script>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
-    	$(document).ready(function(){
-    		$.ajax({
-    			type: 'GET',
-    			headers:{
-    				Accept: "application/json; charset=utf-8",
-    				"Content-type":"application/json; charset=utf-8"
-    			},
-    			url: "most_order_chart",
-    			success: function(result){
-    				// 최신 버전의 구글차트 패키지 로드
-    		    	google.charts.load('current', {'packages':['corechart']});
-    		    	google.charts.setOnLoadCallback(function(){
-    		    		drawChart(result);
-    		    	});
-    			}
-    			error: function(){
-    				alert("차트 에러!");
-    			}
-    		});
-    		
-    		function drawChart(reuslt){
-        		// 차트에 사용할 데이터 객체 생성
-        		var data = new google.visualization.DataTable();
-        		
-        		data.addColumn("string", "id");
-        		data.addColumn("number", "order_count");
-        		
-        		// controller에서 json타입으로 전달된 데이터를 자바스크립트 배열로 저장
-        		var dataArray = [];
-        		$.each(result, function(i, obj){
-        			dataArray.push([obj.id, obj.order_count]);
-        		})
-        		
-        		// data에 dataArray 저장
-        		data.addRows(dataArray);
-        		
-        		// 차트 옵션 설정
-        		var option = {
-        			title:'최다 주문회원',
-        			width:100,
-        			height:100
-        		};
-        		
-        		// 차트 그리기
-        		var chart = new google.visualization.BarChart(document.getElementById('order_member_chart'));
-        		chart.draw(data, option);
-        	}
-    	});
-    </script>
+    <script type="text/javascript" src="admin_js/chart.js"></script>
 
 </head>
 <body id="page-top">
@@ -95,15 +47,13 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-                        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                                class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+                        <h1 class="h3 mb-0 text-gray-800">대쉬보드</h1>
                     </div>
 
                     <!-- Content Row -->
                     <div class="row">
 
-                        <!-- Earnings (Monthly) Card Example -->
+                        <!-- 신규 상품 카드 -->
                         <div class="col-xl-3 col-md-6 mb-4">
                             <div class="card border-left-primary shadow h-100 py-2">
                                 <div class="card-body">
@@ -111,7 +61,7 @@
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                                 오늘 신규 상품</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">3건</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">${todayProduct}건</div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -121,7 +71,7 @@
                             </div>
                         </div>
 
-                        <!-- Earnings (Monthly) Card Example -->
+                        <!-- 신규 주문 카드 -->
                         <div class="col-xl-3 col-md-6 mb-4">
                             <div class="card border-left-success shadow h-100 py-2">
                                 <div class="card-body">
@@ -129,7 +79,7 @@
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                                 오늘 신규 주문</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">3건</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">${todayOrder}건</div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -139,25 +89,18 @@
                             </div>
                         </div>
 
-                        <!-- Earnings (Monthly) Card Example -->
+                        <!-- 신규 1:1 문의 카드 -->
                         <div class="col-xl-3 col-md-6 mb-4">
                             <div class="card border-left-info shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">오늘 신규 문의
+                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">미답변 문의
                                             </div>
                                             <div class="row no-gutters align-items-center">
                                                 <div class="col-auto">
-                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">4건</div>
+                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">${noOneone}건</div>
                                                 </div>
-                                                <!-- <div class="col">
-                                                    <div class="progress progress-sm mr-2">
-                                                        <div class="progress-bar bg-info" role="progressbar"
-                                                            style="width: 50%" aria-valuenow="50" aria-valuemin="0"
-                                                            aria-valuemax="100"></div>
-                                                    </div>
-                                                </div> -->
                                             </div>
                                         </div>
                                         <div class="col-auto">
@@ -168,15 +111,15 @@
                             </div>
                         </div>
 
-                        <!-- Pending Requests Card Example -->
+                        <!-- 신규 신고 카드 -->
                         <div class="col-xl-3 col-md-6 mb-4">
                             <div class="card border-left-warning shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                                오늘 신규 신고</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">2건</div>
+                                                미처리 신고</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">${noReport}건</div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-comments fa-2x text-gray-300"></i>
@@ -195,17 +138,25 @@
                         <div class="col-xl-8 col-lg-7">
                             <div class="card shadow mb-4">
                                 <!-- Card Header - Dropdown -->
-                                <div
-                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">자유게시판</h6>
+                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between" id="areaChart">
+                                    <h6 class="m-0 font-weight-bold text-primary">통계</h6>
                                     <div class="dropdown no-arrow">
+										<a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                                            aria-labelledby="dropdownMenuLink">
+                                            <div class="dropdown-header">차 트 :</div>
+                                            <a class="dropdown-item" href="#areaChart" onclick="chart1();">최다 주문 회원</a>
+                                            <a class="dropdown-item" href="#areaChart" onclick="chart2();">카테고리별 상품 갯수</a>
+                                        </div>                                    
                                     </div>
                                 </div>
-                                <!-- Card Body -->
+                                <!-- 차트 보여주는 곳 -->
                                 <div class="card-body">
-                                    <div id="order_member_chart">
-                                    
-                                    </div>
+                                    <div class="chart-area" id="myAreaChart1"></div>
+                                     <div class="chart-area" id="myAreaChart2"></div>
                                 </div>
                             </div>
                         </div>
@@ -236,17 +187,6 @@
                                 <div class="card-body">
                                     <div class="chart-pie pt-4 pb-2">
                                         <canvas id="myPieChart"></canvas>
-                                    </div>
-                                    <div class="mt-4 text-center small">
-                                        <span class="mr-2">
-                                            <i class="fas fa-circle text-primary"></i> Direct
-                                        </span>
-                                        <span class="mr-2">
-                                            <i class="fas fa-circle text-success"></i> Social
-                                        </span>
-                                        <span class="mr-2">
-                                            <i class="fas fa-circle text-info"></i> Referral
-                                        </span>
                                     </div>
                                 </div>
                             </div>
@@ -430,7 +370,7 @@
 	<%@ include file="logout.jsp" %>
 	
     <!-- Bootstrap core JavaScript-->
-    <script src="admin_vendor/jquery/jquery.min.js"></script>
+    <!-- <script src="admin_vendor/jquery/jquery.min.js"></script> -->
     <script src="admin_vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->
@@ -438,13 +378,6 @@
 
     <!-- Custom scripts for all pages-->
     <script src="admin_js/sb-admin-2.min.js"></script>
-
-    <!-- Page level plugins -->
-    <script src="admin_vendor/chart.js/Chart.min.js"></script>
-
-    <!-- Page level custom scripts -->
-    <script src="admin_js/demo/chart-area-demo.js"></script>
-    <script src="admin_js/demo/chart-pie-demo.js"></script>
 
 </body>
 </html>
