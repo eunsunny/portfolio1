@@ -20,14 +20,13 @@
 <%@ include file="../member/sub_menu.jsp"%>
 <div class="col-lg-10">
 	<h2 style="letter-spacing: 0;">나의 구매상품 목록</h2><br>
-	<form name="frm">
 		<div class="container py-5">
 			<div class="row">
 				<div class="row">
 					<table>
 						<thead>
 							<tr style="padding: 0;">
-								<th>번호</th><th>카테고리</th><th>상품명</th><th>제목</th><th>가격</th><th>확정</th><th>구매일</th>
+								<th>번호</th><th>카테고리</th><th>상품명</th><th>제목</th><th>가격</th><th>확정</th><th>판매자</th><th>구매일</th>
 							</tr>
 						</thead>
 						<tbody class="prodListBody">
@@ -41,25 +40,30 @@
 							</c:when>
 							<c:otherwise>
 								<c:forEach items="${orderList}" var="orderVO">
-									<tr>
-										<td height="23" align="center">${orderVO.oseq}
-											<input type="hidden" name="id" value="${orderVO.id}">
-										</td>
-										<td>${orderVO.cod_nm}</td>
-										<td><a href="product_detail?pseq=${orderVO.pseq}">${orderVO.name}</a></td>
-										<td><a href="product_detail?pseq=${orderVO.pseq}">${orderVO.title}</a></td>
-										<td><fmt:formatNumber value="${orderVO.price}"/></td>
-										<td>
-											<c:choose>
-												<c:when test='${orderVO.rev_result=="n"}'>
-												<button type="button" onclick="location='order_set?oseq=${orderVO.oseq}'">
-													구매확정</button>
-												</c:when> 
-												<c:otherwise>구매 완료</c:otherwise>
-											</c:choose>
-										</td>
-										<td><fmt:formatDate value="${orderVO.order_date}"/></td>
-									</tr>
+									<form name="frm" id="order_form" method="GET" action="order_set">
+										<%-- <input type="hidden" name="oid" id="oid" value="${orderVO.oid}"> --%>
+										<tr>
+											<td height="23" align="center">${orderVO.oseq}
+												<input type="hidden" name="oseq" id="oseq" value="${orderVO.oseq}">
+											</td>
+											<td>${orderVO.cod_nm}</td>
+											<td><a href="product_detail?pseq=${orderVO.pseq}">${orderVO.name}</a></td>
+											<td><a href="product_detail?pseq=${orderVO.pseq}">${orderVO.title}</a></td>
+											<td><fmt:formatNumber value="${orderVO.price}"/></td>
+											<td>
+												<c:choose>
+													<c:when test='${orderVO.rev_result=="n"}'>
+													<button type="submit"> 구매확정</button>
+													</c:when> 
+													<c:otherwise>구매 완료</c:otherwise>
+												</c:choose>
+											</td>
+											<td>${orderVO.pid}
+												<input type="hidden" name="pid" id="pid" value="${orderVO.pid}">
+											</td>
+											<td><fmt:formatDate value="${orderVO.order_date}"/></td>
+										</tr>
+									</form>
 								</c:forEach>
 							</c:otherwise>
 						</c:choose>
@@ -70,7 +74,6 @@
 						</div>
 					</div>
 				</div>
-			</form>
 			<%@ include file="../orderPage_area.jsp"%>
 		</div>
 	</div>

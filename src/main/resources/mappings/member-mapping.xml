@@ -60,5 +60,9 @@
 	<update id="changePassword">
 		UPDATE member SET pwd=#{pwd} WHERE id=#{id}
 	</update>
-
+	
+	<!-- 등급변경 -->
+	<update id="gradeChange">
+		UPDATE member SET grade = #{grade}+1 WHERE id=#{id}
+	</update>
 </mapper>

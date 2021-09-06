@@ -34,7 +34,7 @@
 											<input name="email" placeholder="Email" type="text" />
 										</div>
 										<div class="col-12">
-											<textarea name="message" placeholder="Message"></textarea>
+											<textarea name="message" placeholder="Message" rows="8"></textarea>
 										</div>
 										<div class="col-12">
 											<a href="#" class="form-button-submit button icon solid fa-envelope">Send Message</a>

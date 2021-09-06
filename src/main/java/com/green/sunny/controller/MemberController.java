@@ -25,19 +25,15 @@ public class MemberController {
 
 	@Autowired
 	private MemberService memberService;
-
-	/*
-	 * 로그인 화면 표시
-	 */
-	@RequestMapping(value = "/login_form")
+	
+	// 로그인 화면 표시
+	@RequestMapping("/login_form")
 	public String loginView() {
 
 		return "member/login";
 	}
 
-	/*
-	 * 사용자 로그인 처리
-	 */
+	// 사용자 로그인 처리
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String loginAction(MemberVO vo, Model model, 
 							  @RequestParam(value = "id") String id,
@@ -51,7 +47,7 @@ public class MemberController {
 			loginUser = memberService.getMember(vo);
 
 			model.addAttribute("loginUser", loginUser);
-
+			
 			return "redirect:/index";
 
 		} else {
@@ -71,14 +67,14 @@ public class MemberController {
 	}
 
 	// 약관동의 화면 출력
-	@RequestMapping(value = "/contract")
+	@RequestMapping("/contract")
 	public String contractView() {
 
 		return "member/contract";
 	}
 
 	// 회원가입 페이지 출력
-	@RequestMapping(value = "/join_form")
+	@RequestMapping("/join_form")
 	public String joinView() {
 
 		return "member/join";
@@ -105,30 +101,28 @@ public class MemberController {
 
 		String id = memberService.getIdMember(vo.getId());
 
-//		System.out.println("vo" + vo);
-//		System.out.println("id="+id);
-		
-		 if(vo.getId().equals(id)) { 
-			 
-			 return "member/join_fail";
-		  
-		  } else {
-		 
+		if (vo.getId().equals(id)) {
+
+			return "member/join_fail";
+
+		} else {
+
 			vo.setAddress(addr1 + " " + addr2);
 			memberService.insertMember(vo);
-	
+
 			return "member/login";
-		  }
+			
+		}
 
 	}
 
-	@RequestMapping(value = "/find_zip_num_dong")
+	@RequestMapping("/find_zip_num_dong")
 	public String findZipNum1() {
 
 		return "member/findZipNumDong";
 	}
 
-	@RequestMapping(value = "/find_zip_num_doro")
+	@RequestMapping("/find_zip_num_doro")
 	public String findZipNum2() {
 
 		return "member/findZipNumDoro";
@@ -156,12 +150,13 @@ public class MemberController {
 	}
 
 	// 회원정보 페이지 넘기기 및 정보 가져오기
-	@RequestMapping(value = "/member_info")
+	@RequestMapping("/member_info")
 	public String memberInfo(HttpSession session, MemberVO vo, Model model) {
 
 		MemberVO loginUser = (MemberVO) session.getAttribute("loginUser");
 
 		if (loginUser == null) {
+			
 			return "member/login";
 		} else {
 
@@ -181,12 +176,13 @@ public class MemberController {
 	}
 
 	// 회원정보 변경 페이지 이동
-	@RequestMapping(value = "/member_update_form", method = RequestMethod.GET)
+	@RequestMapping("/member_update_form")
 	public String updateMemberView(HttpSession session, MemberVO vo, Model model) {
 
 		MemberVO loginUser = (MemberVO) session.getAttribute("loginUser");
 
 		if (loginUser == null) {
+			
 			return "member/login";
 		} else {
 
@@ -206,9 +202,13 @@ public class MemberController {
 
 	// 회원정보 변경
 	@RequestMapping(value = "/member_update", method = RequestMethod.POST)
-	public String updateMember(@RequestParam(value = "addr1") String addr1, @RequestParam(value = "addr2") String addr2,
-			MemberVO vo) {
-
+	public String updateMember(@RequestParam(value = "addr1") String addr1, 
+							   @RequestParam(value = "addr2") String addr2, 
+							   MemberVO vo, HttpSession session) {
+		
+		MemberVO loginUser = (MemberVO)session.getAttribute("loginUser");
+		
+		vo.setId(loginUser.getId());
 		vo.setAddress(addr1 + " " + addr2);
 
 		memberService.updateMember(vo);
@@ -236,8 +236,6 @@ public class MemberController {
 		String name = vo.getName();
 		String email = vo.getEmail();
 
-		System.out.println(name + email);
-
 		MemberVO member = memberService.getMemberByNameAndEmail(name, email);
 
 		if (member != null) {
@@ -258,8 +256,6 @@ public class MemberController {
 		String name = vo.getName();
 		String email = vo.getEmail();
 
-		System.out.println(id + name + email);
-
 		MemberVO member = memberService.findPassword(id, name, email);
 
 		if (member != null) {
@@ -273,7 +269,7 @@ public class MemberController {
 
 	}
 
-	@RequestMapping(value = "/change_pwd", method = RequestMethod.GET)
+	@RequestMapping("/change_pwd")
 	public String changePwd(MemberVO vo, Model model) {
 
 		memberService.changePassword(vo);

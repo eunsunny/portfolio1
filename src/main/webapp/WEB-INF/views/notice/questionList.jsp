@@ -29,6 +29,10 @@
 		list-style: none;
 	}
 	
+	.hide {
+		background-color: #F6F6F6;
+	}
+	
 	.inputicon {
 		position: relative;
 	}
