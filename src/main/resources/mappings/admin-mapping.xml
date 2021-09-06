@@ -10,6 +10,50 @@
 		SELECT * FROM admin WHERE id=#{id} 
 	</select>
 	
+	<!-- Maing Page - 오늘 추가된 상품/주문/문의/신고 -->
+	<select id="getTodayProduct" resultType="int">
+		SELECT COUNT(*) FROM product WHERE TO_CHAR(regdate)=(TO_CHAR(SYSDATE))
+	</select>
+	
+	<select id="getTodayOrder" resultType="int">
+		SELECT COUNT(*) FROM orders WHERE TO_CHAR(order_date)=(TO_CHAR(SYSDATE))	
+	</select>
+	
+	<select id="getNoRepOneone" resultType="int">
+		SELECT COUNT(*) FROM oneone WHERE rep='n'
+	</select>
+	
+	<select id="getNoResultReport" resultType="int">
+		SELECT COUNT(*) FROM report WHERE result='n'
+	</select>
+	
+	<!-- Main Page - Chart -->
+	<resultMap type="com.green.sunny.dto.MostOrderMember" id="orderMap">
+		<result column="id" property="id"/>
+		<result column="order_count" property="order_count"/>
+	</resultMap>
+	
+	<select id="getMostOrderMember" resultMap="orderMap">
+		<![CDATA[
+		SELECT id, order_count
+		FROM 
+			(SELECT id, COUNT(rev_result) AS order_count FROM orders GROUP BY id)
+		WHERE ROWNUM <= 5
+		]]>
+	</select>
+	
+	<resultMap type="com.green.sunny.dto.KindCount" id="kindMap">
+		<result column="kind" property="kind"/>
+		<result column="kind_count" property="kind_count"/>
+	</resultMap>
+	
+	<select id="getKindCount" resultMap="kindMap">
+		SELECT kind, COUNT(soldyn) AS kind_count FROM product
+		WHERE soldyn='n'
+		GROUP BY kind
+		ORDER BY kind DESC
+	</select>	
+	
 	<!-- Product Section -->
 	<select id="getAllProductPaging" parameterType="hashMap" resultType="product">
 		<![CDATA[
