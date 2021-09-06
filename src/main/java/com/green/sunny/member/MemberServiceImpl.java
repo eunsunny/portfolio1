@@ -95,6 +95,12 @@ public class MemberServiceImpl implements MemberService {
 		return memberDao.getIdMember(id);
 	}
 
+	@Override
+	public void gradeChange(MemberVO vo) {
+		
+		memberDao.gradeChange(vo);
+	}
+
 	
 
 }

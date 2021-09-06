@@ -17,10 +17,10 @@
 					<table style="border-top: solid 1px black; border-bottom: solid 1px black;">
 						<thead>
 						<tr style="text-align: center; padding: 0;">
-							<th>번호</th><th>제목</th><th>등록일</th><th><th>조회수</th>
+							<th>번호</th><th>제목</th><th>등록일</th><th>조회수</th>
 						</tr>
 						</thead>
-						<tbody class="prodListBody">
+						<tbody style="text-align:center; background-color: #F6F6F6; ">
 						<c:choose>
 							<c:when test="${noticeList.size() == 0}">
 								<tr>
@@ -32,10 +32,10 @@
 							<c:otherwise>
 								<c:forEach items="${noticeList}" var="NoticeVO">
 									<tr>
-										<td align="center">${NoticeVO.gseq}</td>
-										<td><a href="notice_detail?gseq=${NoticeVO.gseq}">${NoticeVO.title}</a></td>
-										<td><fmt:formatDate value="${NoticeVO.regdate}"/></td>
-										<td>${NoticeVO.count}</td>
+										<td align="center" width="10%">${NoticeVO.gseq}</td>
+										<td width="60%"><a href="notice_detail?gseq=${NoticeVO.gseq}">${NoticeVO.title}</a></td>
+										<td width="20%"><fmt:formatDate value="${NoticeVO.regdate}"/></td>
+										<td width="10%">${NoticeVO.count}</td>
 									</tr>
 								</c:forEach>
 							</c:otherwise>

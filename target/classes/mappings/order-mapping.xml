@@ -25,14 +25,14 @@
 	</update>
 	
 	<select id="orderSetCount" parameterType="order" resultType="int">
-		SELECT COUNT(*) FROM order_view WHERE id=#{id} AND rev_result='y'
+		SELECT COUNT(*) FROM order_view WHERE pid=#{pid} AND rev_result='y'
 	</select>
 	
 	<insert id="insertOrder">
 		INSERT INTO orders(oseq, id, pseq) VALUES(order_seq.NEXTVAL, #{id}, #{pseq})
 	</insert>
 	
-	<!-- 주문 상세내역 -->
+	<!-- 주문 상세내역(보류) -->
 	<select id="orderDetail" resultType="order">
 		
 	</select>
@@ -61,17 +61,17 @@
 	<!-- 내 주문상품 목록 페이징처리 -->
 	<select id="orderListPaging" parameterType="hashMap" resultType="order">
 		<![CDATA[
-		SELECT name, title, price, id, oid, order_date, pseq, rev_result, oseq, cod, cod_grp_id, cod_nm
+		SELECT name, title, price, pid, oid, order_date, pseq, rev_result, oseq, cod, cod_grp_id, cod_nm
 		  FROM (SELECT row_number() over(ORDER BY order_date DESC) rn, name, title, price, 
-		  			   id, oid, order_date, pseq, rev_result, oseq, cod, cod_grp_id, cod_nm
+		  			   pid, oid, order_date, pseq, rev_result, oseq, cod, cod_grp_id, cod_nm
 		  		  FROM order_view WHERE oid=#{id})
 		 WHERE rn <= #{criteria.pageNum} * #{criteria.rowsPerPage} 
      	   AND rn > (#{criteria.pageNum}-1) * #{criteria.rowsPerPage} ORDER BY order_date DESC
 		]]>
 	</select>
-	
+	<!-- 페이징처리용카운트 -->
 	<select id="countMyOrder" parameterType="String" resultType="int">
-		SELECT COUNT(*) FROM orders WHERE id=#{id}
+		SELECT COUNT(*) FROM order_view WHERE oid=#{id}
 	</select>
 	
 	<select id="selectAllByPseq" resultType="java.util.Map">

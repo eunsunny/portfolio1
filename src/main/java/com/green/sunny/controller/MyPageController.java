@@ -33,14 +33,13 @@ public class MyPageController {
 	
 		
 	// 찜목록 추가
-	@RequestMapping(value="/jjim_insert_list", method=RequestMethod.GET)
+	@RequestMapping("/jjim_insert_list")
 	public String jjimInsertList(HttpSession session,
-								@RequestParam(value="pseq") int pseq) {
+								 @RequestParam(value="pseq") int pseq) {
 		
 		MemberVO loginUser = (MemberVO)session.getAttribute("loginUser");
 		
 		JjimVO vo = new JjimVO();
-
 		
 		if (loginUser == null) {
 			return "member/login";
@@ -58,68 +57,57 @@ public class MyPageController {
 	}
 	
 	// 물어보기
-		@RequestMapping(value="/jjim_list_cancel", method=RequestMethod.GET)
-		public String jjimListCancel(@RequestParam(value="pseq") int pseq, HttpSession session, Model model) {
-			
-			MemberVO loginUser = (MemberVO)session.getAttribute("loginUser");
-			
-			JjimVO vo = new JjimVO();
-
-			
-			if (loginUser == null) {
-				return "member/login";
-			} else {
-				
-				vo.setId(loginUser.getId());
-				
-				vo.setPseq(pseq);
-				
-				jjimService.insertJjim(vo);
-				
-				//return "mypage/jjimList";
-				return "redirect:product_detail?pseq="+pseq;
-			}
-			
-		}
-	
-		// 찜리스트(페이징 포함)
-		@RequestMapping(value="/jjim_list", method=RequestMethod.GET)
-		public String jjimList(String id, Criteria criteria, HttpSession session, Model model) {
+	@RequestMapping(value="/jjim_list_cancel", method=RequestMethod.GET)
+	public String jjimListCancel(@RequestParam(value="pseq") int pseq, HttpSession session, Model model) {
 		
 		MemberVO loginUser = (MemberVO)session.getAttribute("loginUser");
 		
+		JjimVO vo = new JjimVO();
 		
-//		if(loginUser == null) {
-//			return "member/login";
-//		} else {
+		if (loginUser == null) {
+			return "member/login";
+		} else {
+			
+			vo.setId(loginUser.getId());
+			vo.setPseq(pseq);
+			
+			jjimService.insertJjim(vo);
+			
+			return "redirect:product_detail?pseq="+pseq;
+		}
+		
+	}
+	
+	// 찜리스트(페이징 포함)
+	@RequestMapping("/jjim_list")
+	public String jjimList(String id, Criteria criteria, HttpSession session, Model model) {
+		
+		MemberVO loginUser = (MemberVO)session.getAttribute("loginUser");
 
-			id = loginUser.getId();
-			
-			//List<JjimVO> jjimList = jjimService.jjimList(loginUser.getId());
-			List<JjimVO> jjimList = jjimService.getJjimListPaging(criteria, id);			
+		id = loginUser.getId();
+		
+		List<JjimVO> jjimList = jjimService.getJjimListPaging(criteria, id);			
 
-			PageMaker pageMaker = new PageMaker();
-			pageMaker.setCri(criteria);   // 현재 페이지와 페이지당 항목 수 설정
-			
-			// 전체 게시글의 수 조회
-			int totalCount = jjimService.countJjimList(loginUser.getId());
-			pageMaker.setTotalCount(totalCount);
-//			System.out.println("페이지정보-> "+pageMaker);
-			
-			model.addAttribute("jjimListSize", jjimList.size());
-			model.addAttribute("jjimList", jjimList);
-			model.addAttribute("pageMaker", pageMaker);
-			
-			//return "mypage/jjimList";   //이미지표시형식 
-			return "mypage/jjimList_boardType";   // 게시판리스트형식
-//		}
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(criteria);   // 현재 페이지와 페이지당 항목 수 설정
+		
+		// 전체 게시글의 수 조회
+		int totalCount = jjimService.countJjimList(loginUser.getId());
+		pageMaker.setTotalCount(totalCount);
+		
+		model.addAttribute("jjimListSize", jjimList.size());
+		model.addAttribute("jjimList", jjimList);
+		model.addAttribute("pageMaker", pageMaker);
+		
+		return "mypage/jjimList_boardType";   // 게시판리스트형식
 		
 	}
 	
 	
 	// 찜삭제
-	@RequestMapping(value="/jjim_delete", method=RequestMethod.GET)
-	public String jjimDelete(HttpSession session, @RequestParam(value="jjseq") int jjseq) {
+	@RequestMapping("/jjim_delete")
+	public String jjimDelete(HttpSession session, 
+						     @RequestParam(value="jjseq") int jjseq) {
 		
 		jjimService.deleteJjim(jjseq);
 		
@@ -127,20 +115,15 @@ public class MyPageController {
 	}
 	
 	// 내상품리스트(페이징 포함)
-	@RequestMapping(value="/my_prod_list", method=RequestMethod.GET)
+	@RequestMapping("/my_prod_list")
 	public String myProductList(String id, Criteria criteria, HttpSession session, Model model) {
 		
 		MemberVO loginUser = (MemberVO)session.getAttribute("loginUser");
-		
-//		ProductVO vo = new ProductVO();
 		
 		if(loginUser == null) {
 			return "member/login";
 			
 		} else {
-			
-//			vo.setId(loginUser.getId());
-//			List<ProductVO> prodList = orderService.myProductList(vo);
 			
 			id = loginUser.getId();
 			
@@ -161,7 +144,7 @@ public class MyPageController {
 		
 	}
 
-	@RequestMapping(value="/grade_detail")
+	@RequestMapping("/grade_detail")
 	public String gradeDetail(HttpSession session, MemberVO vo, Model model) {
 		
 		MemberVO loginUser = (MemberVO)session.getAttribute("loginUser");
@@ -199,7 +182,7 @@ public class MyPageController {
 		return "mypage/myGrade";
 	}
 	
-	@RequestMapping(value="/order_list")
+	@RequestMapping("/order_list")
 	public String orderList(HttpSession session, Criteria criteria, String id, Model model) {
 		
 		MemberVO loginUser = (MemberVO)session.getAttribute("loginUser");
@@ -220,22 +203,39 @@ public class MyPageController {
 		return "mypage/orderList";
 	}
 	
-	@RequestMapping(value="/order_set")
-	public String orderSet(@RequestParam(value="oseq") int oseq, OrderVO vo,
-						   @RequestParam(value="id")String id, 
-						   HttpSession session) {
+	@RequestMapping("/order_set")
+	public String orderSet(@RequestParam(value="pid") String pid, 
+						   OrderVO vo, MemberVO mVo, HttpSession session) {
 		
+		// 구매자관련
 		MemberVO loginUser = (MemberVO)session.getAttribute("loginUser");
-		
 		vo.setId(loginUser.getId());
-		vo.setOseq(oseq);
 		
 		orderService.orderSet(vo);
 		
-		int count = orderService.orderSetCount(id);  // 등급관련 추가예정
-		
-		System.out.println(count);
-		
+		// 판매자 등급관련
+		mVo.setId(pid);
+		MemberVO member = memberService.getMember(mVo);
+				
+		int count = orderService.orderSetCount(member.getId());  // 등급관련 추가예정
+				
+		if(count == 10) {
+			
+			memberService.gradeChange(member);
+			
+		} else if (count == 15) {
+			
+			memberService.gradeChange(member);
+			
+		} else if (count == 25) {
+			
+			memberService.gradeChange(member);
+			
+		} else if (count == 35) {
+			
+			memberService.gradeChange(member);
+			
+		}
 		
 		return "redirect:order_list";
 	}

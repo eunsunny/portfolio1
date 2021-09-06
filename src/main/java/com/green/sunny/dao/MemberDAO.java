@@ -125,9 +125,15 @@ public class MemberDAO {
 	}
 	
 	// 등급
-	public List<MemberVO> gradeSelect(MemberVO vo){
+//	public List<MemberVO> gradeSelect(MemberVO vo){
+//		
+//		return mybatis.selectOne("MemberDAO.gradeSelect", vo); 
+//	}
+	
+	// 등급업
+	public void gradeChange(MemberVO vo) {
 		
-		return mybatis.selectOne("MemberDAO.gradeSelect", vo); 
+		mybatis.update("MemberDAO.gradeChange", vo);
 	}
 	
 }

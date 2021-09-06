@@ -85,9 +85,10 @@
    	td > input[type="button"],
    	td > button[type="button"],
    	td > button[type="submit"] {
+   	
 		margin: 0;
 		padding:0.5em 1em 0.5em 1em;
-		font-size:1em;
+		font-size:0.7em;
 		letter-spacing : 0;
 	}
     

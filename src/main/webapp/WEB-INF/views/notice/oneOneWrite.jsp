@@ -37,14 +37,6 @@
 								<input type="hidden" id="id" name="id" value="${sessionScope.loginUser.id}"/>
 							</td>
 						</tr>
-<%-- 						<tr>
-							<th>문의종류 : </th>
-							<td>
-								<select>
-									<option></option>
-								</select>
-							</td>
-						</tr> --%>
 						<tr>
 							<th>제목</th>
 							<td>

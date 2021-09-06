@@ -5,37 +5,25 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8">
-  <title>Sunny-Flea-Market</title>
-  
-  <script src="js/jquery-1.11.0.min.js"></script>
-  <script src="js/jquery-migrate-1.2.1.min.js"></script>
-  <script type="text/javascript" src="member/member.js"></script>
-  <script type="text/javascript" src="js/product.js"></script>
-  <link rel="stylesheet" href="css/main.css" />
 
-	<%--<meta charset="UTF-8">
-	<title>Sunny-Flea-Market</title>
-			<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-	
-	<link rel="apple-touch-icon" href="img/apple-icon.png">
-	<link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
-	
-	<link rel="stylesheet" href="css/bootstrap.min.css">
-	<link rel="stylesheet" href="css/templatemo.css">
-	<link rel="stylesheet" href="css/custom.css">
-	
-	<!-- Load fonts style after rendering the layout styles -->
-	<link rel="stylesheet"
-		href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
-	<link rel="stylesheet" href="css/fontawesome.min.css">
-	<link rel="stylesheet" href="css/main.css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 
-	
-	<script src="js/jquery-1.11.0.min.js"></script>
-	<script src="js/jquery-migrate-1.2.1.min.js"></script>
-	<script type="text/javascript" src="member/member.js"></script>
- --%>
+<title>Sunny-Flea-Market</title>
+
+<link rel="stylesheet" href="css/main.css" />
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/templatemo.css">
+
+<!-- Load fonts style after rendering the layout styles -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
+<link rel="stylesheet" href="css/fontawesome.min.css">
+
+<script src="js/jquery-1.11.0.min.js"></script>
+<script src="js/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="member/member.js"></script>
+<script type="text/javascript" src="js/product.js"></script>
+
 </head>
 <style>
 
@@ -46,7 +34,7 @@
 
 			<!-- Header -->
 				<section id="header">
-					<div class="container">
+					<div class="container" style="padding-bottom: 3em;">
 					<!-- login nav -->
 							<nav id="nav">
 								<div class="lognav">
@@ -176,10 +164,10 @@
 <br>						
 <form name="form1" method="post" action="list.do">
 <div style="display: inline-flex;">
-    <select  class="form-control" name="search_option" >
+    <select  class="form-control" name="search_option" style="background-color:#F6F6F6; width:115px; font-weight:bold; padding-left:1.5em;">
         <option value="id"
 <c:if test="${map.search_option == 'user_id'}">selected</c:if>
-   >작성자</option>
+   >작성자&nbsp;&nbsp;▼</option>
 
         <option value="title" 
 <c:if test="${map.search_option == 'title'}">selected</c:if>
@@ -194,8 +182,8 @@
         >전체</option>
 
     </select>
-    <input name="keyword" value="${map.keyword}" size="70" placeholder="검색어를 입력하세요">
-    <input type="submit" value="조회">
+    <input name="keyword" value="${map.keyword}" size="70" placeholder="검색어를 입력하세요" style="margin-left:8px;">
+    <button type="submit" style="margin-left:13px;">조회</button>
 </div>
 </form>
 

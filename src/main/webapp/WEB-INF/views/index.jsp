@@ -191,6 +191,7 @@
 					</div>
 				</section>
 
+<%-- 
 			<!-- Banner -->
 				<section id="banner">
 					<div class="container">
@@ -351,7 +352,7 @@
 
 												</li>
 											</ul>
-										</section>
+										</section>--%>
 
 								</div>
 

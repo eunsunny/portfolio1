@@ -25,6 +25,18 @@
     #ulli > li {
     	font-size: 13pt;
     }
+    
+    td > input[type="button"],
+    td > input[type="text"],
+   	td > button[type="button"],
+   	td > button[type="submit"],
+   	td > textarea, 
+   	td > select {
+   	
+   		background-color : white;
+   	}
+   	
+   	
 
 </style>
 
