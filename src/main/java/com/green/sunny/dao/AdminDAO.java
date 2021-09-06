@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.green.sunny.dto.AdminVO;
 import com.green.sunny.dto.BoardVO;
 import com.green.sunny.dto.MemberVO;
+import com.green.sunny.dto.MostOrderMember;
 import com.green.sunny.dto.OneoneVO;
 import com.green.sunny.dto.OrderVO;
 import com.green.sunny.dto.ProductImageVO;
@@ -30,6 +31,11 @@ public class AdminDAO {
 	// 관리자 id롤 조건으로 관리자정보 조회
 	public AdminVO getAdmin(String id) {
 		return mybatis.selectOne("AdminDAO.getAdmin", id);
+	}
+	
+	/* MainPage - Chart */
+	public List<MostOrderMember> getMostOrderMember(){
+		return mybatis.selectList("AdminDAO.getMostOrderMember");
 	}
 	
 	/* Product Section */

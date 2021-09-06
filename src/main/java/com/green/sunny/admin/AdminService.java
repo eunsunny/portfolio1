@@ -5,6 +5,7 @@ import java.util.List;
 import com.green.sunny.dto.AdminVO;
 import com.green.sunny.dto.BoardVO;
 import com.green.sunny.dto.MemberVO;
+import com.green.sunny.dto.MostOrderMember;
 import com.green.sunny.dto.OneoneVO;
 import com.green.sunny.dto.OrderVO;
 import com.green.sunny.dto.ProductImageVO;
@@ -16,6 +17,9 @@ public interface AdminService {
 	public int adminCheck(String id, String pwd);
 	
 	public AdminVO getAdmin(String id);
+	
+	// MainPage Section
+	public List<MostOrderMember> getMostOrderMember();
 	
 	//Product Section
 	public List<ProductVO> getAllProductPaging(Criteria criteria, String key);

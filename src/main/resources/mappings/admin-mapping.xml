@@ -10,6 +10,21 @@
 		SELECT * FROM admin WHERE id=#{id} 
 	</select>
 	
+	<!-- Main Page - Chart -->
+	<resultMap type="com.green.sunny.dto.MostOrderMember" id="orderMap">
+		<result column="id" property="id"/>
+		<result column="order_count" property="order_count"/>
+	</resultMap>
+	
+	<select id="getMostOrderMember" resultMap="orderMap">
+		<![CDATA[
+		SELECT id, order_count
+		FROM 
+			(SELECT id, COUNT(rev_result) AS order_count FROM orders GROUP BY id)
+		WHERE ROWNUM <= 4
+		]]>
+	</select>
+	
 	<!-- Product Section -->
 	<select id="getAllProductPaging" parameterType="hashMap" resultType="product">
 		<![CDATA[

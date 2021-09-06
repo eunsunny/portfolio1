@@ -19,6 +19,59 @@
 
     <!-- Custom styles for this template-->
     <link href="admin_css/sb-admin-2.min.css" rel="stylesheet">
+    
+    <!-- Google Chart -->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+    	$(document).ready(function(){
+    		$.ajax({
+    			type: 'GET',
+    			headers:{
+    				Accept: "application/json; charset=utf-8",
+    				"Content-type":"application/json; charset=utf-8"
+    			},
+    			url: "most_order_chart",
+    			success: function(result){
+    				// 최신 버전의 구글차트 패키지 로드
+    		    	google.charts.load('current', {'packages':['corechart']});
+    		    	google.charts.setOnLoadCallback(function(){
+    		    		drawChart(result);
+    		    	});
+    			}
+    			error: function(){
+    				alert("차트 에러!");
+    			}
+    		});
+    		
+    		function drawChart(reuslt){
+        		// 차트에 사용할 데이터 객체 생성
+        		var data = new google.visualization.DataTable();
+        		
+        		data.addColumn("string", "id");
+        		data.addColumn("number", "order_count");
+        		
+        		// controller에서 json타입으로 전달된 데이터를 자바스크립트 배열로 저장
+        		var dataArray = [];
+        		$.each(result, function(i, obj){
+        			dataArray.push([obj.id, obj.order_count]);
+        		})
+        		
+        		// data에 dataArray 저장
+        		data.addRows(dataArray);
+        		
+        		// 차트 옵션 설정
+        		var option = {
+        			title:'최다 주문회원',
+        			width:100,
+        			height:100
+        		};
+        		
+        		// 차트 그리기
+        		var chart = new google.visualization.BarChart(document.getElementById('order_member_chart'));
+        		chart.draw(data, option);
+        	}
+    	});
+    </script>
 
 </head>
 <body id="page-top">
@@ -57,8 +110,8 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                Earnings (Monthly)</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
+                                                오늘 신규 상품</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">3건</div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -75,8 +128,8 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                Earnings (Annual)</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
+                                                오늘 신규 주문</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">3건</div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -92,19 +145,19 @@
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Tasks
+                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">오늘 신규 문의
                                             </div>
                                             <div class="row no-gutters align-items-center">
                                                 <div class="col-auto">
-                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
+                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">4건</div>
                                                 </div>
-                                                <div class="col">
+                                                <!-- <div class="col">
                                                     <div class="progress progress-sm mr-2">
                                                         <div class="progress-bar bg-info" role="progressbar"
                                                             style="width: 50%" aria-valuenow="50" aria-valuemin="0"
                                                             aria-valuemax="100"></div>
                                                     </div>
-                                                </div>
+                                                </div> -->
                                             </div>
                                         </div>
                                         <div class="col-auto">
@@ -122,8 +175,8 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                                Pending Requests</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+                                                오늘 신규 신고</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">2건</div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-comments fa-2x text-gray-300"></i>
@@ -144,26 +197,14 @@
                                 <!-- Card Header - Dropdown -->
                                 <div
                                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Earnings Overview</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">자유게시판</h6>
                                     <div class="dropdown no-arrow">
-                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                            aria-labelledby="dropdownMenuLink">
-                                            <div class="dropdown-header">Dropdown Header:</div>
-                                            <a class="dropdown-item" href="#">Action</a>
-                                            <a class="dropdown-item" href="#">Another action</a>
-                                            <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item" href="#">Something else here</a>
-                                        </div>
                                     </div>
                                 </div>
                                 <!-- Card Body -->
                                 <div class="card-body">
-                                    <div class="chart-area">
-                                        <canvas id="myAreaChart"></canvas>
+                                    <div id="order_member_chart">
+                                    
                                     </div>
                                 </div>
                             </div>
