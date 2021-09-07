@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="../header.jsp"%>
+<%@ include file="../header2.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,14 +18,13 @@
 		<div class="container py-5">
 			<div class="row">
 				<div class="row">
-					
-					<table>
+					<table style="border-top: solid 1px black; border-bottom: solid 1px black;">
 						<thead>
 						<tr style="text-align: center; padding: 0;">
-							<th>번호</th><th>제목</th><th>답변여부</th><th><th>등록일</th>
+							<th>번호</th><th>제목</th><th>답변여부</th><th>등록일</th>
 						</tr>
 						</thead>
-						<tbody class="prodListBody">
+						<tbody style="text-align: center; padding: 0; background-color: #F6F6F6;">
 						<c:choose>
 							<c:when test="${OneoneList.size() == 0}">
 								<tr>
@@ -37,15 +36,15 @@
 							<c:otherwise>
 								<c:forEach items="${OneoneList}" var="OneoneVO">
 									<tr>
-										<td height="23" align="center">${OneoneVO.onseq}</td>
-										<td><a href="oneOne_Detail?onseq=${OneoneVO.onseq}">${OneoneVO.title}</a></td>
-										<td>
+										<td height="23" align="center" width="10%">${OneoneVO.onseq}</td>
+										<td width="45%"><a href="oneOne_Detail?onseq=${OneoneVO.onseq}">${OneoneVO.title}</a></td>
+										<td width="20%">
 											<c:choose>
 												<c:when test='${OneoneVO.rep=="n"}'>답변 진행중</c:when>								
 												<c:otherwise>답변 완료</c:otherwise>
 											</c:choose>
 										</td>
-										<td><fmt:formatDate value="${OneoneVO.regdate}"/></td>
+										<td width="15%"><fmt:formatDate value="${OneoneVO.regdate}"/></td>
 									</tr>
 								</c:forEach>
 							</c:otherwise>

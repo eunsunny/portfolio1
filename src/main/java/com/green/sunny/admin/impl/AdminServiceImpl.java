@@ -9,7 +9,9 @@ import com.green.sunny.admin.AdminService;
 import com.green.sunny.dao.AdminDAO;
 import com.green.sunny.dto.AdminVO;
 import com.green.sunny.dto.BoardVO;
+import com.green.sunny.dto.KindCount;
 import com.green.sunny.dto.MemberVO;
+import com.green.sunny.dto.MostOrderMember;
 import com.green.sunny.dto.OneoneVO;
 import com.green.sunny.dto.OrderVO;
 import com.green.sunny.dto.ProductImageVO;
@@ -154,6 +156,38 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public void updateReportResult(int rseq) {
 		adminDao.updateReportResult(rseq);
+	}
+
+	/* MainPage - Chart */
+	@Override
+	public List<MostOrderMember> getMostOrderMember() {
+		return adminDao.getMostOrderMember();
+	}
+
+	@Override
+	public List<KindCount> getKindCount() {
+		return adminDao.getKindCount();
+	}
+
+	/*MainPage - today list*/
+	@Override
+	public int getTodayProduct() {
+		return adminDao.getTodayProduct();
+	}
+
+	@Override
+	public int getTodayOrder() {
+		return adminDao.getTodayOrder();
+	}
+
+	@Override
+	public int getNoRepOneone() {
+		return adminDao.getNoRepOneone();
+	}
+
+	@Override
+	public int getNoResultReport() {
+		return adminDao.getNoResultReport();
 	}
 
 }

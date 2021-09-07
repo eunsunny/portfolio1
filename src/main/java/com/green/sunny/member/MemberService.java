@@ -49,4 +49,7 @@ public interface MemberService {
 	
 	public void changePassword(MemberVO vo);
 	
+	// µî±Þ¾÷
+	public void gradeChange(MemberVO vo);
+	
 }

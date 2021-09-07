@@ -11,6 +11,7 @@ public class JjimVO {
 	private String pname;
 	private String mname;
 	private String title;
+	private String kind;
 	private int price;
 	private Date jjim_date;
 	private String cod;
@@ -95,12 +96,21 @@ public class JjimVO {
 	public void setCod_nm(String cod_nm) {
 		this.cod_nm = cod_nm;
 	}
+
+	public String getKind() {
+		return kind;
+	}
+	public void setKind(String kind) {
+		this.kind = kind;
+	}
 	
 	@Override
 	public String toString() {
 		return "JjimVO [jjseq=" + jjseq + ", id=" + id + ", pseq=" + pseq + ", result=" + result + ", image=" + image
-				+ ", pname=" + pname + ", mname=" + mname + ", title=" + title + ", price=" + price + ", jjim_date="
-				+ jjim_date + ", cod=" + cod + ", cod_grp_id=" + cod_grp_id + ", cod_nm=" + cod_nm + "]";
+				+ ", pname=" + pname + ", mname=" + mname + ", title=" + title + ", kind=" + kind + ", price=" + price
+				+ ", jjim_date=" + jjim_date + ", cod=" + cod + ", cod_grp_id=" + cod_grp_id + ", cod_nm=" + cod_nm
+				+ "]";
 	}
+	
 	
 }
