@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.green.sunny.dto.AdminVO;
 import com.green.sunny.dto.BoardVO;
+import com.green.sunny.dto.KindCount;
 import com.green.sunny.dto.MemberVO;
 import com.green.sunny.dto.MostOrderMember;
 import com.green.sunny.dto.OneoneVO;
@@ -33,9 +34,36 @@ public class AdminDAO {
 		return mybatis.selectOne("AdminDAO.getAdmin", id);
 	}
 	
+	/* MainPage - 상품/주문/문의/신고 */
+	// 오늘 추가된 상품 건수
+	public int getTodayProduct() {
+		return mybatis.selectOne("AdminDAO.getTodayProduct");
+	}
+	
+	// 오늘 추가된 주문 건수
+	public int getTodayOrder() {
+		return mybatis.selectOne("AdminDAO.getTodayOrder");
+	}
+	
+	// 미답변 1:1 문의 건수
+	public int getNoRepOneone() {
+		return mybatis.selectOne("AdminDAO.getNoRepOneone");
+	}
+	
+	// 미답변 신고 건수
+	public int getNoResultReport() {
+		return mybatis.selectOne("AdminDAO.getNoResultReport");
+	}
+	
 	/* MainPage - Chart */
+	// 최다 주문 회원 조회
 	public List<MostOrderMember> getMostOrderMember(){
 		return mybatis.selectList("AdminDAO.getMostOrderMember");
+	}
+	
+	// 카테고리별 등록된 상품 갯수 조회
+	public List<KindCount> getKindCount(){
+		return mybatis.selectList("AdminDAO.getKindCount");
 	}
 	
 	/* Product Section */

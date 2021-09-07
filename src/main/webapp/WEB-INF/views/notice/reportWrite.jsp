@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="../header.jsp"%>
+<%@ include file="../header2.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,7 +28,14 @@
 	}
 
 </script>
+<style>
+	
+	.notice {
+		border-top: solid 1px black; 
+		border-bottom: solid 1px black;
+	}
 
+</style>
 </head>
 <body>
 <%@ include file="../notice/sub_menu.jsp"%>
@@ -38,10 +45,10 @@
 		<div class="container py-5">
 			<div class="row">
 				<div class="row">
-					<table>
+					<table class="notice">
 						<tr>
 							<th>아이디</th>
-							<td>${sessionScope.loginUser.id}
+							<td><b>${sessionScope.loginUser.id}</b>
 								<input type="hidden" id="id" name="id" value="${sessionScope.loginUser.id}"/>
 							</td>
 						</tr>

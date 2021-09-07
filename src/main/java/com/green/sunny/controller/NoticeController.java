@@ -16,7 +16,6 @@ import com.green.sunny.dto.MemberVO;
 import com.green.sunny.dto.OneoneVO;
 import com.green.sunny.dto.QuestionVO;
 import com.green.sunny.dto.ReportVO;
-import com.green.sunny.member.MemberService;
 import com.green.sunny.notice.NoticeService;
 import com.green.sunny.utils.Criteria;
 import com.green.sunny.utils.PageMaker;
@@ -27,15 +26,10 @@ public class NoticeController {
 	@Autowired
 	private NoticeService noticeService;
 	
-	@Autowired
-	private MemberService memberService;
-	
 	// 공지사항(페이징처리 포함)
 	@RequestMapping("/notice_list")
 	public String noticeList(Criteria criteria, Model model) {
 			
-		//List<GongziVO> noticeList = noticeService.noticeList(vo);
-		
 		GongziVO vo = new GongziVO();
 		
 		List<GongziVO> noticeList = noticeService.noticeListPaging(criteria, vo);
@@ -51,6 +45,7 @@ public class NoticeController {
 		model.addAttribute("pageMaker", pageMaker);
 		
 		return "notice/noticeList";
+		
 	}
 	
 	// 공지사항 상세보기(조회수 카운트 포함)
@@ -59,6 +54,7 @@ public class NoticeController {
 		
 		int count = noticeService.noticeCnt(vo.getGseq());
 		vo.setCount(count);
+		
 		noticeService.plusCntNotice(vo);
 		
 		GongziVO notice = noticeService.noticeDetail(vo);
@@ -72,7 +68,7 @@ public class NoticeController {
 	@RequestMapping("/question_list")
 	public String questionList(@RequestParam(value="key", defaultValue="") String key,
 								Criteria criteria, Model model) {
-		System.out.println("검색값 : "+key);
+
 		List<QuestionVO> queList = noticeService.questionList(criteria, key);
 		
 		PageMaker pageMaker = new PageMaker();
@@ -85,6 +81,7 @@ public class NoticeController {
 		model.addAttribute("pageMaker", pageMaker);
 		
 		return "notice/questionList";
+		
 	}
 	
 	
@@ -93,7 +90,6 @@ public class NoticeController {
 	public String oneOneList(HttpSession session, OneoneVO vo, Model model) {
 		
 		MemberVO loginUser = (MemberVO)session.getAttribute("loginUser");
-		
 		vo.setId(loginUser.getId());
 		
 		List<OneoneVO> oneList = noticeService.oneoneList(vo);
@@ -115,7 +111,6 @@ public class NoticeController {
 	public String oneoneInsert(HttpSession session, OneoneVO vo) {
 		
 		MemberVO loginUser = (MemberVO)session.getAttribute("loginUser");
-		
 		vo.setId(loginUser.getId());
 
 		noticeService.inserOneone(vo);
@@ -128,7 +123,6 @@ public class NoticeController {
 	public String oneoneDetail(HttpSession session, OneoneVO vo, Model model) {
 		
 		MemberVO loginUser = (MemberVO)session.getAttribute("loginUser");
-		
 		vo.setId(loginUser.getId());
 		
 		OneoneVO oneone = noticeService.oneoneDetail(vo);
@@ -150,7 +144,6 @@ public class NoticeController {
 	public String reportWrite(HttpSession session, ReportVO vo) {
 		
 		MemberVO loginUser = (MemberVO)session.getAttribute("loginUser");
-		
 		vo.setId(loginUser.getId());
 		
 		noticeService.insertReport(vo);
