@@ -55,13 +55,13 @@
 	       				<input type="text" name="zip_num" id="zip_num" value="${MemberVO.zip_num}" readonly>
 	       			</td>
 	        		<td>
-	        			<button style="padding-top:0.5em; padding-bottom:0.5em;" type="button" class="dup" onclick="post_zip()">주소 찾기</button>
+	        			<button style="padding-top:0.5em; padding-bottom:0.5em;" type="button" class="dup" onclick="execPostCode();">주소 찾기</button>
 	        		</td>
 	        	</tr>
 	        	<tr>
 	        		<td colspan="3">
-	        			<input style="margin-bottom:0.3em;" type="text" name="addr1" value="${MemberVO.address}" readonly> 
-	        		    <input type="text" name="addr2" size="50" placeholder="상세주소(주소 변경시 작성해주세요.)">
+	        			<input style="margin-bottom:0.3em;" type="text" id="addr1" name="addr1" value="${MemberVO.address}" readonly> 
+	        		    <input type="text" id="addr2" name="addr2" size="50" placeholder="상세주소(주소 변경시 작성해주세요.)">
         		    </td>
 			    </tr>
 			   <tr style="border-bottom: solid 1px black;">
