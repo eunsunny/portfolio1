@@ -24,7 +24,7 @@
 		background-color: white;
 	}
 	body > .bannerbody { 
-		margin: 30px 150px 0 150px; 
+		margin: 30px 400px 0 400px; 
 	}
 	 
 	div#slider { 
