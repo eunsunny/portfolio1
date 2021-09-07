@@ -54,13 +54,18 @@
 												</c:otherwise>
 											</c:choose>
 										</td>
-										<td>
-											<c:choose>
-												<c:when test='${productVO.soldyn=="n"}'>판매중</c:when>
-												<c:otherwise>판매완료</c:otherwise>
-											</c:choose>
-										</td>
-										<td><input type="button" class="btn btn-success btn-lg" value="수정" onclick="location='update_form?pseq=${productVO.pseq}'"/></td>
+										<c:choose>
+											<c:when test='${productVO.soldyn=="n"}'>
+												<td>판매중</td>
+												<td>
+													<input type="button" class="btn btn-success btn-lg" value="수정" onclick="location='update_form?pseq=${productVO.pseq}'"/>
+												</td>
+											</c:when>
+												<c:otherwise>
+													<td>판매완료</td>
+													<td>수정불가</td>
+												</c:otherwise>
+										</c:choose>
 										<td><fmt:formatDate value="${productVO.regdate}"/></td>
 									</tr>
 								</c:forEach>
