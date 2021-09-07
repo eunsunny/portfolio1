@@ -37,18 +37,16 @@ $(document).ready(function(){
 		
 		// 차트 옵션 설정
 		var option = {
-			title:'가장 많이 주문한 회원(상위 5명)',
-			width:650,
+			width:'100%',
 			height:300,
 			legend:'none',
 			series:{
 				0:{color:'00FF33'}
-			},
-			backgroundColor:'FFFF99'
-		};
+			}		};
 		
 		// 차트 그리기
 		var chart = new google.visualization.ColumnChart(document.getElementById('myAreaChart1'));
+		window.addEventListener('resize', function(){ chart.draw(data, option)}, false);
 		chart.draw(data, option);
 	}
 	
@@ -89,29 +87,16 @@ $(document).ready(function(){
 		
 		// 차트 옵션 설정
 		var option = {
-			title:'카테고리별 등록된 상품 갯수',
-			width:650,
+			width:'100%',
 			height:300,
 			series:{
 				0:{color:'00FF33'}
-			},
-			backgroundColor:'FFFF99'
+			}
 		};
 		
 		// 차트 그리기
 		var chart = new google.visualization.PieChart(document.getElementById('myAreaChart2'));
+		window.addEventListener('resize', function(){ chart.draw(data, option)}, false);
 		chart.draw(data, option);
 	}
-	
-	chart1();
 });
-
-// Dropdown 메뉴에 따라 각각 클릭한 차트 보여주게 하는 함수
-function chart1(){
-	$("#myAreaChart1").show();
-	$("#myAreaChart2").hide();
-}
-function chart2(){
-	$("#myAreaChart1").hide();
-	$("#myAreaChart2").show();
-}

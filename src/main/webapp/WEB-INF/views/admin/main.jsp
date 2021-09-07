@@ -55,6 +55,7 @@
 
                         <!-- 신규 상품 카드 -->
                         <div class="col-xl-3 col-md-6 mb-4">
+                        	<a href="product_manage">
                             <div class="card border-left-primary shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
@@ -69,10 +70,12 @@
                                     </div>
                                 </div>
                             </div>
+                            </a>
                         </div>
 
                         <!-- 신규 주문 카드 -->
                         <div class="col-xl-3 col-md-6 mb-4">
+                        	<a href="order_manage">
                             <div class="card border-left-success shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
@@ -87,10 +90,12 @@
                                     </div>
                                 </div>
                             </div>
+                            </a>
                         </div>
 
                         <!-- 신규 1:1 문의 카드 -->
                         <div class="col-xl-3 col-md-6 mb-4">
+                        	<a href="oneone">
                             <div class="card border-left-info shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
@@ -109,10 +114,12 @@
                                     </div>
                                 </div>
                             </div>
+                            </a>
                         </div>
 
                         <!-- 신규 신고 카드 -->
                         <div class="col-xl-3 col-md-6 mb-4">
+                        	<a href="report">
                             <div class="card border-left-warning shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
@@ -127,7 +134,8 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                            </a>
+                        </div>                        
                     </div>
 
                     <!-- Content Row -->
@@ -139,24 +147,12 @@
                             <div class="card shadow mb-4">
                                 <!-- Card Header - Dropdown -->
                                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between" id="areaChart">
-                                    <h6 class="m-0 font-weight-bold text-primary">통계</h6>
-                                    <div class="dropdown no-arrow">
-										<a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                            aria-labelledby="dropdownMenuLink">
-                                            <div class="dropdown-header">차 트 :</div>
-                                            <a class="dropdown-item" href="#areaChart" onclick="chart1();">최다 주문 회원</a>
-                                            <a class="dropdown-item" href="#areaChart" onclick="chart2();">카테고리별 상품 갯수</a>
-                                        </div>                                    
-                                    </div>
+                                    <h6 class="m-0 font-weight-bold text-primary">최다 주문 회원(5명)</h6>
                                 </div>
                                 <!-- 차트 보여주는 곳 -->
                                 <div class="card-body">
                                     <div class="chart-area" id="myAreaChart1"></div>
-                                     <div class="chart-area" id="myAreaChart2"></div>
+                                     
                                 </div>
                             </div>
                         </div>
@@ -167,27 +163,11 @@
                                 <!-- Card Header - Dropdown -->
                                 <div
                                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Revenue Sources</h6>
-                                    <div class="dropdown no-arrow">
-                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                            aria-labelledby="dropdownMenuLink">
-                                            <div class="dropdown-header">Dropdown Header:</div>
-                                            <a class="dropdown-item" href="#">Action</a>
-                                            <a class="dropdown-item" href="#">Another action</a>
-                                            <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item" href="#">Something else here</a>
-                                        </div>
-                                    </div>
+                                    <h6 class="m-0 font-weight-bold text-primary">카테고리별 상품 갯수</h6>
                                 </div>
                                 <!-- Card Body -->
                                 <div class="card-body">
-                                    <div class="chart-pie pt-4 pb-2">
-                                        <canvas id="myPieChart"></canvas>
-                                    </div>
+                                    <div class="chart-area" id="myAreaChart2"></div>
                                 </div>
                             </div>
                         </div>
@@ -205,36 +185,7 @@
                                     <h6 class="m-0 font-weight-bold text-primary">Projects</h6>
                                 </div>
                                 <div class="card-body">
-                                    <h4 class="small font-weight-bold">Server Migration <span
-                                            class="float-right">20%</span></h4>
-                                    <div class="progress mb-4">
-                                        <div class="progress-bar bg-danger" role="progressbar" style="width: 20%"
-                                            aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                    <h4 class="small font-weight-bold">Sales Tracking <span
-                                            class="float-right">40%</span></h4>
-                                    <div class="progress mb-4">
-                                        <div class="progress-bar bg-warning" role="progressbar" style="width: 40%"
-                                            aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                    <h4 class="small font-weight-bold">Customer Database <span
-                                            class="float-right">60%</span></h4>
-                                    <div class="progress mb-4">
-                                        <div class="progress-bar" role="progressbar" style="width: 60%"
-                                            aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                    <h4 class="small font-weight-bold">Payout Details <span
-                                            class="float-right">80%</span></h4>
-                                    <div class="progress mb-4">
-                                        <div class="progress-bar bg-info" role="progressbar" style="width: 80%"
-                                            aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                    <h4 class="small font-weight-bold">Account Setup <span
-                                            class="float-right">Complete!</span></h4>
-                                    <div class="progress">
-                                        <div class="progress-bar bg-success" role="progressbar" style="width: 100%"
-                                            aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
+                                  ?
                                 </div>
                             </div>
 
