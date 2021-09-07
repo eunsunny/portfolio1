@@ -152,6 +152,13 @@
 			<version>1.1.2</version>
 		</dependency>
 		
+		<!-- 채팅을 위한 소켓 -->
+		<dependency> 
+            <groupId>org.springframework</groupId> 
+            <artifactId>spring-websocket</artifactId> 
+            <version>${org.springframework-version}</version> 
+        </dependency>
+		
 		<!-- Logging -->
 		<dependency>
 			<groupId>org.slf4j</groupId>

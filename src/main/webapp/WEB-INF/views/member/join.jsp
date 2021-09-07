@@ -4,27 +4,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
-  
-<link rel="apple-touch-icon" href="img/apple-icon.png">
-<link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
 
-<!-- <link rel="stylesheet" href="css/bootstrap.min.css"> -->
-<!-- <link rel="stylesheet" href="css/templatemo.css">
-<link rel="stylesheet" href="css/custom.css"> -->
-
-<!-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script> -->
-<!-- Load fonts style after rendering the layout styles -->
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
 <link rel="stylesheet" href="css/fontawesome.min.css">
 <link rel="stylesheet" href="css/main.css" />
 <script type="text/javascript" src="member/member.js"></script>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script type="text/javascript">
+<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 
+<script type="text/javascript">
+	
+	// 회원가입 아이디 중복체크
 	$(document).on("change", "input[name='id']", function(){
 		var id = $('#id').val();
 		
@@ -37,8 +30,6 @@
 			data : {id:id},
 			// return 받을 시 실행되는 메소드
 			success : function(data) {
-/* 				console.log("1번째줄 데이터->"+data);
-				console.log("2번째줄 데이터->"+$.trim(data)); */
 				
 				if(id == "") {
 					$("#text").css("color", "gray");
@@ -139,11 +130,11 @@
         			<input style="margin-left: 0.3em;" type="text" name="zip_num" id="zip_num" size="4" placeholder="우편번호" readonly>
         			</div>
         			<div class="col-1">      
-        			<input type="button" value="주소 찾기" class="dup" onclick="post_zip()">
+        			<input type="button" value="주소 찾기" class="dup" onclick="execPostCode();">
         			</div>
         			<div class="col-8" style="margin-top:-2em; margin-left: 12.7em;">
-        		    <input type="text" name="addr1" class="form-control input-md" placeholder="주소" readonly style="margin-bottom: 0.5em;"> 
-        		    <input type="text" name="addr2" class="form-control input-md" placeholder="상세주소">
+        		    <input type="text" id="addr1" name="addr1" class="form-control input-md" placeholder="주소" readonly style="margin-bottom: 0.5em;"> 
+        		    <input type="text" id="addr2" name="addr2" class="form-control input-md" placeholder="상세주소">
 			    	</div>
 				</div>
 				<div class="col-11 row" id="row_row" style="margin-top:-2em; margin-bottom: 20px;">

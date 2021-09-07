@@ -31,16 +31,6 @@
 		SELECT COUNT(*) FROM member WHERE nick_name=#{nick_name}
 	</select>
 	
-	<!-- 동이름으로 찾기 -->
-	<select id="selectAddressByDong" parameterType="String" resultType="jibun">
-		SELECT * FROM address_jibun WHERE dong LIKE '%'||#{dong}||'%'
-	</select>
-	
-	<!-- 지번으로 주소찾기 -->
-	<select id="selectAddressByDoro" parameterType="String" resultType="doro">
-		SELECT * FROM address_doro WHERE doro LIKE '%'||#{doro}||'%'
-	</select>
-	
 	<!-- 회원정보 변경하기 -->
 	<update id="updateMember">
 		UPDATE member SET nick_name=#{nick_name}, email=#{email}, phone=#{phone}, zip_num=#{zip_num}, address=#{address}, inter_kind=#{inter_kind} WHERE id=#{id}

@@ -11,8 +11,6 @@
 		<typeAlias type="com.green.sunny.dto.JjimVO" alias="jjim"/>
 		<typeAlias type="com.green.sunny.dto.OrderVO" alias="order"/>
 		<typeAlias type="com.green.sunny.dto.ProductCommentVO" alias="comment"/>
-		<typeAlias type="com.green.sunny.dto.AddressJibunVO" alias="jibun"/>
-        <typeAlias type="com.green.sunny.dto.AddressDoroVO" alias="doro"/>
         <typeAlias type="com.green.sunny.dto.GongziVO" alias="gongzi"/>
         <typeAlias type="com.green.sunny.dto.QuestionVO" alias="question"/>
         <typeAlias type="com.green.sunny.dto.OneoneVO" alias="oneone"/>
