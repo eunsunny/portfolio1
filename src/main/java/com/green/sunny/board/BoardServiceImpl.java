@@ -45,10 +45,17 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public int insertBoardInfo(Map<String, Object> param) {
-		
-		return bDao.insertBoardInfo(param);
+	public void insertBoardInfo(Map<String, Object> param) {
+		bDao.insertBoardInfo(param);
 	}
 	
-
+	@Override
+	public void insertFile(Map<String, Object> param) {
+		bDao.insertFile(param);
+	}
+	
+	@Override
+	public int seletcBSeq() {
+		return bDao.seletcBSeq();
+	}
 }

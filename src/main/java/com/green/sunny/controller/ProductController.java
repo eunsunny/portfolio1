@@ -129,7 +129,7 @@ public class ProductController {
 		String kindList[] = {"패션의류/잡화", "뷰티", "출산/유아동", "식품", "주방/생활용품", "인테리어", "가전디지털", "스포츠/레저", "자동차용품", "도서/음반/DVD", "완구/문구/취미", "반려동물", "헬스/건강식품", "무료나눔"};
 		String kindList2[] = {"직거래", "안전거래", "모두가능"};
 		model.addAttribute("kindList", kindList);
-//		model.addAttribute("kindList2", kindList2);
+		model.addAttribute("kindList2", kindList2);
 		
 		return "category/product_write";
 		}
@@ -224,7 +224,7 @@ public class ProductController {
 		else {
 			        vo.setId(loginUser.getId());
 				    
-					productService.insertProduct(vo);
+					//productService.insertProduct(vo);
 					int pseq = productService.selectMaxPseq();
 					
 				    List<MultipartFile> fileList = uploadFile.getFiles("file");
@@ -232,6 +232,7 @@ public class ProductController {
 			        String path = session.getServletContext().getRealPath("WEB-INF/resources/product_images/");
 			        
 			        productService.deletePicture(pseq);
+			        productService.updateProduct(vo);
 			        
 			        for (MultipartFile mf : fileList) {
 			            String originFileName = mf.getOriginalFilename(); // 원본 파일 명
