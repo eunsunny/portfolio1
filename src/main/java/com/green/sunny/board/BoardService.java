@@ -17,5 +17,9 @@ public interface BoardService {
 	
 	public void deleteBoard(int bseq);
 	
-	public int insertBoardInfo(Map<String, Object> param);
+	public void insertBoardInfo(Map<String, Object> param);
+	
+	public void insertFile(Map<String, Object> param);
+	
+	public int seletcBSeq();
 }
