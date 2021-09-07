@@ -55,7 +55,7 @@ public class AdminController {
 			AdminVO adminUser = adminService.getAdmin(id);
 			model.addAttribute("adminUser", adminUser);
 			
-			return "admin/main";
+			return "redirect:/admin_main";
 		}
 		else {
 			if(result == 0) {
