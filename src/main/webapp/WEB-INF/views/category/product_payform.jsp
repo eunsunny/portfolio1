@@ -13,7 +13,6 @@
 </head>
 <script type="text/javascript">
 function callIamport(){
-	alert(0);
 	//validation('formm');
     var IMP = window.IMP; // 생략가능
     IMP.init('imp97936430'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
@@ -71,7 +70,7 @@ function callIamport(){
             msg = '결제에 실패하였습니다.';
             msg += '에러내용 : ' + rsp.error_msg;
             //실패시 이동할 페이지
-            location.href="<%=request.getContextPath()%>/call_iamport_fail";            	
+<%--             location.href="<%=request.getContextPath()%>/call_iamport_fail";            	 --%>
             alert(msg);
         }
     });

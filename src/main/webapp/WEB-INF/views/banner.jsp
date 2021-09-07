@@ -19,12 +19,13 @@
 		100% { left: -400%; }
 	}
 	 
-	body {
+	#bannermain {
 	
 		background-color: white;
 	}
+	
 	body > .bannerbody { 
-		margin: 30px 150px 0 150px; 
+		margin: 2em 13em 0 13em; 
 	}
 	 
 	div#slider { 
@@ -51,7 +52,7 @@
 </style>
 
 </head>
-<body>
+<body id="bannermain">
 	<div class="bannerbody">
 	<div id="slider">
 		<figure>

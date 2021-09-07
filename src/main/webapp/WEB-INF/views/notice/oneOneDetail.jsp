@@ -16,7 +16,7 @@
 				<div class="row">
 					<table style="border-top: solid 1px black; border-bottom: solid 1px black;">
 						<tr>
-							<th>아이디 : </th>
+							<th>아이디</th>
 							<td>${OneoneVO.id}</td>
 						</tr>
 <%-- 						<tr>

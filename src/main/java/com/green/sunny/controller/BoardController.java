@@ -16,6 +16,7 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -99,39 +100,50 @@ public class BoardController {
 	
 	@RequestMapping(value="/write_save", method = RequestMethod.POST)
 	@ResponseBody
-	public boolean BoardWriteForm(@RequestParam Map<String,Object> param, HttpSession session) {
-		System.out.println("param=" +param);
-		
+	public Map<String,Object> BoardWriteForm(@RequestParam Map<String,Object> param, HttpSession session ,@RequestParam(value="files[]") @Nullable List<String> files) {
 		MemberVO loginUser = (MemberVO)session.getAttribute("loginUser");
+		Map<String,Object> resultMap = new HashMap<String, Object>();
 		param.put("id", loginUser.getId());
 		
-		return boardService.insertBoardInfo(param) == 1 ? true : false;
+		try {
+			//글 등록
+			boardService.insertBoardInfo(param);
+			//bSeq 구하기
+			int bSeq = boardService.seletcBSeq();
+			param.put("bSeq", bSeq);
+			//파일 등록
+			for(String fileName : files) {
+				param.put("fileName", fileName);
+				boardService.insertFile(param);
+			}
+			resultMap.put("msg", "등록 성공하였습니다.");
+		} catch (Exception e) {
+			e.printStackTrace();
+			resultMap.put("msg", "등록 실패하였습니다.");
+		}
+		
+		return resultMap;
 	} 
 	
 	@RequestMapping(value="/uploadSummernoteImageFile", produces = "application/json; charset=utf8")
 	@ResponseBody
 	public String uploadSummernoteImageFile(@RequestParam("file") MultipartFile multipartFile, HttpServletRequest request )  {
-		System.out.println("huj");
-		JsonObject jsonObject = new JsonObject();
 		
-        /*
-		 * String fileRoot = "C:\\summernote_image\\"; // 외부경로로 저장을 희망할때.
-		 */
+		JsonObject jsonObject = new JsonObject();
 		
 		// 내부경로로 저장
 		String contextRoot = new HttpServletRequestWrapper(request).getRealPath("/");
-		String fileRoot = contextRoot+"resources/images/";
-		
+		String fileRoot = contextRoot+"WEB-INF/resources/images/";
 		String originalFileName = multipartFile.getOriginalFilename();	//오리지날 파일명
-		String extension = originalFileName.substring(originalFileName.lastIndexOf(".jpg"));	//파일 확장자
-		String savedFileName = UUID.randomUUID() + extension;	//저장될 파일 명
+		//String extension = originalFileName.substring(originalFileName.lastIndexOf("."));	//파일 확장자
+//		String savedFileName = UUID.randomUUID() + extension;	//저장될 파일 명
 		
-		File targetFile = new File(fileRoot + savedFileName);	
+		File targetFile = new File(fileRoot + originalFileName);	
 		try {
 			InputStream fileStream = multipartFile.getInputStream();
 			FileUtils.copyInputStreamToFile(fileStream, targetFile);	//파일 저장
-			// /summernote/resources/fileupload/
-			jsonObject.addProperty("url", "/resources/images/"+savedFileName); // contextroot + resources + 저장할 내부 폴더명
+
+			jsonObject.addProperty("url", "images/"+originalFileName); // contextroot + resources + 저장할 내부 폴더명
 			jsonObject.addProperty("responseCode", "success");
 				
 		} catch (IOException e) {
@@ -140,7 +152,7 @@ public class BoardController {
 			e.printStackTrace();
 		}
 		String a = jsonObject.toString();
+		
 		return a;
 	}
-	
 }	
