@@ -38,7 +38,15 @@ public class BoardDAO {
 		mybatis.delete("BoardDAO.deleteBoard", bseq);
 	}
 	
-	public int insertBoardInfo(Map<String, Object> param) {
-		return mybatis.insert("BoardDAO.insertBoardInfo", param);
+	public void insertBoardInfo(Map<String, Object> param) {
+		mybatis.insert("BoardDAO.insertBoardInfo", param);
+	}
+	
+	public void insertFile(Map<String, Object> param) {
+		mybatis.insert("BoardDAO.insertFile", param);
+	}
+	
+	public int seletcBSeq() {
+		return Integer.parseInt(mybatis.selectOne("BoardDAO.seletcBSeq"));
 	}
 }
