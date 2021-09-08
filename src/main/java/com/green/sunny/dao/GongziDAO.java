@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.green.sunny.dto.GongziVO;
-import com.green.sunny.utils.Criteria;
+import com.green.sunny.adminUtils.Criteria;
 
 @Repository
 public class GongziDAO {
