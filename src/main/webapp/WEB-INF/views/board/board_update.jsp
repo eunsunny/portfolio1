@@ -20,6 +20,7 @@ var fileNameArr = [];
 
 $(document).ready(function() {
 	
+	
 	var toolbar = [
 		    // 글꼴 설정
 		    ['fontname', ['fontname']],
@@ -56,8 +57,8 @@ $(document).ready(function() {
 				            	}
 				        }
          };
-
-        $('#summernote').summernote(setting);
+		
+       $('#summernote').summernote(setting);
        
         
     });
@@ -80,19 +81,22 @@ function uploadSummernoteImageFile(file, el) {
 	});
 }
 
-function boardWirte(){	
+function boardFinalUpdate(){	
 	var param = { content  : $('#summernote').summernote('code'),
 		 		  title    : $('#title').val(),
-		 		  files	   : fileNameArr };
+		 		  files	   : fileNameArr,
+				  bseq 	   : document.getElementById("bseq").value
+				};
+	
 	var status = 'reload';
 	
     $.ajax({
    		type:'POST', 
-   		url:'write_save',
+   		url:'write_update',
    		data:param,
    		success: function(data) {
    			alert('등록 성공하였습니다.');
- 			window.opener.makeGrid(status);
+//  			window.opener.makeGrid(status);
  			window.close();
    		},
    		error:function(request, status, error) {
@@ -106,23 +110,23 @@ function boardWirte(){
 
 <body>
 <form name="frm" id="write_form" method="post" enctype="multipart/form-data" style="margin-top : 100px;">
-<%-- 		<input type="hidden" name="pseq" value="${productVO.pseq}"> --%>
+		<input type="hidden" id="bseq" name="bseq" value="${map.bseq}">
 			<table id="list" style="margin: 0 auto; font-size : 20px;">
             <tr>
 			  <th>제목: &nbsp;&nbsp;&nbsp;</th>
 			  <td width="343" colspan="5">
-			       <input type="text" name="title" id="title" size="80" maxlength="100" value="">
+			       <input type="text" name="title" id="title" size="80" maxlength="100" value="${map.TITLE}">
 			  </td>
 			</tr>
 			</table>
 		<div style="margin : 30px;"></div>
 			
 <div  style="text-align: left; margin: 0 auto; width: 1000px;">
-<div id="summernote" style="margin: 0 auto;">써니플리마켓의 게시판 입니다.</div>
+<div id="summernote" style="margin: 0 auto;">${map.CONTENT}</div>
 </div>
 
  <div  style="text-align : center;">
-  <button type="button" class="btn btn-success btn-lg" id="saveBtn" onClick="boardWirte()">작성</button>
+  <button type="button" class="btn btn-success btn-lg" id="saveBtn" onClick="boardFinalUpdate()">수정</button>
  </div>
  </form> 
  

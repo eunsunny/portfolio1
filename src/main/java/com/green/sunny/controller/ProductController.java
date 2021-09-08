@@ -103,21 +103,7 @@ public class ProductController {
 	
 	@RequestMapping(value="/admin_product_write_form")
 	public String adminProductWriteView(Model model, HttpSession session) {
-//	String url = "member/login";
-//		
-//		//세션에 저장된 사용자 정보를 읽어온다.
-//		MemberVO loginUser = (MemberVO)session.getAttribute("loginUser");		//setattribute한거 가져올수 있다.
-//		
-//		if (loginUser == null) {	//현재 로그인이 안된 상태임
-//			return url;
-//		}else {
-//			vo.setId(loginUser.getId());
-//			
-//			//장바구니 저장을위해 서비스 호출 
-//			cartService.insertCart(vo);
-//			
-//			return "redirect:cart_list";	//장바구니 목록을 조회하여 장바구니 목록 화면 표시 
-//		}
+
 		
 		String url = "member/login";
 		MemberVO loginUser = (MemberVO)session.getAttribute("loginUser");
@@ -313,6 +299,7 @@ public class ProductController {
 	@RequestMapping(value="/call_iamport_success", method =RequestMethod.GET) 
 	public String callPaySuccessPage(int pseq,
 						Model model, ProductVO vo, HttpSession session) {
+		
 		MemberVO loginUser = (MemberVO)session.getAttribute("loginUser");
 		if (loginUser == null) return "/member/login";
 		Map<String, Object> paramMap = new HashMap<String, Object>();
@@ -340,8 +327,13 @@ public class ProductController {
 	@RequestMapping(value="/pay_save")
 	@ResponseBody
 	public boolean paySave(@RequestParam Map<String,Object> paramMap, HttpSession session) {
+		//paramMap = {buyer_address=인천 계양구 오리울길 35 , pseq=81, id=one}
+		
 		MemberVO loginUser = (MemberVO)session.getAttribute("loginUser");
+		
 		paramMap.put("id", loginUser.getId());
+		
+		productService.updateSoldyn(paramMap);
 		
 		return productService.insertPayInfo(paramMap) == 1 ? true : false; 
 	}

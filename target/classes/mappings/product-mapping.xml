@@ -201,4 +201,10 @@
 							#{buyer_address}
 							)
 	</insert>
+	
+	<update id="updateSoldyn">
+		update product
+			set soldyn = 'y'
+		where pseq = #{pseq}
+	</update>
 </mapper>

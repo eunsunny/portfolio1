@@ -22,4 +22,8 @@ public interface BoardService {
 	public void insertFile(Map<String, Object> param);
 	
 	public int seletcBSeq();
+	
+	public void updateBoardInfo(Map<String, Object> param);
+	
+	public void deleteBoardPicture(int bseq);
 }

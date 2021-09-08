@@ -42,11 +42,20 @@ public class BoardDAO {
 		mybatis.insert("BoardDAO.insertBoardInfo", param);
 	}
 	
+	public void updateBoardInfo(Map<String, Object> param) {
+		mybatis.insert("BoardDAO.updateBoardInfo", param);
+	}
+	
 	public void insertFile(Map<String, Object> param) {
 		mybatis.insert("BoardDAO.insertFile", param);
 	}
 	
 	public int seletcBSeq() {
 		return Integer.parseInt(mybatis.selectOne("BoardDAO.seletcBSeq"));
+	}
+	
+	public void deleteBoardPicture(int bseq) {
+		
+		mybatis.delete("BoardDAO.deleteBoardPicture", bseq);
 	}
 }
