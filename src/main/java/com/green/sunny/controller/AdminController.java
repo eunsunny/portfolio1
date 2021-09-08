@@ -31,8 +31,8 @@ import com.green.sunny.dto.ProductImageVO;
 import com.green.sunny.dto.ProductVO;
 import com.green.sunny.dto.QuestionVO;
 import com.green.sunny.dto.ReportVO;
-import com.green.sunny.utils.Criteria;
-import com.green.sunny.utils.PageMaker;
+import com.green.sunny.adminUtils.Criteria;
+import com.green.sunny.adminUtils.PageMaker;
 
 @Controller
 @SessionAttributes("adminUser")
@@ -205,9 +205,9 @@ public class AdminController {
 		return "admin/product/product_detail";
 	}
 	
-	// 결제관리 페이지로 이동
+	// 주문관리 페이지로 이동
 	@RequestMapping(value="/order_manage")
-	public String payManageView(@RequestParam(value="key", defaultValue="")String key, Criteria criteria, Model model) {
+	public String orderManageView(@RequestParam(value="key", defaultValue="")String key, Criteria criteria, Model model) {
 		List<OrderVO> orderList = adminService.getAllOrderPaging(criteria, key);
 		
 		PageMaker pageMaker = new PageMaker();
@@ -231,6 +231,15 @@ public class AdminController {
 		model.addAttribute("number", orderNum);
 		
 		return "admin/order/order";
+	}
+	
+	// 주문 상세보기 페이지로 이동
+	@RequestMapping(value="admin_order_detail")
+	public String orderDetail(@RequestParam(value="oseq")int oseq, Model model) {
+		OrderVO order = adminService.getOrderDetail(oseq);
+		
+		model.addAttribute("order", order);
+		return "admin/order/order_detail";
 	}
 	
 	// 게시판관리 페이지로 이동

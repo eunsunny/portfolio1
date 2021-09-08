@@ -17,7 +17,7 @@ import com.green.sunny.dto.OrderVO;
 import com.green.sunny.dto.ProductImageVO;
 import com.green.sunny.dto.ProductVO;
 import com.green.sunny.dto.ReportVO;
-import com.green.sunny.utils.Criteria;
+import com.green.sunny.adminUtils.Criteria;
 
 @Service("adminService")
 public class AdminServiceImpl implements AdminService {
@@ -130,6 +130,11 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public List<OrderVO> getAllOrderPaging(Criteria criteria, String key) {
 		return adminDao.getAllOrderPaging(criteria, key);
+	}
+	
+	@Override
+	public OrderVO getOrderDetail(int oseq) {
+		return adminDao.getOrderDetail(oseq);
 	}
 	
 	@Override
