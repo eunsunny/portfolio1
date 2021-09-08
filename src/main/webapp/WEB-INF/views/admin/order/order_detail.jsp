@@ -8,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="chrome">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>자유게시판 관리</title>
+    <title>주문 관리</title>
 
     <!-- Custom fonts for this template-->
     <link href="admin_vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -49,21 +49,21 @@ table.type05 td {
   vertical-align: top;
   border-bottom: 1px solid #ccc;
 }
-</style>  
+</style>    
     
 <script type="text/javascript">
-	function delete_check(){
-		var bseq = $("#bseq");
-		
-		var check = confirm("삭제하시겠습니까?");
-		
-		if(check == true){
-			location.href="admin_board_delete?bseq="+bseq.val();
-			return true;
-		}
-		else
-			return false;
-	}
+   	function delete_check(){
+   		var bseq = $("#bseq");
+   		
+   		var check = confirm("삭제하시겠습니까?");
+   		
+   		if(check == true){
+   			location.href="admin_board_delete?bseq="+bseq.val();
+   			return true;
+   		}
+   		else
+   			return false;
+   	}
 </script>
 </head>
 
@@ -86,7 +86,7 @@ table.type05 td {
             <div class="container-fluid">
 
             <!-- Page Heading -->
-            <h1 class="h3 mb-4 text-gray-800">게시글</h1>
+            <h1 class="h3 mb-4 text-gray-800">주문 상세보기</h1>
 
             </div>
             <!-- /.container-fluid -->
@@ -95,35 +95,52 @@ table.type05 td {
             <table  class="type05">
         		<tbody>
 		            <tr>
-		                <th scope="row">제목</th>
-		                <td>${board.title}</td>
+		                <th scope="row">제품명</th>
+		                <td>${order.name}</td>
 		            </tr>
 		            <tr>
-		                <th scope="row">작성자 아이디</th>
-		                <td>${board.id}</td>
+		                <th scope="row">카테고리</th>
+		                <td>${order.cod_nm}</td>
 		            </tr>
 		            <tr>
-		                <th scope="row">작성일</th>
-		                <td><fmt:formatDate value="${board.regdate}" type="date"/></td>
+		                <th scope="row">가격</th>
+		                <td>${order.price}</td>
 		            </tr>
 		            <tr>
-						<th scope="row">조회수</th>
-						<td>${board.count}</td>
+		                <th scope="row">주문자 아이디</th>
+		                <td>${order.oid}</td>
+		            </tr>
+		            <tr>
+		                <th scope="row">주문일</th>
+		                <td><fmt:formatDate value="${order.order_date}" type="date"/></td>
+		            </tr>
+		            <tr>
+						<th scope="row">결제 여부</th>
+						<td>
+							<c:choose>
+						      	<c:when test="${order.pay_result == 'y'}">결제완료</c:when>
+						      	<c:otherwise>미결제</c:otherwise>
+							</c:choose>				
+						</td>
 					</tr>
 					<tr>
-						<th scope="row" style="height:300px;">내용</th>
-						<td colspan="3">
-							<img class="card-img img-fluid" src="product_images/${map.IMAGE}"><br>
-							${board.content}
+						<th scope="row">제품 수령 여부</th>
+						<td>
+							<c:choose>
+						      	<c:when test="${order.rev_result == 'y'}">수령완료</c:when>
+						      	<c:otherwise>미수령</c:otherwise>
+							</c:choose>
 						</td>
 		            </tr>
         		</tbody>
     		</table>
-            <input type="hidden" id="bseq" name="bseq" value="${board.bseq}"/>             
-
+            <input type="hidden" id="bseq" name="bseq" value="${order.oseq}"/>                           
 			<br><br>
-            <input type="button" class="btn btn-success btn-sm" onclick="delete_check()" value="삭제"/> &nbsp; &nbsp;                
-            <input type="button" class="btn btn-success btn-sm" onclick="location.href='board'" value="리스트로 돌아가기"/>
+			
+			<div align="center">
+	            <input type="button" class="btn btn-success btn-sm" onclick="delete_check()" value="삭제"/> &nbsp; &nbsp;                
+	            <input type="button" class="btn btn-success btn-sm" onclick="location.href='order_manage'" value="리스트로 돌아가기"/>
+            </div>
             
             </div>
             </div>

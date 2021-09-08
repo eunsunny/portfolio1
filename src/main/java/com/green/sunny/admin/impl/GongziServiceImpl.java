@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import com.green.sunny.admin.GongziService;
 import com.green.sunny.dao.GongziDAO;
 import com.green.sunny.dto.GongziVO;
-import com.green.sunny.utils.Criteria;
+import com.green.sunny.adminUtils.Criteria;
 
 @Service("gongziService")
 public class GongziServiceImpl implements GongziService {

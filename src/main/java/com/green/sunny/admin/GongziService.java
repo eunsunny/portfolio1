@@ -3,7 +3,7 @@ package com.green.sunny.admin;
 import java.util.List;
 
 import com.green.sunny.dto.GongziVO;
-import com.green.sunny.utils.Criteria;
+import com.green.sunny.adminUtils.Criteria;
 
 public interface GongziService {
 	public List<GongziVO> getAllGongzi();

@@ -53,7 +53,7 @@
             <div class="card-body">
 			<!-- 검색 기능 -->
 			<div class="table-responsive">
-			<form name="frm" action="board" id="prod_form" method="get">
+			<form name="frm" action="order_manage" id="prod_form" method="get">
 			<h6 align="right">전체 주문 수 ${pageMaker.totalCount} 건</h6>
 			<table class="table table-bordered" id="dataTable" width="80%" cellspacing="0">
 				<tr>
@@ -74,6 +74,7 @@
                 <tr>
                     <th>번호</th>
                     <th>주문 상품</th>
+                    <th>카테고리</th>
                     <th>주문자 아이디</th>
                     <th>주문 날짜</th>
                     <th>결제여부</th>
@@ -94,12 +95,23 @@
 				    <tr>
 				      <td>${number=number+1}</td>
 				      <td style="text-align: left;">   
-				         <a href="admin_order_detail${pageMaker.makeQuery(pageMaker.cri.pageNum)}&oseq=${orderVO.oseq}">${orderVO.id}</a>
+				         <a href="admin_order_detail${pageMaker.makeQuery(pageMaker.cri.pageNum)}&oseq=${orderVO.oseq}">${orderVO.name}</a>
 				   	  </td>
-				      <td>${orderVO.id}</td>
+				   	  <td>${orderVO.cod_nm}</td>
+				      <td>${orderVO.oid}</td>
 				      <td><fmt:formatDate value="${orderVO.order_date}"/></td>
-				      <td>${orderVO.pay_result}</td>
-				      <td>${orderVO.rev_result}</td> 				      		     
+				      <td>
+					      <c:choose>
+					      	<c:when test="${orderVO.pay_result == 'y'}">결제완료</c:when>
+					      	<c:otherwise>미결제</c:otherwise>
+					      </c:choose>
+				      </td>
+				      <td>
+					      <c:choose>
+					      	<c:when test="${orderVO.rev_result == 'y'}">수령완료</c:when>
+					      	<c:otherwise>미수령</c:otherwise>
+					      </c:choose>
+				      </td> 				      		     
 				    </tr>
 	   			</c:forEach>
 				</c:otherwise>	
