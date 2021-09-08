@@ -1,14 +1,11 @@
 package com.green.sunny.dao;
 
 import java.util.HashMap;
-import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.green.sunny.dto.AddressDoroVO;
-import com.green.sunny.dto.AddressJibunVO;
 import com.green.sunny.dto.MemberVO;
 
 @Repository
@@ -70,19 +67,6 @@ public class MemberDAO {
 		mybatis.insert("MemberDAO.insertMember", vo);
 	}
 	
-	// 주소 찾기
-	// 동으로 찾기
-	public List<AddressJibunVO> selectAddressByDong(String dong) {
-		
-		return 	mybatis.selectList("MemberDAO.selectAddressByDong", dong);
-	}
-	
-	// 도로명으로 찾기
-	public List<AddressDoroVO> selectAddressByDoro(String doro) {
-		
-		return mybatis.selectList("MemberDAO.selectAddressByDoro", doro);
-	}
-	
 	// 아이디 중복체크
 	public int userIdCheck(String id) {
 		
@@ -125,9 +109,15 @@ public class MemberDAO {
 	}
 	
 	// 등급
-	public List<MemberVO> gradeSelect(MemberVO vo){
+//	public List<MemberVO> gradeSelect(MemberVO vo){
+//		
+//		return mybatis.selectOne("MemberDAO.gradeSelect", vo); 
+//	}
+	
+	// 등급업
+	public void gradeChange(MemberVO vo) {
 		
-		return mybatis.selectOne("MemberDAO.gradeSelect", vo); 
+		mybatis.update("MemberDAO.gradeChange", vo);
 	}
 	
 }

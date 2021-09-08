@@ -1,9 +1,5 @@
 package com.green.sunny.member;
 
-import java.util.List;
-
-import com.green.sunny.dto.AddressDoroVO;
-import com.green.sunny.dto.AddressJibunVO;
 import com.green.sunny.dto.MemberVO;
 
 public interface MemberService {
@@ -25,14 +21,7 @@ public interface MemberService {
 
 	// 회원추가
 	void insertMember(MemberVO vo);
-	
-	// 주소 찾기
-	// 동으로 찾기
-	public List<AddressJibunVO> selectAddressByDong(String dong) ;
-	
-	// 도로명으로 찾기
-	public List<AddressDoroVO> selectAddressByDoro(String doro);
-	
+
 	// 아이디 중복 체크
 	public int userIdCheck(String id);
 	
@@ -48,5 +37,8 @@ public interface MemberService {
 	public MemberVO findPassword(String id, String name, String email);
 	
 	public void changePassword(MemberVO vo);
+	
+	// 등급업
+	public void gradeChange(MemberVO vo);
 	
 }

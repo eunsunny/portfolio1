@@ -6,10 +6,10 @@
 		     , TITLE
 		     , ID
 		     , CONTENT
-		     , IMAGE
 		     , TO_CHAR(REGDATE, 'YYYY-MM-DD') AS REGDATE
 		     , COUNT
 		  FROM BOARD
+		ORDER BY REGDATE DESC
 	</select>
 	
 	<select id="selectBoardDetail" resultType="java.util.Map">
@@ -17,7 +17,6 @@
 		     , TITLE
 		     , ID
 		     , CONTENT
-		     , IMAGE
 		     , TO_CHAR(REGDATE, 'YYYY-MM-DD') AS REGDATE
 		     , COUNT
 		  FROM BOARD
@@ -57,4 +56,21 @@
 				         , 0
 				         )
 	</insert>
+	
+	<insert id="insertFile" parameterType="java.util.Map" >
+		INSERT INTO BOARD_IMAGE (
+							BOARD_FSEQ
+						  , BSEQ
+						  , BOARD_IMAGE
+						  )
+				   VALUES (BOARD_FSEQ_SEQ.NEXTVAL
+				         , #{bSeq}
+				         , #{fileName}
+				         )
+	</insert>
+	
+	<select id="seletcBSeq" resultType="java.lang.String">
+	  	SELECT MAX(BSEQ) 
+	  	  FROM BOARD
+	</select>
 </mapper>

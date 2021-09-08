@@ -1,15 +1,10 @@
 package com.green.sunny.member;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.green.sunny.dao.MemberDAO;
-import com.green.sunny.dto.AddressDoroVO;
-import com.green.sunny.dto.AddressJibunVO;
 import com.green.sunny.dto.MemberVO;
-import com.green.sunny.member.MemberService;
 
 @Service("memberService")
 public class MemberServiceImpl implements MemberService {
@@ -39,18 +34,6 @@ public class MemberServiceImpl implements MemberService {
 	public void insertMember(MemberVO vo) {
 		
 		memberDao.insertMember(vo);
-	}
-	
-	@Override
-	public List<AddressJibunVO> selectAddressByDong(String dong) {
-		
-		return memberDao.selectAddressByDong(dong);
-	}
-	
-	@Override
-	public List<AddressDoroVO> selectAddressByDoro(String doro) {
-		
-		return memberDao.selectAddressByDoro(doro);
 	}
 
 	@Override
@@ -93,6 +76,12 @@ public class MemberServiceImpl implements MemberService {
 	public String getIdMember(String id) {
 		
 		return memberDao.getIdMember(id);
+	}
+
+	@Override
+	public void gradeChange(MemberVO vo) {
+		
+		memberDao.gradeChange(vo);
 	}
 
 	

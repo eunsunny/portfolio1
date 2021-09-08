@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<!-- include libraries(jQuery, bootstrap) -->
+ <!-- include libraries(jQuery, bootstrap) -->
 	
 	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -15,60 +15,54 @@
 	<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
 	<link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
 	<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
-	
-  
 <script>
-$(document).ready(function(){
-	 	//썸머노트에 값넣기
-	   $('#summernote').summernote('code', '');
-	 
-	    //위와 같이 값을 먼저 넣어준 후 초기화를 시킨다. 그럼 아래와 같이 입력이 된다.
-	    //초기화
-		$('#summernote').summernote({
-			height : 2000, // set editor height
-			minHeight : null, // set minimum height of editor
-			maxHeight : null, // set maximum height of editor
-			focus : true,
-			lang : 'ko-KR' // 기본 메뉴언어 US->KR로 변경
-			
-// 			callbacks : { 
-//             	onImageUpload : function(files, editor, welEditable) {
-//             // 파일 업로드(다중업로드를 위해 반복문 사용)
-//             for (var i = files.length - 1; i >= 0; i--) {
-//             uploadSummernoteImageFile(files[i],
-//             this);
-//             		}
-//             	}
-//             }
-		});
-});
+var fileNameArr = [];
 
-function boardWirte(){
-	var param = { content : $('#summernote').summernote('code'),
-		 		  title   : $('#title').val()
-		 		};
-	var status = 'reload';
+$(document).ready(function() {
 	
-    $.ajax({
-   		type:'POST', 
-   		url:'write_save',
-   		data:param,
-   		success: function(data) {
-   			if(data) {
-    			alert('글 등록에 성공하였습니다.');
-   				window.opener.makeGrid(status);
-   				window.close();
-   			}
-   		},
-   		error:function(request, status, error) {
-   			alert("error:" + error);
-   		}
-   	});
-	
-}
+	var toolbar = [
+		    // 글꼴 설정
+		    ['fontname', ['fontname']],
+		    // 글자 크기 설정
+		    ['fontsize', ['fontsize']],
+		    // 굵기, 기울임꼴, 밑줄,취소 선, 서식지우기
+		    ['style', ['bold', 'italic', 'underline','strikethrough', 'clear']],
+		    // 글자색
+		    ['color', ['forecolor','color']],
+		    // 표만들기
+		    ['table', ['table']],
+		    // 글머리 기호, 번호매기기, 문단정렬
+		    ['para', ['ul', 'ol', 'paragraph']],
+		    // 줄간격
+		    ['height', ['height']],
+		    // 그림첨부, 링크만들기, 동영상첨부
+		    ['insert',['picture','link','video']],
+		    // 코드보기, 확대해서보기, 도움말
+		    ['view', ['codeview','fullscreen', 'help']]
+		  ];
+
+	var setting = {
+            height : 300,
+            minHeight : null,
+            maxHeight : null,
+            focus : true,
+            lang : 'ko-KR',
+            toolbar : toolbar,
+            callbacks : { //여기 부분이 이미지를 첨부하는 부분
+            onImageUpload : function(files, editor, welEditable) {
+						            for (var i = files.length - 1; i >= 0; i--) {
+						            uploadSummernoteImageFile(files[i], this);
+						            }
+				            	}
+				        }
+         };
+
+        $('#summernote').summernote(setting);
+       
+        
+    });
 
 function uploadSummernoteImageFile(file, el) {
-	alert(0);
 	data = new FormData();
 	data.append("file", file);
 	$.ajax({
@@ -79,13 +73,37 @@ function uploadSummernoteImageFile(file, el) {
 		enctype : 'multipart/form-data',
 		processData : false,
 		success : function(data) {
+			fileNameArr.push(data.url.substr(data.url.indexOf("/")+1, data.url.length)); // 파일명
 			$(el).summernote('editor.insertImage', data.url);
+			
 		}
 	});
 }
 
+function boardWirte(){	
+	var param = { content  : $('#summernote').summernote('code'),
+		 		  title    : $('#title').val(),
+		 		  files	   : fileNameArr };
+	var status = 'reload';
+	
+    $.ajax({
+   		type:'POST', 
+   		url:'write_save',
+   		data:param,
+   		success: function(data) {
+   			alert('등록 성공하였습니다.');
+ 			window.opener.makeGrid(status);
+ 			window.close();
+   		},
+   		error:function(request, status, error) {
+   			alert("error:" + error);
+   		}
+   	});
+}
+
 </script>
 </head>
+
 <body>
 <form name="frm" id="write_form" method="post" enctype="multipart/form-data" style="margin-top : 100px;">
 		<input type="hidden" name="pseq" value="${productVO.pseq}">
@@ -99,7 +117,7 @@ function uploadSummernoteImageFile(file, el) {
 			</table>
 		<div style="margin : 30px;"></div>
 			
-<div style="text-align: center; margin: 0 auto; width: 1000px;">
+<div  style="text-align: left; margin: 0 auto; width: 1000px;">
 <div id="summernote" style="margin: 0 auto;">써니플리마켓의 게시판 입니다.</div>
 </div>
 
@@ -109,9 +127,5 @@ function uploadSummernoteImageFile(file, el) {
  </form> 
  
  
-	
-
-
-
 </body>
 </html>

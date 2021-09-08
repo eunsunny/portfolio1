@@ -6,24 +6,12 @@
 <head>
 <meta charset="UTF-8">
 <title>우편번호 검색</title>
-  <script src="js/jquery-1.11.0.min.js"></script>
-  <script src="js/jquery-migrate-1.2.1.min.js"></script>
+<script src="js/jquery-1.11.0.min.js"></script>
 
 <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
 
-<link rel="apple-touch-icon" href="img/apple-icon.png">
-<link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
-
-<link rel="stylesheet" href="css/bootstrap.min.css">
-<link rel="stylesheet" href="css/templatemo.css">
-<link rel="stylesheet" href="css/custom.css">
-
 <!-- Load fonts style after rendering the layout styles -->
-<link rel="stylesheet"
-	href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
-<link rel="stylesheet" href="css/fontawesome.min.css">
 <link rel="stylesheet" href="css/main.css" />
-
 
 <script type="text/javascript">
 
@@ -45,42 +33,50 @@ function result(zip_num,sido,gugun,dong) {
 	
    opener.document.formm.zip_num.value=zip_num;
    opener.document.formm.addr1.value=sido+" "+gugun+" "+dong;
+   
    self.close();
+   
 }
 
 </script>
 
 </head>
 <body>
-	<ul class="nav nav-tabs">
-  		<li role="presentation" class="active"><a href="#">동명 검색</a></li>
-  		<li role="presentation"><a href="find_zip_num_doro">도로명 검색</a></li>
-	</ul>
+	<table>
+		<tr align="center">
+	  		<th style="border-top: solid 1px darkgray; border-right: solid 1px darkgray; font-size:17px;"><a href="#">동명 검색</a></th>
+	  		<th style="border: solid 1px darkgray; font-size:17px;"><a href="find_zip_num_doro">도로명 검색</a></th>
+	  	</tr>
+	</table>
 	<div class="row col-12">
-		<h1 style="font-size: 20px; margin-left: 3em; margin-top: 13px; margin-bottom: 10px;">우편번호검색</h1>
-		<form class="row col-10 aln-left" method=post name=formm action="find_zip_dong" style="padding:0;">
+		<form class="row col-10 aln-left" method=post name=formm action="find_zip_dong" style="padding:0; margin-top: 2.5em;">
 			<label class="col-3 control-label" style="text-align:center; padding-top:3.5em;">동 명 : </label>
 			<div class="col-6" style="margin-top:1em;">
-			<input name="dong" id="dong" type="text">
+				<input name="dong" id="dong" type="text">
 			</div>
-			<div class="col-3" style="margin-top: 13px; margin-bottom: 0px;">
-			<input type="button" value="찾기" onclick="dongCheck()">
+			<div class="col-3" style="margin-top: 13px; margin-bottom: 3.5em;">
+				<input type="button" value="찾기" onclick="dongCheck()" style="padding: 0.75em 0.35em 0.75em 0.35em">
 			</div>
 		</form>
-		<table class="row" style="margin-top:-20px; padding-top:0; border: 1px; " >
-			<tr style="padding-top:0; text-align:center;">
-				<th>우편번호</th>
-				<th>주소</th>
-			</tr>
-			<c:forEach items="${addressList}" var="addressVO">
-				<tr style="text-align:center;">
-					<td>${addressVO.zip_num}</td>
-					<td><a href="#"
-						onclick="return result('${addressVO.zip_num}','${addressVO.sido}', 
-												'${addressVO.gugun}','${addressVO.dong}')">
-							${addressVO.sido} ${addressVO.gugun} ${addressVO.dong} ${addressVO.bunji}</a></td>
+		<table style="margin-top:-20px; padding-top:0; border: 1px;  border-top: solid 1px black; font-size: 17px;">
+			<thead style="padding: 0; text-align:center;">
+				<tr>
+					<th width="35%">우편번호</th>
+					<th width="65%">주소</th>
 				</tr>
-			</c:forEach>
+			</thead>
+			<tbody>
+				<c:forEach items="${addressList}" var="addressVO">
+					<tr style="text-align:center;">
+						<td>${addressVO.zip_num}</td>
+						<td><a href="#"
+							onclick="return result('${addressVO.zip_num}','${addressVO.sido}', 
+													'${addressVO.gugun}','${addressVO.dong}')">
+								${addressVO.sido} ${addressVO.gugun} ${addressVO.dong} ${addressVO.bunji}</a>
+						</td>
+					</tr>
+				</c:forEach>
+			</tbody>
 		</table>
 	</div>
 </body>
