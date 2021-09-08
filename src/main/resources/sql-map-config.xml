@@ -19,6 +19,7 @@
         <typeAlias type="com.green.sunny.dto.AdminVO" alias="admin"/>
 		<typeAlias type="com.green.sunny.dto.ReportVO" alias="report"/>		
 		<typeAlias type="com.green.sunny.dto.BoardVO" alias="board"/>	
+		<typeAlias type="com.green.sunny.dto.BoardCommentVO" alias="board_comment"/>
 	</typeAliases>
 
 	<mappers>
@@ -33,5 +34,6 @@
 		<mapper resource="mappings/gongzi-mapping.xml"/>
 		<mapper resource="mappings/question-mapping.xml"/>
 		<mapper resource="mappings/board-mapping.xml"/>
+		<mapper resource="mappings/board_comment-mapping.xml"/>
 	</mappers>
 </configuration>

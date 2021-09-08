@@ -48,4 +48,6 @@ public interface ProductService {
 	public List<ProductImageVO> getAllPicture();
 	
 	public int insertPayInfo(Map<String,Object> paramMap);
+	
+	public void updateSoldyn(Map<String,Object> paramMap);
 }

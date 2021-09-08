@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="js/jquery-1.11.0.min.js"></script>
-<script src="js/board.js"></script>
+
 <style>
 	
 table.type05 {
@@ -82,7 +82,7 @@ table.type05 td {
     <div style="text-align : center; margin: 40px;">
     <input type="button"  id="list" class="btn"  value="목록으로">
     <c:if test="${sessionScope.loginUser.id == map.ID}">
-    <input type="button"  id="modify" class="btn" value="수정하기">
+    <input type="button"  id="modify" class="btn" onClick="popOpenUpdate()" value="수정하기">
     <input type="button"  id="delete" class="btn" value="삭제하기">
     </c:if>
     </div>
@@ -94,10 +94,10 @@ $(document).ready(function(){
         e.preventDefault();
         fn_openBoardList();
     })
-    $("#modify").on("click",function(e){
-        e.preventDefault();
-        fn_openBoardModify();
-    })
+//     $("#modify").on("click",function(e){
+//         e.preventDefault();
+//         fn_openBoardModify();
+//     })
      $("#delete").on("click",function(e){
         e.preventDefault();
         fn_openBoardDelete();
@@ -107,19 +107,25 @@ $(document).ready(function(){
 function fn_openBoardList(){
 	$("#formm").attr("action", "openBoardList.do").submit();
 }
-function fn_openBoardModify(){
-    var idx = "${map.IDX}";
-    var comSubmit = new ComSubmit();
-    comSubmit.setUrl("<c:url value='/sample/openBoardModify.do'/>");
-    comSubmit.addParam("IDX",idx);
-    comSubmit.submit();
-}
+// function fn_openBoardModify(){
+// 	$("#formm").attr("action", "openBoardUpdate.do").submit()
+// }
 function fn_openBoardDelete(){
 	$("#formm").attr("action", "openBoardDelete.do").submit();
 }
 
-</script>     
-    
+function popOpenUpdate() {
+		var t =  document.getElementById("bseq").value
+		var url= "<%=request.getContextPath()%>/BoardUpdate?bseq="+t;    //팝업창 페이지 URL
+		var winWidth = 1100;
+	    var winHeight = 500;
+	    var popupOption= "width="+winWidth+", height="+winHeight;    //팝업창 옵션(optoin)
+		window.open(url,"",popupOption);
+	}
+
+ 
+ </script>     
+<%@include file="board_comment.jsp" %> 
 <%@ include file="../footer.jsp"%>
 </body>
 </html>

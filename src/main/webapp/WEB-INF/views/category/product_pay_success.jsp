@@ -12,7 +12,15 @@
 <body>
 <script>
  alert("결제에 성공하였습니다.");
+ 
+ function goHome() {
+	 location.href="index";
+ }
 </script>
+
+
+
+
 <article>
 	<div class="row">
 	
