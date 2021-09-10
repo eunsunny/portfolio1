@@ -80,7 +80,7 @@
                 	</tr>
                		<c:forEach items="${gongziList}"  var="gongziVO">
        				<tr align="center">      
-       					<td> ${gongziVO.gseq}</td>
+       					<td>${number=number+1}</td>
        					<td> <a href="gongzi_detail?gseq=${gongziVO.gseq}">${gongziVO.title}</a></td>
 				        <td> <fmt:formatDate value="${gongziVO.regdate}" type="date"/></td>
 				        <td> ${gongziVO.count}</td>
