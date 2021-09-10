@@ -266,7 +266,7 @@
 						pcseq : pcseq
 					  , status : status}, 
 			success : function(data) {
-				alert(data);
+				
 				if (data=='success') {		//상품평 등록 성공 
 					getCommentList();		//상품평 목록 요청함수 호출 
 				}
