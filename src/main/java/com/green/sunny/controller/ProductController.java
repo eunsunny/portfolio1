@@ -150,7 +150,7 @@ public class ProductController {
 			    List<MultipartFile> fileList = uploadFile.getFiles("file");
 	
 		        String path = session.getServletContext().getRealPath("WEB-INF/resources/product_images/");
-		       
+		       System.out.println(path);
 		        //다중파일 업로드
 		        for (MultipartFile mf : fileList) {
 		            String originFileName = mf.getOriginalFilename(); // 원본 파일 명
