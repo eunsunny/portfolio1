@@ -16,5 +16,7 @@ public interface JjimService {
 	public List<JjimVO> getJjimListPaging(Criteria criteria, String id);
 	
 	public int countJjimList(String id);
+	
+	public int jjimCheck(int pseq);
 
 }

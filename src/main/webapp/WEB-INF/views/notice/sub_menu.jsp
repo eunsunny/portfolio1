@@ -28,6 +28,20 @@
    	
    		background-color : white;
    	}
+   	
+   	.noticeList {
+   		text-align:center; 
+    	background-color: #F6F6F6;
+    	padding: 0;
+   	}
+   	
+	.noticeList > .select {
+    	cursor: pointer;
+    }
+    
+    .noticeList > .select:hover {
+    	background-color: #FFEAEA;
+    }
 
 </style>
 

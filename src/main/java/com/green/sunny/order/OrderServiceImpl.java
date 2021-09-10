@@ -1,5 +1,6 @@
 package com.green.sunny.order;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -70,6 +71,12 @@ public class OrderServiceImpl implements OrderService {
 	@Override
 	public Map<String,Object> selectAllByPseq(int pseq) {
 		return orderDao.selectAllByPseq(pseq);
+	}
+
+	@Override
+	public HashMap<String, Object> orderDetail(int oseq) {
+		
+		return orderDao.orderDetail(oseq);
 	}
 
 }
