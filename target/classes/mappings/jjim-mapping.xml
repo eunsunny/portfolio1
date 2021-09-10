@@ -19,18 +19,29 @@
 		SELECT COUNT(*) FROM jjim WHERE id=#{id}
 	</select>
 	
+	<!-- 찜 여부확인 -->
+	<select id="jjimCheck" parameterType="int" resultType="int">
+		SELECT COUNT(pseq) FROM jjim WHERE pseq=#{pseq}
+	</select>
+	
 	<!-- 찜리스트 페이지번호별 상품 목록 조회 -->
 	<select id="jjimWithPaging" parameterType="hashMap" resultType="jjim">
 		<![CDATA[
-			SELECT jjseq, id, pseq, mname, pname, kind, title, price, jjim_date, result, cod, cod_grp_id, cod_nm FROM 
-			(SELECT row_number() over(ORDER BY jjim_date DESC) rn, jjseq, id, pseq, mname, pname, kind, 
+			SELECT jjseq, id, pseq, mname, pname, kind, soldyn, title, price, jjim_date, result, cod, cod_grp_id, cod_nm FROM 
+			(SELECT row_number() over(ORDER BY jjim_date DESC) rn, jjseq, id, pseq, mname, pname, kind, soldyn,
 					title, price, jjim_date, result, cod, cod_grp_id, cod_nm 
 				FROM jjim_view 
 				WHERE id=#{id})
 			WHERE rn <= #{criteria.pageNum} * #{criteria.rowsPerPage}
 			  AND rn > (#{criteria.pageNum}-1) * #{criteria.rowsPerPage} ORDER BY jjim_date DESC
 		]]>
-				
 	</select>
+	<!-- 뷰생성 jjim_view -->
+	<!-- CREATE OR REPLACE VIEW jjim_view
+		 AS
+		 SELECT j.jjseq, j.id, p.pseq, m.name mname, p.name pname, p.title, p.price, p.kind, p.soldyn, j.jjim_date, j.result, c.cod, c.cod_grp_id, c.cod_nm
+		   FROM jjim j, member m, product p, com_cod c
+		  WHERE m.id=j.id AND p.pseq=j.pseq AND j.result='n' AND p.kind=c.cod AND c.cod_grp_id = 'CATEGORY'; 
+	-->
 	
 </mapper>

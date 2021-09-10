@@ -1,6 +1,8 @@
 package com.green.sunny.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -40,42 +42,40 @@ public class MyPageController {
 		MemberVO loginUser = (MemberVO)session.getAttribute("loginUser");
 		
 		JjimVO vo = new JjimVO();
+		vo.setId(loginUser.getId());
 		
-		if (loginUser == null) {
-			return "member/login";
+		int pseqCnt = jjimService.jjimCheck(pseq);
+			
+		if(pseqCnt != 0) {
+			return "mypage/jjim_fail";
 		} else {
-			
-			vo.setId(loginUser.getId());
-			
 			vo.setPseq(pseq);
-			
 			jjimService.insertJjim(vo);
 			
-			return "redirect:/jjim_list";
+			return "mypage/jjim_success";
 		}
-		
 	}
 	
 	// 물어보기
 	@RequestMapping(value="/jjim_list_cancel", method=RequestMethod.GET)
-	public String jjimListCancel(@RequestParam(value="pseq") int pseq, HttpSession session, Model model) {
+	public String jjimListCancel(HttpSession session, 
+								 @RequestParam(value="pseq") int pseq, Model model) {
 		
 		MemberVO loginUser = (MemberVO)session.getAttribute("loginUser");
 		
 		JjimVO vo = new JjimVO();
+		vo.setId(loginUser.getId());
 		
-		if (loginUser == null) {
-			return "member/login";
+		int pseqCnt = jjimService.jjimCheck(pseq);
+			
+		if(pseqCnt != 0) {
+			return "mypage/jjim_fail";
 		} else {
-			
-			vo.setId(loginUser.getId());
 			vo.setPseq(pseq);
-			
 			jjimService.insertJjim(vo);
 			
-			return "redirect:product_detail?pseq="+pseq;
+			return "mypage/jjim_success2";
 		}
-		
 	}
 	
 	// 찜리스트(페이징 포함)
@@ -217,7 +217,7 @@ public class MyPageController {
 		mVo.setId(pid);
 		MemberVO member = memberService.getMember(mVo);
 				
-		int count = orderService.orderSetCount(member.getId());  // 등급관련 추가예정
+		int count = orderService.orderSetCount(member.getId());  
 				
 		if(count == 10) {
 			
@@ -238,6 +238,21 @@ public class MyPageController {
 		}
 		
 		return "redirect:order_list";
+	}
+	
+	@RequestMapping("/myorder_detail")
+	public String orderDetail(OrderVO vo, Model model) {
+		
+		int oseq = vo.getOseq();
+		
+		System.out.println(oseq);
+		
+		HashMap<String, Object> order = orderService.orderDetail(oseq);
+		
+		System.out.println(order);
+		model.addAttribute("orderVO", order);
+		
+		return "mypage/orderDetail";
 	}
 
 }

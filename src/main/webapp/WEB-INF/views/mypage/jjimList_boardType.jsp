@@ -18,22 +18,37 @@
     }
   
 </style>
+
+<script type="text/javascript">
+
+	function selectClick(pseq) {
+		location.href = "product_detail?pseq="+pseq;
+	}
+	
+	function jjimPayForm(pseq, price, kind) {
+		var url = "move_pay_form?pseq="+pseq+"&price="+price+"&kind="+kind;
+		
+		$("#formm").attr("action", url).submit();
+	}
+
+</script>
+
 </head>
 <body>
 <%@ include file="../member/sub_menu.jsp"%>
-<div class="col-lg-9">
+<div class="col-lg-10">
 	<h2 style="letter-spacing: 0;">나의 찜목록</h2><br>
-	<form name="frm" id="prod_form" method="POST" action="move_pay_form">
+	<form name="formm" id="formm" method="POST" action="move_pay_form">
 		<div class="container py-5">
 			<div class="row">
-				<div class="row">
-					<table style="padding:0;">
+				<div class="row" align="center">
+					<table>
 						<thead>
-						<tr style="text-align: center;">
-							<th>카테고리</th><th>상품명</th><th>제목</th><th>가격</th><th colspan="2">구매 및 삭제</th>
+						<tr style=" padding:0; text-align: center;">
+							<th>카테고리</th><th>상품명</th><th>제목</th><th>가격</th><th>구매</th><th>삭제</th>
 						</tr>
 						</thead>
-						<tbody class="jjimListbody">
+						<tbody class="ListBody">
 						<c:choose>
 							<c:when test="${jjimListSize == 0}">
 								<tr>
@@ -44,35 +59,42 @@
 							</c:when>
 							<c:otherwise>
 								<c:forEach items="${jjimList}" var="jjimVO">
-									<tr>
-										<td height="23" align="center" width="15%">${jjimVO.cod_nm}
-											<input type="hidden" name="kind" value="${jjimVO.kind}">
+									<tr class="select" onclick="selectClick(${jjimVO.pseq})">
+										<td height="23" align="center" style="letter-spacing:-2px; width:13%;">${jjimVO.cod_nm}</td>
+										<td width="15%">${jjimVO.pname}</td>
+										<td>${jjimVO.title}</td>
+										<td>
+											<fmt:formatNumber value="${jjimVO.price}"/>
 										</td>
-										<td width="13%"><a href="product_detail?pseq=${jjimVO.pseq}">${jjimVO.pname}
-											<input type="hidden" name="pseq" value="${jjimVO.pseq}">
-											</a></td>
-										<td width="20%"><a href="product_detail?pseq=${jjimVO.pseq}">${jjimVO.title}</a></td>
-										<td width="15%"><fmt:formatNumber value="${jjimVO.price}"/>
-											<input type="hidden" name="price" value="${jjimVO.price}">
-										</td>
-										<td width="15%">
-											<button type="submit" class="btn btn-success btn-lg">바로구매</button>
-										</td>
-										<td width="12%">
-											<button type="button" class="btn btn-success btn-lg" onclick="location='jjim_delete?jjseq=${jjimVO.jjseq}'">삭제</button>
+										<c:choose>
+											<c:when test='${jjimVO.soldyn=="n"}'>
+												<td width="15%">
+													<button type="submit" class="btn btn-success btn-lg" 
+															onclick="jjimPayForm(${jjimVO.pseq},${jjimVO.price},${jjimVO.kind})">
+														바로구매</button>
+												</td>
+											</c:when>
+											<c:otherwise>
+												<td width="15%">구매불가</td>
+											</c:otherwise>
+										</c:choose>
+										<td width="10%">
+											<button type="button" class="btn btn-success btn-lg" 
+													onclick="event.stopPropagation(); location='jjim_delete?jjseq=${jjimVO.jjseq}';">
+												삭제</button>
 										</td>
 									</tr>
 								</c:forEach>
-								
 							</c:otherwise>
 						</c:choose>
 						</tbody>
 					</table>
-							<%@ include file="../jjimpage_area.jsp" %>
+					<span style="text-align:right; font-size:12px; color:red; padding:0; height:20px;">* 판매가 완료된 상품은 구매할 수 없습니다.</span>
 						</div>
 					</div>
 				</div>
 			</form>
+			<%@ include file="../jjimpage_area.jsp" %>
 		</div>
 	</div>
 </div>

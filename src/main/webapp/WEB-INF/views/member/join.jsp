@@ -81,7 +81,8 @@
 				<div class="col-11 row" id="row_row">
 					<label class="col-3" for="id">아이디*</label>
 					<div class="col-8">
-					<input type="text" name="id" id="id" class="form-control input-md" required="" style="margin-bottom:0.5em;"> 
+					<input type="text" name="id" id="id" placeholder="4~12자의 영문 대소문자와 숫자로만 입력하셔야 합니다." 
+							class="form-control input-md" required="" style="margin-bottom:0.5em;"> 
 					<div>
 					<span id="text" style="font-weight:bold; font-size:1em;"></span>
 					</div>
@@ -114,14 +115,13 @@
 				<div class="col-11 row" id="row_row" style="margin-top:-2em;">
 				<label class="col-3" for="phone">전화번호*</label> 
 					<div class="col-8">
-					<input type="text" name="phone" id="phone" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" 
-							placeholder="'-'를 포함하여 입력해주세요." class="form-control input-md" required="">
+					<input type="text" name="phone" id="phone" placeholder="'-'를 포함하여 입력해주세요." class="form-control input-md" required="">
 					</div>
 				</div>
 				<div class="col-11 row" id="row_row" style="margin-top:-2em;">
 				<label class="col-3" for="email">E-Mail*</label> 
 					<div class="col-8">
-					<input type="email" name="email" class="form-control input-md" required="">
+						<input type="email" name="email" class="form-control input-md" required="">
 					</div>
 				</div>
 				<div class="col-11 row aln-left" id="row_row" style="margin-top:-2em; padding-left: 5.2em;">

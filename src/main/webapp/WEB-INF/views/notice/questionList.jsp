@@ -96,12 +96,12 @@
 						<c:otherwise>
 							<c:forEach items="${queList}" var="questionVO">
 								<ul>
-									<li class="menu" style="clear: left;"><span
-										style="color: red; font-size: 25px;">Q.&nbsp;&nbsp;</span><span>${questionVO.title}
-											&nbsp;&nbsp; <i class="fa fa-angle-down" aria-hidden="true"></i>
-									</span>
-									<li class="hide">${questionVO.content}<br> <img
-										src="upload_images/question/${questionVO.image}">
+									<li class="menu" style="clear: left; margin-bottom:0;">
+										<span style="color: red; font-size: 25px;">Q.&nbsp;&nbsp;</span>
+										<span>${questionVO.title}&nbsp;&nbsp;<i class="fa fa-angle-down" aria-hidden="true"></i></span>
+									</li>
+									<li class="hide" style="margin-top:0;">${questionVO.content}<br> 
+										<img src="upload_images/question/${questionVO.image}" style="max-width:80%">
 									</li>
 								</ul>
 							</c:forEach>

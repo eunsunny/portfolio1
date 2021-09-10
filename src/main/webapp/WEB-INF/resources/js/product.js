@@ -101,20 +101,14 @@ function login_jjim_check() {
 
 function jjim_check_form(pseq) {
 	
-	//var url = "jjim_check_form";
-	
-	var check = confirm("찜 목록에 추가되었습니다.\n찜 목록으로 이동하시겠습니까?"); 
+	var check = confirm("찜 목록에 상품을 추가 후 목록으로 이동하시겠습니까?"); 
 	
 	if (check) {
 		location.href="jjim_insert_list?pseq="+pseq;
-		
 	} else {
 		location.href="jjim_list_cancel?pseq="+pseq;
 	}
 	
-	//$("#jjim_check").attr("action", "jjim_insert_list").submit();
-	//window.open(url, "_blank_1", "toolbar=no, menubar=no, scrollbars=yes, resizable=no, width=400, height=200, "+
-	//		"top=100, left=100");
 }
 
 function go_update() {

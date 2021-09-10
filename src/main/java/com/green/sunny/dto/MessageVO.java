@@ -5,11 +5,10 @@ import java.util.Date;
 public class MessageVO {
 	
 	private int no;
-	private int room;
 	private String send_id;
 	private String recv_id;
 	private Date send_time;
-	private Date recv_time;
+	private String title;
 	private String content;
 	private int read_chk;
 	
@@ -24,12 +23,6 @@ public class MessageVO {
 	}
 	public void setNo(int no) {
 		this.no = no;
-	}
-	public int getRoom() {
-		return room;
-	}
-	public void setRoom(int room) {
-		this.room = room;
 	}
 	public String getSend_id() {
 		return send_id;
@@ -48,12 +41,6 @@ public class MessageVO {
 	}
 	public void setSend_time(Date send_time) {
 		this.send_time = send_time;
-	}
-	public Date getRecv_time() {
-		return recv_time;
-	}
-	public void setRecv_time(Date recv_time) {
-		this.recv_time = recv_time;
 	}
 	public String getContent() {
 		return content;
@@ -91,11 +78,17 @@ public class MessageVO {
 	public void setUnread(int unread) {
 		this.unread = unread;
 	}
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
 	
 	@Override
 	public String toString() {
-		return "MessageVO [no=" + no + ", room=" + room + ", send_id=" + send_id + ", recv_id=" + recv_id
-				+ ", send_time=" + send_time + ", recv_time=" + recv_time + ", content=" + content + ", read_chk="
+		return "MessageVO [no=" + no + ", send_id=" + send_id + ", recv_id=" + recv_id
+				+ ", send_time=" + send_time + ", title=" + title + ", content=" + content + ", read_chk="
 				+ read_chk + ", other_id=" + other_id + ", profile=" + profile + ", id=" + id + ", unread=" + unread
 				+ "]";
 	}
