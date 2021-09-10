@@ -66,13 +66,28 @@ function go_cancel(){
 }
 
 function go_delete() {
-	document.formm.action = "product_delete";
-	document.formm.submit();
+	if($('#soldyn').val() == "n"){
+		document.formm.action = "product_delete";
+		document.formm.submit();
+	}else {
+		alert("판매 완료된 상품은 삭제하실 수 없습니다.");
+	}
+	
 }
 
 function movePayForm() {
-	document.formm.action = "move_pay_form";
-	document.formm.submit();
+	if($('#soldyn').val() == "y"){
+		alert("이미 판매 완료된 상품입니다.");
+		return false;
+	}else {
+		document.formm.action = "move_pay_form";
+		document.formm.submit();
+	}
+	
+}
+
+function DontmovePayForm() {
+	alert("본인이 올린 상품은 구매하실 수 없습니다.");
 }
 
 function callIamport() {
