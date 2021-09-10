@@ -71,7 +71,7 @@
 		<div class="card-body">
    		<div class="table-responsive">
         <table class="table table-bordered" id="dataTable" width="80%" cellspacing="0">
-    		<tr>
+    		<tr align="center">
         		<th>번호</th><th>상품명</th><th>카테고리</th><th>가격</th><th>상품등록제목</th>
         		<th>등록일</th><th>상품판매여부</th><th>등록자 아이디</th>
     		</tr>
@@ -85,9 +85,9 @@
     			</c:when>
 			<c:otherwise>
 			<c:forEach items="${productList}" var="productVO">
-			    <tr>
+			    <tr align="center">
 			      <td height="23" align="center" >${number=number+1}</td>
-			      <td style="text-align: left; padding-right: 0px;">   
+			      <td>   
 			         <a href="admin_product_detail${pageMaker.makeQuery(pageMaker.cri.pageNum)}&pseq=${productVO.pseq}"> 
 			    	 	${productVO.name}     
 			   		 </a>
@@ -114,8 +114,8 @@
 			      <td><fmt:formatDate value="${productVO.regdate}"/></td>
 			      <td>
 			      	<c:choose>
-			   	 		<c:when test='${productVO.soldyn=="n"}'>미사용</c:when>
-			   	 		<c:otherwise>사용</c:otherwise>  	 		
+			   	 		<c:when test='${productVO.soldyn=="n"}'>미판매</c:when>
+			   	 		<c:otherwise>판매</c:otherwise>  	 		
 			   	 	</c:choose>
 			   	  </td>
 			   	  <td>${productVO.id}</td>

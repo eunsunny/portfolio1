@@ -9,7 +9,7 @@
 		<![CDATA[
 		SELECT gseq, title, content, image, regdate, count
 		  FROM
-    		(SELECT row_number() over(ORDER BY title) rn, gseq, title, content, image, regdate, count
+    		(SELECT row_number() over(ORDER BY regdate DESC) rn, gseq, title, content, image, regdate, count
       		   FROM gongzi
      		  WHERE title LIKE '%'||#{key}||'%')
           WHERE rn <= #{criteria.pageNum} * #{criteria.rowsPerPage}

@@ -57,9 +57,9 @@
 	<!-- Product Section -->
 	<select id="getAllProductPaging" parameterType="hashMap" resultType="product">
 		<![CDATA[
-		SELECT pseq, name, kind, price, title, soldyn, regdate
+		SELECT pseq, name, kind, price, title, soldyn, regdate, id
 		  FROM
-    		(SELECT row_number() over(ORDER BY name) rn, pseq, name, kind, price, title, soldyn, regdate
+    		(SELECT row_number() over(ORDER BY regdate DESC) rn, pseq, name, kind, price, title, soldyn, regdate, id
       		   FROM product
      		  WHERE name LIKE '%'||#{key}||'%')
           WHERE rn <= #{criteria.pageNum} * #{criteria.rowsPerPage}
@@ -84,7 +84,7 @@
 		<![CDATA[
 		SELECT id, name, nick_name, email, phone, regdate
 		  FROM
-    		(SELECT row_number() over(ORDER BY name) rn, id, name, nick_name, email, phone, regdate
+    		(SELECT row_number() over(ORDER BY regdate DESC) rn, id, name, nick_name, email, phone, regdate
       		   FROM member
      		  WHERE name LIKE '%'||#{key}||'%')
           WHERE rn <= #{criteria.pageNum} * #{criteria.rowsPerPage}
@@ -105,7 +105,7 @@
 		<![CDATA[
 		SELECT bseq, title, id, content, regdate, count
 		  FROM
-    		(SELECT row_number() over(ORDER BY id) rn, bseq, title, id, content, regdate, count
+    		(SELECT row_number() over(ORDER BY regdate DESC) rn, bseq, title, id, content, regdate, count
       		   FROM board
      		  WHERE title LIKE '%'||#{key}||'%')
           WHERE rn <= #{criteria.pageNum} * #{criteria.rowsPerPage}
