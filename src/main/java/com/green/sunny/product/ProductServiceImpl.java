@@ -142,4 +142,15 @@ public class ProductServiceImpl implements ProductService {
 		pDao.updateSoldyn(paramMap);
 		
 	}
+
+	@Override
+	public String findCodByKindName(String kind_nm) {
+		return pDao.findCodByKindName(kind_nm);
+	}
+
+	@Override
+	public void deleteFromJjimBypseq(int pseq) {
+		pDao.deleteFromJjimBypseq(pseq);
+		
+	}
 }

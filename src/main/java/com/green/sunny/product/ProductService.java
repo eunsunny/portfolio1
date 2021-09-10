@@ -50,4 +50,8 @@ public interface ProductService {
 	public int insertPayInfo(Map<String,Object> paramMap);
 	
 	public void updateSoldyn(Map<String,Object> paramMap);
+	
+	public String findCodByKindName(String kind_nm);
+	
+	public void deleteFromJjimBypseq(int pseq);
 }

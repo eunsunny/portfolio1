@@ -9,6 +9,8 @@
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <script type="text/javascript" src="js/product.js"></script>
+<script type="text/javascript" src="member/member.js"></script>
+<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 
 </head>
 <script type="text/javascript">
@@ -79,7 +81,7 @@ function callIamport(){
 //결제정보 Insert
 function insertFuntion(){
 	var returnflag = true;
-	var param = {buyer_address : $('#address').val(),
+	var param = {buyer_address : $('#addr1').val()+$('#addr2').val(),
 				 pseq : $('#pseq').val()
 				 };
 	$.ajax({
@@ -108,7 +110,7 @@ function insertFuntion(){
 		</div>	
 		<br>
 		
-		<table id="list">
+		<table id="list" style="width: 1000;">
 		
 <!-- 		<p> -->
 <%-- 		<span>name:</span> <input name="name" value="${buyerInfo.loginUserName}"> --%>
@@ -117,7 +119,7 @@ function insertFuntion(){
 		<tr>
 			  <th>이름</th>
 			  <td width="343" colspan="5">
-			       <input type="text" name="name" id="name" size="47" maxlength="100" value="${buyerInfo.loginUserName}" disabled>
+			       <input style="width:50%;" type="text" name="name" id="name" size="47" maxlength="100" value="${buyerInfo.loginUserName}" disabled>
 			  </td>
 		</tr>
 		
@@ -128,7 +130,7 @@ function insertFuntion(){
 		<tr>
 			  <th>이메일</th>
 			  <td width="343" colspan="5">
-			       <input type="text" name="email" id="email" size="47" maxlength="100" value="${buyerInfo.email}" disabled>
+			       <input style="width:70%;" type="text" name="email" id="email" size="47" maxlength="100" value="${buyerInfo.email}" disabled>
 			  </td>
 		</tr>
 
@@ -140,7 +142,7 @@ function insertFuntion(){
 		<tr>
 			  <th>전화번호</th>
 			  <td width="343" colspan="5">
-			       <input type="text" name="phone" id="phone" size="47" maxlength="100" value="${buyerInfo.phone}" disabled>
+			       <input style="width:70%;" type="text" name="phone" id="phone" size="47" maxlength="100" value="${buyerInfo.phone}" disabled>
 			  </td>
 		</tr>
 		
@@ -150,11 +152,31 @@ function insertFuntion(){
 <!-- 			<input name="address" id="address"> -->
 <!-- 		</p> -->
 
+<!-- 		<tr> -->
+<!-- 			  <th>주소*</th> -->
+<!-- 			  <td width="343" colspan="5"> -->
+<%-- 			       <input type="text" name="address" id="address" size="47" maxlength="100" value="${buyerInfo.address}"  --%>
+<!-- 			       style="background-color: white;"> -->
+<!-- 			  </td> -->
+<!-- 		</tr> -->
+		
 		<tr>
-			  <th>주소*</th>
-			  <td width="343" colspan="5">
-			       <input type="text" name="address" id="address" size="47" maxlength="100" value="${buyerInfo.address}" 
-			       style="background-color: white;">
+			  <th>받으실 주소*</th>
+			  <td width="500" colspan="5">
+			       <div class="col-4" >
+        			<input style="width:50%; margin-bottom: 0.5em;" size="10" type="text" name="zip_num" id="zip_num" placeholder="우편번호" readonly>
+        			
+        			</div>
+        			<div class="col-8" >
+        		    <input style="width:100%; margin-bottom: 0.5em;" type="text" id="addr1" name="addr1" class="form-control input-md" placeholder="주소" readonly > 
+        		    <input style="width:100%; margin-bottom: 0.5em; background-color: white;" type="text" id="addr2" name="addr2" class="form-control input-md" placeholder="상세주소">
+        		    </div>
+        		</td>
+        		<td>
+        			<div class="col-1">      
+        			<input style="margin-bottom: 10px;" type="button" value="주소 찾기" class="dup" onclick="execPostCode();">
+        			</div>
+        			
 			  </td>
 		</tr>
 
@@ -166,7 +188,7 @@ function insertFuntion(){
 		<tr>
 			  <th >결제 금액</th>
 			  <td width="343" colspan="5" >
-			  <input type="text" name="price" id="price" size="47" maxlength="100" value="${buyerInfo.price}" disabled>
+			  <input style="width:70%;" type="text" name="price" id="price" size="47" maxlength="100" value="${buyerInfo.price}" disabled>
 			  </td>
 			
 		</tr>
