@@ -245,11 +245,8 @@ public class MyPageController {
 		
 		int oseq = vo.getOseq();
 		
-		System.out.println(oseq);
-		
 		HashMap<String, Object> order = orderService.orderDetail(oseq);
 		
-		System.out.println(order);
 		model.addAttribute("orderVO", order);
 		
 		return "mypage/orderDetail";

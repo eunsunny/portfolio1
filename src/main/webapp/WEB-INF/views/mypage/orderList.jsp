@@ -73,6 +73,7 @@
 											<td>
 												<c:choose>
 													<c:when test='${orderVO.rev_result=="n"}'>
+														<input type="hidden" name="pid" id="pid" value="${orderVO.pid}">
 														<button type="submit" class="btn btn-success btn-lg"> 구매확정</button>
 													</c:when> 
 													<c:otherwise>구매 완료</c:otherwise>

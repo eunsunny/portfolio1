@@ -12,45 +12,7 @@
   <script src="js/breakpoints.min.js"></script>
   <script src="js/util.js"></script>
   <script src="js/main.js"></script>
-  <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=63bd730b2fea7a587228bb810016be21"></script>
-
-<script>
-var mapContainer = document.getElementById('map'),  // 지도표시 div
-	mapOption = {
-		center: new kakao.maps.LatLng(33.450701, 126.570667),
-		level: 3
-	};
-	
-var map = new kakao.maps.Map(mapContainer, mapOption);  // 지도 생성
-/* 
-var mapTypeControl = new kakao.maps.MapTypeControl();
-
-map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
-
-function getInfo() {
-    // 지도의 현재 중심좌표를 얻어옵니다 
-    var center = map.getCenter(); 
-    
-    // 지도의 현재 레벨을 얻어옵니다
-    var level = map.getLevel();
-    
-    // 지도타입을 얻어옵니다
-    var mapTypeId = map.getMapTypeId(); 
-    
-    // 지도의 현재 영역을 얻어옵니다 
-    var bounds = map.getBounds();
-    
-    // 영역의 남서쪽 좌표를 얻어옵니다 
-    var swLatLng = bounds.getSouthWest(); 
-    
-    // 영역의 북동쪽 좌표를 얻어옵니다 
-    var neLatLng = bounds.getNorthEast(); 
-    
-    // 영역정보를 문자열로 얻어옵니다. ((남,서), (북,동)) 형식입니다
-    var boundsStr = bounds.toString();
-}
- */
-</script>
+  
 </head>
 <body>
   <div class="clear"></div>
