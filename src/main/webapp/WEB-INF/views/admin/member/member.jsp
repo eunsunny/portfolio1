@@ -74,7 +74,7 @@
     		<div class="table-responsive">
         	<table class="table table-bordered" id="dataTable" width="80%" cellspacing="0">
             <thead>
-                <tr>
+                <tr align="center">
                     <th>번호</th>
                     <th>아이디</th>
                     <th>이름</th>
@@ -95,10 +95,10 @@
 	    		</c:when>
 				<c:otherwise>
 				<c:forEach items="${memberList}" var="memberVO">
-				    <tr>
+				    <tr align="center">
 				      <td>${number=number+1}</td>
-				      <td align="center" >${memberVO.id}</td>
-				      <td style="text-align: left;">   
+				      <td align="center">${memberVO.id}</td>
+				      <td>   
 				         <a href="admin_member_detail${pageMaker.makeQuery(pageMaker.cri.pageNum)}&id=${memberVO.id}">${memberVO.name}</a>
 				   	  </td>
 				      <td>${memberVO.nick_name}</td>

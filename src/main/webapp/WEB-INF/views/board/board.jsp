@@ -34,6 +34,7 @@
     	
     	$('#board').DataTable({
 	        scrollY : 500,
+	        order : [[0, "desc"]],
 	        ajax: {
 	            "type" : "GET",
 	            /*c:url : 컨택스트 루트를 반환(/sunny)

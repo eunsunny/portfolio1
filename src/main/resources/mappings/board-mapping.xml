@@ -57,6 +57,14 @@
 				         )
 	</insert>
 	
+	<update id="updateBoardInfo" parameterType="java.util.Map" >
+		UPDATE board
+ 			SET   title=#{title}
+ 				, content= #{content}
+ 				, regdate= SYSDATE
+ 		WHERE  bseq = #{bseq}
+	</update>
+	
 	<insert id="insertFile" parameterType="java.util.Map" >
 		INSERT INTO BOARD_IMAGE (
 							BOARD_FSEQ
@@ -64,7 +72,7 @@
 						  , BOARD_IMAGE
 						  )
 				   VALUES (BOARD_FSEQ_SEQ.NEXTVAL
-				         , #{bSeq}
+				         , #{bseq}
 				         , #{fileName}
 				         )
 	</insert>
@@ -73,4 +81,11 @@
 	  	SELECT MAX(BSEQ) 
 	  	  FROM BOARD
 	</select>
+	
+	<delete id="deleteBoardPicture">
+	 	DELETE board_image
+ 		  WHERE bseq=#{bseq}
+	</delete>
+	
+	
 </mapper>

@@ -71,7 +71,7 @@
     		<div class="table-responsive">
         	<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
             <thead>
-                <tr>
+                <tr align="center">
                     <th>번호</th>
                     <th>주문 상품</th>
                     <th>카테고리</th>
@@ -92,9 +92,9 @@
 	    		</c:when>
 				<c:otherwise>
 				<c:forEach items="${orderList}" var="orderVO">
-				    <tr>
+				    <tr align="center">
 				      <td>${number=number+1}</td>
-				      <td style="text-align: left;">   
+				      <td>   
 				         <a href="admin_order_detail${pageMaker.makeQuery(pageMaker.cri.pageNum)}&oseq=${orderVO.oseq}">${orderVO.name}</a>
 				   	  </td>
 				   	  <td>${orderVO.cod_nm}</td>

@@ -80,7 +80,6 @@
                 <p class="text-center mb-2"><strong>Sunny Flea Market</strong><br>
                 관리자 페이지입니다.
                 </p>
-                <a class="btn btn-success btn-sm" href="#">Upgrade to Pro!</a>
             </div> 
 
         </ul>
