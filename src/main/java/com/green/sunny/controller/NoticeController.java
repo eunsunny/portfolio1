@@ -16,6 +16,7 @@ import com.green.sunny.dto.MemberVO;
 import com.green.sunny.dto.OneoneVO;
 import com.green.sunny.dto.QuestionVO;
 import com.green.sunny.dto.ReportVO;
+import com.green.sunny.member.MemberService;
 import com.green.sunny.notice.NoticeService;
 import com.green.sunny.utils.Criteria;
 import com.green.sunny.utils.PageMaker;
@@ -25,6 +26,9 @@ public class NoticeController {
 	
 	@Autowired
 	private NoticeService noticeService;
+	
+	@Autowired
+	private MemberService memberService;
 	
 	// 공지사항(페이징처리 포함)
 	@RequestMapping("/notice_list")
@@ -100,7 +104,7 @@ public class NoticeController {
 	}
 	
 	// 1:1 문의 등록 페이지 이동
-	@RequestMapping("/oneone_insert_view")
+	@RequestMapping(value="/oneone_insert_view", method=RequestMethod.GET)
 	public String oneoneInsertView(HttpSession session, OneoneVO vo) {
 		
 		return "notice/oneOneWrite";
@@ -119,7 +123,7 @@ public class NoticeController {
 	}
 	
 	// 1:1문의 상세보기
-	@RequestMapping("/oneOne_Detail")
+	@RequestMapping(value="/oneOne_Detail", method=RequestMethod.GET)
 	public String oneoneDetail(HttpSession session, OneoneVO vo, Model model) {
 		
 		MemberVO loginUser = (MemberVO)session.getAttribute("loginUser");
@@ -140,15 +144,25 @@ public class NoticeController {
 	}
 	
 	// 신고하기페이지
-	@RequestMapping("/report_write")
+	@RequestMapping(value="/report_write", method=RequestMethod.GET)
 	public String reportWrite(HttpSession session, ReportVO vo) {
 		
 		MemberVO loginUser = (MemberVO)session.getAttribute("loginUser");
 		vo.setId(loginUser.getId());
 		
-		noticeService.insertReport(vo);
+		String id = memberService.getIdMember(vo.getReport_id());
 		
-		return "redirect:report_write_view";
+		if(vo.getReport_id().equals(id)) {
+			
+			noticeService.insertReport(vo);
+			
+			return "notice/report_success";
+			
+		} else {
+			
+			return "notice/report_fail";
+		}
+		
 	}
 	
 }

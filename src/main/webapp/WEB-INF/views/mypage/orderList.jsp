@@ -15,6 +15,26 @@
     }
   
 </style>
+
+<script type="text/javascript">
+
+	function selectClick(pseq) {
+		location.href = "product_detail?pseq="+pseq;
+	}
+	
+	function detailClick(oseq) {
+		
+		event.stopPropagation();
+		
+		var url = "myorder_detail?oseq="+oseq;
+		
+		window.open(url, "_blank_1", 
+				"toolbar=no, menubar=no, scrollbars=no, resizable=no, width=550, height=500, "+
+					"top=150, left=400");
+	}
+
+</script>
+
 </head>
 <body>
 <%@ include file="../member/sub_menu.jsp"%>
@@ -26,10 +46,10 @@
 					<table>
 						<thead>
 							<tr style="padding: 0;">
-								<th>번호</th><th>카테고리</th><th>상품명</th><th>제목</th><th>가격</th><th>확정</th><th>판매자</th><th>구매일</th>
+								<th>번호</th><th>카테고리</th><th>상품명</th><th>제목</th><th>가격</th><th>확정</th><th>구매상세</th><th>구매일</th>
 							</tr>
 						</thead>
-						<tbody class="prodListBody">
+						<tbody class="ListBody">
 						<c:choose>
 							<c:when test="${orderList.size() == 0}">
 								<tr>
@@ -42,24 +62,24 @@
 								<c:forEach items="${orderList}" var="orderVO">
 									<form name="frm" id="order_form" method="GET" action="order_set">
 										<%-- <input type="hidden" name="oid" id="oid" value="${orderVO.oid}"> --%>
-										<tr>
-											<td height="23" align="center">${orderVO.oseq}
+										<tr class="select" onclick="selectClick(${orderVO.pseq})">
+											<td height="23" align="center" style="letter-spacing:-2px;">${orderVO.oseq}
 												<input type="hidden" name="oseq" id="oseq" value="${orderVO.oseq}">
 											</td>
-											<td>${orderVO.cod_nm}</td>
-											<td><a href="product_detail?pseq=${orderVO.pseq}">${orderVO.name}</a></td>
-											<td><a href="product_detail?pseq=${orderVO.pseq}">${orderVO.title}</a></td>
+											<td style="letter-spacing:-2px;">${orderVO.cod_nm}</td>
+											<td>${orderVO.name}</td>
+											<td>${orderVO.title}</td>
 											<td><fmt:formatNumber value="${orderVO.price}"/></td>
 											<td>
 												<c:choose>
 													<c:when test='${orderVO.rev_result=="n"}'>
-													<button type="submit"> 구매확정</button>
+														<button type="submit" class="btn btn-success btn-lg"> 구매확정</button>
 													</c:when> 
 													<c:otherwise>구매 완료</c:otherwise>
 												</c:choose>
 											</td>
-											<td>${orderVO.pid}
-												<input type="hidden" name="pid" id="pid" value="${orderVO.pid}">
+											<td>
+												<input type="button" value="상세보기" 	onclick="detailClick(${orderVO.oseq});"/>
 											</td>
 											<td><fmt:formatDate value="${orderVO.order_date}"/></td>
 										</tr>
@@ -71,7 +91,7 @@
 					</table>
 					<span style="font-size:12px; color:red; padding:0; height:20px;">* 상품을 정상적으로 수취했을 경우 구매확정을 눌러주시기 바랍니다.</span>
 					<span style="font-size:12px; color:red; padding:0; height:20px;">* 구매확정 후 구매완료가 되며, 만약 상품을 받지 못했을 경우 판매자에게 문의해주시기 바랍니다.</span>
-						</div>
+					</div>
 					</div>
 				</div>
 			<%@ include file="../orderPage_area.jsp"%>

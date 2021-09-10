@@ -17,7 +17,14 @@ public class JjimVO {
 	private String cod;
 	private String cod_grp_id;
 	private String cod_nm;
+	private String soldyn;
 	
+	public String getSoldyn() {
+		return soldyn;
+	}
+	public void setSoldyn(String soldyn) {
+		this.soldyn = soldyn;
+	}
 	public int getJjseq() {
 		return jjseq;
 	}
@@ -109,7 +116,7 @@ public class JjimVO {
 		return "JjimVO [jjseq=" + jjseq + ", id=" + id + ", pseq=" + pseq + ", result=" + result + ", image=" + image
 				+ ", pname=" + pname + ", mname=" + mname + ", title=" + title + ", kind=" + kind + ", price=" + price
 				+ ", jjim_date=" + jjim_date + ", cod=" + cod + ", cod_grp_id=" + cod_grp_id + ", cod_nm=" + cod_nm
-				+ "]";
+				+ ", soldyn=" + soldyn + "]";
 	}
 	
 	

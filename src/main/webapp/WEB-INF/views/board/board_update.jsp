@@ -96,8 +96,8 @@ function boardFinalUpdate(){
    		data:param,
    		success: function(data) {
    			alert('등록 성공하였습니다.');
-//  			window.opener.makeGrid(status);
  			window.close();
+ 			window.opener.history.go(-1);
    		},
    		error:function(request, status, error) {
    			alert("error:" + error);

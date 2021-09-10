@@ -78,5 +78,10 @@ public class OrderDAO {
 		return mybatis.selectOne("OrderDAO.selectAllByPseq", pseq);
 	}
 	
+	// 주문 상세
+	public HashMap<String, Object> orderDetail(int oseq) {
+		
+		return mybatis.selectOne("OrderDAO.orderDetail", oseq);
+	}
 	
 }
