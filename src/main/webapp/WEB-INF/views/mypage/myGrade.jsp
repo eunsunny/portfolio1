@@ -4,7 +4,20 @@
 <!DOCTYPE html>
 <html>
 <head>
+<style>
+	.gradeC > td {
+		font-size:0.7em;
+		letter-spacing:-1px;
 
+	}
+	
+	.gradeC > td > ul > li {
+		text-align:left;
+		padding:0;
+		margin:0;
+		line-height:-2px;
+	}
+</style>
 </head>
 <body>
 <%@ include file="../member/sub_menu.jsp"%>
@@ -33,29 +46,29 @@
 						<td>Platinum</td>
 						<td>VIP(Diamond)</td>
 					</tr>
-					<tr style="text-align:center;">
+					<tr class="gradeC" style="text-align:center;">
 						<th style="border-right: solid 1px #dddddd">내용</th>
-						<td style="font-size:0.5em;">
-						<ul style="line-height:20px; padding-left: -1px;">
-							<li>처음 가입시 적용되는 등급</li>
+						<td>
+						<ul>
+							<li>처음 가입시 등급</li>
 						</ul>
 						</td>
-						<td style="font-size:0.5em;">
+						<td>
 						<ul>
 							<li>가입 후 판매완료 상품 10개 시 자동 적용</li>
 						</ul>
 						</td>
-						<td style="font-size:0.5em;">
+						<td>
 						<ul>
 							<li>판매완료 상품 15개 시 자동 적용</li>
 						</ul>
 						</td>
-						<td style="font-size:0.5em;">
+						<td>
 						<ul>
 							<li>판매완료 상품 25개 시 적용</li>
 						</ul>
 						</td>						
-						<td style="font-size:0.5em;">
+						<td>
 						<ul>
 							<li>판매완료 상품 35개 시 적용</li>
 							<li>메인 페이지 판매 등록 상품 노출 혜택</li>

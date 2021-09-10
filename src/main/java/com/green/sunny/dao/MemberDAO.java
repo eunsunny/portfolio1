@@ -46,8 +46,7 @@ public class MemberDAO {
 		String pwd = null;
 		
 		pwd = mybatis.selectOne("MemberDAO.confirmID", vo.getId());
-//		System.out.println(vo);   // 확인용
-//		System.out.println(pwd);
+
 		// DB에서 조회한 password와 사용자가 입력한 password비교
 		if(pwd == null) {  // 사용자가 존재하지 않는 경우(아이디 틀린경우)
 			result = -1;

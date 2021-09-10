@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
 <html>
 <head>
 <meta charset="utf-8">
@@ -51,11 +52,21 @@
     	border-top: solid 1px black;
     }
     
-    table > .jjimListbody, .prodListBody:last-child {
+    table > .ListBody:last-child {
     
 	    border-bottom: solid 2px #505050;
 	    color: #black;
     
+    }
+
+    .ListBody > .select {
+    	cursor: pointer;
+    	
+    }
+    
+    .ListBody > .select:hover {
+    	background-color: #F6F6F6;
+    	
     }
     
     #infotable > thead > tr > th {

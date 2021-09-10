@@ -147,7 +147,7 @@ table.type05 td {
 			<br><br>
 			
 			<div align="center">
-            	<input type="button" class="btn btn-success btn-sm" onclick="location.href='admin_member_delete?id=${Member.id}'" value="삭제"/> &nbsp; &nbsp;                
+            	<%-- <input type="button" class="btn btn-success btn-sm" onclick="location.href='admin_member_delete?id=${Member.id}'" value="삭제"/> &nbsp; &nbsp; --%>                
             	<input type="button" class="btn btn-success btn-sm" onclick="location.href='member_manage'" value="리스트로 돌아가기"/>
             </div>
             

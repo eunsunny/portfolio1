@@ -18,6 +18,39 @@
 
     <!-- Custom styles for this template-->
     <link href="admin_css/sb-admin-2.min.css" rel="stylesheet">
+    
+<style>
+	
+table.type05 {
+  border-collapse: separate;
+  border-spacing: 1px;
+  text-align: left;
+  line-height: 1.5;
+  border-top: 4px solid #ccc;
+  border-bottom: 5px double #ccc; 
+  margin: 20px 10px;
+  width : 800px;
+  margin-left:auto; 
+  margin-right:auto;
+  background-color: white;
+}
+table.type05 th {
+  width: 30%;
+  padding: 10px;
+  font-weight: bold;
+  text-align : center;
+  vertical-align: center;
+  border-bottom: 1px solid #ccc;
+  background: #ffc0cb;
+}
+table.type05 td {
+  width: 70%;
+  padding: 10px;
+  vertical-align: top;
+  border-bottom: 1px solid #ccc;
+}
+</style>  
+    
 </head>
 
 <body id="page-top">
@@ -45,23 +78,49 @@
             <!-- /.container-fluid -->
             <div class="card-body">
             <div class="table-responsive">
+            <table  class="type05">
+        		<tbody>
+		            <tr>
+		                <th scope="row">제목</th>
+		                <td>${oneone.title}</td>
+		            </tr>
+		            <tr>
+		                <th scope="row">작성자 아이디</th>
+		                <td>${oneone.id}</td>
+		            </tr>
+		            <tr>
+		                <th scope="row">내용</th>
+		                <td>${oneone.content}</td>
+		            </tr>
+		            <tr>
+		                <th scope="row">등록일</th>
+		                <td><fmt:formatDate value="${oneone.regdate}" type="date"/></td>
+		            </tr>
+		            <tr>
+						<th scope="row">답변 여부</th>
+						<td>
+							<c:choose>
+						      	<c:when test="${oneone.rep == 'y'}">답변완료</c:when>
+						      	<c:otherwise>미답변</c:otherwise>
+							</c:choose>				
+						</td>
+					</tr>
+					<tr>
+						<th scope="row">답변</th>
+						<td>${oneone.reply }</td>
+		            </tr>
+        		</tbody>
+    		</table>
+    		
             <input type="hidden" id="onseq" name="onseq" value="${oneone.onseq}"/>
-            <label>제목</label> &nbsp; ${oneone.title}<br>
-            <label>작성자 아이디</label> &nbsp; ${oneone.id}<br>           
-            <label>내용</label> &nbsp; ${oneone.content}<br>
-            <label>등록일</label> &nbsp; <fmt:formatDate value="${oneone.regdate}" type="date"/><br>
-            <label>답변 여부</label> &nbsp;
-				<c:choose>
-		      		<c:when test="${oneone.rep=='n'}">미답변</c:when>
-		      		<c:otherwise>답변완료</c:otherwise>
-		      	</c:choose><br>
-            <label>답변</label> &nbsp; ${oneone.reply}<br>
 
 			<br><br>
+			<div align="center">
 			<c:if test="${oneone.rep == 'n'}">
 				<input type="button" class="btn btn-success btn-sm" onclick="location.href='oneone_reply?onseq=${oneone.onseq}'" value="답변 입력하기"/> &nbsp; &nbsp;
 			</c:if>
             <input type="button" class="btn btn-success btn-sm" onclick="location.href='oneone'" value="리스트로 돌아가기"/>
+            </div>
             
             </div>
             </div>

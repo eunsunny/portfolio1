@@ -38,8 +38,15 @@ function go_next(){
 
 
 function go_save(){
+	
+	var idpw_chk = /^[a-zA-Z0-9]{4,12}$/;
+	var phone_chk = /[0-9]{3}-[0-9]{4}-[0-9]{4}/;
+
 	if($("#id").val() == ""){
 		alert("아이디를 입력해 주세요.");
+		$("#id").focus();
+	} else if(!idpw_chk.test($("#id").val())) {
+		alert("아이디는 4~12자의 영문 대소문자와 숫자로만 입력하셔야 합니다.");
 		$("#id").focus();
 	} else if($("#name").val() == ""){
 		alert("이름을 입력해 주세요.");
@@ -56,22 +63,32 @@ function go_save(){
 	} else if ($("#pwd").val() != $("#pwdCheck").val()) {
 		alert("패스워드가 다릅니다. 다시 입력해 주세요.");
 		$("#pwdCheck").focus();
+	} else if(!idpw_chk.test($("#pwd").val())) {
+		alert("비밀번호는 4~12자의 영문 대소문자와 숫자만 가능합니다.");
+		$("#pwd").focus();
 	} else if($("#phone").val() == ""){
 		alert("전화번호를 입력해 주세요.");
 		$("#phone").focus();
+	} else if(!phone_chk.test($("#phone").val())) {
+		alert("전화번호는 - 를 포함하여 입력해주세요.");
+		$("#phone").focus();
 	} else if($("#email").val() == ""){
-		alert("전화번호를 입력해 주세요.");
+		alert("이메일을 입력해 주세요.");
 		$("#email").focus();
 	} else if($("#zip_num").val() == ""){
 		alert("주소를 입력해주세요.");
 		$("#zip_num").focus();
 	} else {
+		alert("회원가입이 완료되었습니다.\n로그인 화면으로 이동합니다.");
 		$("#join").attr("action", "join").submit();
 	}
 	
 }
 
 function updateMember(){
+	
+	var phone_chk = /[0-9]{3}-[0-9]{4}-[0-9]{4}/;
+	
 	if($("#nick_name").val() == ""){
 		alert("닉네임을 입력해 주세요.");
 		$("#nick_name").focus();
@@ -80,6 +97,9 @@ function updateMember(){
 		$("#nick_name").focus();
 	} else if($("#phone").val() == ""){
 		alert("전화번호를 입력해 주세요.");
+		$("#phone").focus();
+	} else if(!phone_chk.test($("#phone").val())) {
+		alert("전화번호는 - 를 포함하여 입력해주세요.");
 		$("#phone").focus();
 	} else {
 		alert("회원 정보가 변경되었습니다.");
@@ -154,13 +174,6 @@ function changePassword() {
 	}
 		
 }
-
-/*function post_zip() {
-	var url = "find_zip_num_dong";
-	
-	window.open(url, "_blank_1", 
-			"toolbar=no, menubar=no, scrollbars=yes, resizable=no, width=500, height=600");
-}*/
 
 // 주소찾기 다음 API 연동
 function execPostCode() {

@@ -138,7 +138,7 @@ table.type05 td {
 			<br><br>
 			
 			<div align="center">
-	            <input type="button" class="btn btn-success btn-sm" onclick="delete_check()" value="삭제"/> &nbsp; &nbsp;                
+	            <!-- <input type="button" class="btn btn-success btn-sm" onclick="delete_check()" value="삭제"/> &nbsp; &nbsp; -->                
 	            <input type="button" class="btn btn-success btn-sm" onclick="location.href='order_manage'" value="리스트로 돌아가기"/>
             </div>
             
