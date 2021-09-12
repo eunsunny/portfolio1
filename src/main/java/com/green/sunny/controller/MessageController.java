@@ -23,6 +23,7 @@ public class MessageController {
 	@Autowired
 	private MemberService memberService;
 	
+	// 받은 쪽지함
 	@RequestMapping("/message_list")
 	public String messageList(MessageVO vo, Model model, HttpSession session) {
 		
@@ -86,8 +87,39 @@ public class MessageController {
 		return "redirect:message_list";
 	}
 	
-//	// 보낸 쪽지함
-//	@RequestMapping("/message_send_list")
-//	public String 
+	// 보낸 쪽지함
+	@RequestMapping("/message_send_list")
+	public String messageSendList(MessageVO vo, Model model, HttpSession session) {
+		
+		MemberVO loginUser = (MemberVO)session.getAttribute("loginUser");
+		
+		vo.setSend_id(loginUser.getId());
+		
+		List<MessageVO> messageList = messageService.messageSendList(vo);
+		
+		model.addAttribute("messageList", messageList);
+		
+		return "message/messageSendList";
+		
+	}
+	
+	@RequestMapping("/message_send_detail")
+	public String messageSendDetail(int no, Model model) {
+		
+		MessageVO message = messageService.messageDetail(no);
+		
+		model.addAttribute("message", message);
+		
+		return "message/messageSendDetail";
+		
+	}
+	
+	@RequestMapping("/message_send_delete")
+	public String messageSendDelete(int no) {
+		
+		messageService.deleteMessage(no);
+		
+		return "redirect:message_send_list";
+	}
 	
 }

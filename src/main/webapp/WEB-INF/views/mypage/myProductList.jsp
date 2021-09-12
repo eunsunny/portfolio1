@@ -47,7 +47,7 @@ function detailClick(oseq) {
 					<table>
 						<thead>
 						<tr style="padding: 0;">
-							<th>번호</th><th>카테고리</th><th>상품명</th><th>가격</th><th>판매상세</th><th>판매현황</th><th>상품수정</th><th>등록일</th><th>삭제</th>
+							<th>번호</th><th>카테고리</th><th>상품명</th><th>가격</th><th>판매상세</th><th>판매현황</th><th>상품수정</th><th>등록일</th>
 						</tr>
 						</thead>
 						<tbody class="ListBody">
@@ -89,14 +89,13 @@ function detailClick(oseq) {
 												</c:otherwise>
 										</c:choose>
 										<td><fmt:formatDate value="${productVO.regdate}"/></td>
-										<td><input type="button" value="삭제" onclick="#"/></td>
 									</tr>
 								</c:forEach>
 							</c:otherwise>
 						</c:choose>
 						</tbody>
 					</table>
-					<span style="text-align:right; font-size:12px; color:red; padding:0; height:20px;">* 상품 삭제 후 되돌리수 없으니 신중하게 삭제해주세요.</span>
+					<span style="text-align:right; font-size:12px; color:red; padding:0; height:20px;">* 상품삭제는 상품 상세보기에서 가능합니다.</span>
 						</div>
 					</div>
 				</div>
