@@ -9,7 +9,7 @@
 	function messageDelete(no) {
 		
 		alert("쪽지가 삭제되었습니다.");
-		location.href="message_delete?no="+no;
+		location.href="message_send_delete?no="+no;
 	}
 	
 </script>
@@ -26,7 +26,7 @@
 <body>
 <%@ include file="./sub_menu_message.jsp"%>
 <div class="col-lg-7">
-	<h2 style="letter-spacing: 0;">받은 쪽지</h2><br>
+	<h2 style="letter-spacing: 0;">보낸 쪽지</h2><br>
 	<form name="frm" id="messageWrite" method="get" action="send_message">
 		<div class="container py-5">
 			<div class="row">
@@ -42,7 +42,7 @@
 							<td><b>${message.recv_id}</b></td>
 						</tr>
 						<tr>
-							<th>수신일</th>
+							<th>발신일</th>
 							<td><fmt:formatDate value="${message.send_time}"/></td>
 						</tr>
 						<tr>
@@ -56,7 +56,7 @@
 					</table>
 					</div>
 					<div align="center" width="100">
-						<button type="button" onclick="location='message_list'">목록으로</button>
+						<button type="button" onclick="location='message_send_list'">목록으로</button>
 						<button type="button" onclick="messageDelete(${message.no})">삭제하기</button>
 					</div>
 				</div>

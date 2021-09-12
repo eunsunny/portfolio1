@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.green.sunny.dao.MessageDAO;
+import com.green.sunny.dto.AdminVO;
 import com.green.sunny.dto.MessageVO;
 
 @Service("messageService")
@@ -25,6 +26,12 @@ public class MessageServiceImpl implements MessageService {
 		
 		return messageDao.messageList(vo);
 	}
+	
+	@Override
+	public List<MessageVO> messageSendList(MessageVO vo) {
+		
+		return messageDao.messageSendList(vo);
+	}
 
 	@Override
 	public void readMessage(int no) {
@@ -42,6 +49,12 @@ public class MessageServiceImpl implements MessageService {
 	public MessageVO messageDetail(int no) {
 		
 		return messageDao.messageDetail(no);
+	}
+
+	@Override
+	public String adminMessage(String id) {
+		
+		return messageDao.adminMessage(id);
 	}
 
 }
