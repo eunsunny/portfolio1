@@ -14,6 +14,33 @@
   <script src="js/main.js"></script>
   
 </head>
+<script>
+function send_mail() {
+	if($('#message').val() == '' || $('#message').val() == null) {
+		alert('메세지를 입력 후 발송버튼을 눌러주세요.');
+		return false;
+	}
+	
+    $.ajax({
+       type: 'POST',
+       url: 'mail_admin',
+       dataType: 'json',
+       data:{message : $('#message').val()},
+       success: function(data) {
+          if(data){
+        	  alert('관리자에게 메세지 발송 성공하였습니다.');
+        	  $('#name').val('');
+        	  $('#message').val('');
+          } else{
+        	  alert('관리자에게 메세지 발송 실패하였습니다.');
+          }
+       },
+       error: function() {
+    	   alert('관리자에게 메세지 발송 실패하였습니다.');
+       }
+   });
+ }
+</script>
 <body>
   <div class="clear"></div>
 		<!-- Footer -->
@@ -27,17 +54,11 @@
 							<section>
 								<form method="post" action="#">
 									<div class="row gtr-50">
-										<div class="col-6 col-12-small">
-											<input name="name" placeholder="Name" type="text" />
-										</div>
-										<div class="col-6 col-12-small">
-											<input name="email" placeholder="Email" type="text" />
+										<div class="col-12">
+											<textarea name="message" id="message" placeholder="message" rows="8"></textarea>
 										</div>
 										<div class="col-12">
-											<textarea name="message" placeholder="Message" rows="8"></textarea>
-										</div>
-										<div class="col-12">
-											<a href="#" class="form-button-submit button icon solid fa-envelope">Send Message</a>
+											<input class="btn" type="button" value="Send Message" onClick="send_mail()">
 										</div>
 									</div>
 								</form>
