@@ -12,7 +12,15 @@
 <body>
 <script>
  alert("결제에 성공하였습니다.");
+ 
+ function goHome() {
+	 location.href="index";
+ }
 </script>
+
+
+
+
 <article>
 	<div class="row">
 	
@@ -35,7 +43,7 @@
 		<tr>
 			  <th>이름</th>
 			  <td width="343" colspan="5">
-			       <input type="text" name="name" id="name" size="47" maxlength="100" value="${buyerInfo.loginUserName}" disabled>
+			       <input style="width:50%;" type="text" name="name" id="name" size="47" maxlength="100" value="${buyerInfo.loginUserName}" disabled>
 			  </td>
 		</tr>
 		
@@ -46,7 +54,7 @@
 		<tr>
 			  <th>이메일</th>
 			  <td width="343" colspan="5">
-			       <input type="text" name="email" id="email" size="47" maxlength="100" value="${buyerInfo.email}" disabled>
+			       <input style="width:70%;" type="text" name="email" id="email" size="47" maxlength="100" value="${buyerInfo.email}" disabled>
 			  </td>
 		</tr>
 
@@ -58,7 +66,7 @@
 		<tr>
 			  <th>전화번호</th>
 			  <td width="343" colspan="5">
-			       <input type="text" name="phone" id="phone" size="47" maxlength="100" value="${buyerInfo.phone}" disabled>
+			       <input style="width:60%;" type="text" name="phone" id="phone" size="47" maxlength="100" value="${buyerInfo.phone}" disabled>
 			  </td>
 		</tr>
 		
@@ -70,7 +78,7 @@
 
 		<tr>
 			  <th>주소*</th>
-			  <td width="343" colspan="5">
+			  <td width="700" colspan="5">
 			       <input type="text" name="address" id="address" size="47" maxlength="100" value="${buyerInfo.address}" disabled>
 			  </td>
 		</tr>
@@ -83,7 +91,7 @@
 		<tr>
 			  <th >결제 금액</th>
 			  <td width="343" colspan="5" >
-			  <input type="text" name=totalPrice id="totalPrice" size="47" maxlength="100" value="${buyerInfo.price}" disabled>
+			  <input style="width:50%;" type="text" name=totalPrice id="totalPrice" size="47" maxlength="100" value="${buyerInfo.price}" disabled>
 			  </td>
 			
 		</tr>

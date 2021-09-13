@@ -19,6 +19,38 @@
 <!-- Custom styles for this template-->
 <link href="admin_css/sb-admin-2.min.css" rel="stylesheet">
 
+<style>
+	
+table.type05 {
+  border-collapse: separate;
+  border-spacing: 1px;
+  text-align: left;
+  line-height: 1.5;
+  border-top: 4px solid #ccc;
+  border-bottom: 5px double #ccc; 
+  margin: 20px 10px;
+  width : 800px;
+  margin-left:auto; 
+  margin-right:auto;
+  background-color: white;
+}
+table.type05 th {
+  width: 30%;
+  padding: 10px;
+  font-weight: bold;
+  text-align : center;
+  vertical-align: center;
+  border-bottom: 1px solid #ccc;
+  background: #ffc0cb;
+}
+table.type05 td {
+  width: 70%;
+  padding: 10px;
+  vertical-align: top;
+  border-bottom: 1px solid #ccc;
+}
+</style>
+
 <script type="text/javascript">
 function report_success(){
 	var rep_confirm = confirm("처리 완료 되었습니까?");
@@ -61,22 +93,66 @@ function report_success(){
             <!-- /.container-fluid -->
             <div class="card-body">
             <div class="table-responsive">
-            <label>신고한 회원 아이디</label> &nbsp; ${Report.id}<br>
-            <label>신고당한 회원 아이디</label> &nbsp; ${Report.report_id}<br>           
-            <label>신고 사유</label> &nbsp; ${Report.rp_kind}<br>
-            <label>신고 날짜</label> &nbsp; <fmt:formatDate value="${Report.report_date}" type="date"/><br>
-            <label>내용</label> &nbsp; ${Report.content}<br>
-            <label>처리 여부</label> &nbsp;
-		      	<c:choose>
-		      		<c:when test="${Report.result=='n'}">미처리</c:when>
-		      		<c:otherwise>처리완료</c:otherwise>
-		      	</c:choose><br>
+            <table  class="type05">
+        		<tbody>
+		            <tr>
+		                <th scope="row">신고한 회원 아이디</th>
+		                <td>${Report.id}</td>
+		            </tr>
+		            <tr>
+		                <th scope="row">신고당한 회원 아이디</th>
+		                <td>${Report.report_id}</td>
+		            </tr>
+		            <tr>
+		                <th scope="row">신고사유</th>
+		                <td>
+		                	<c:choose>
+				         		<c:when test="${Report.rp_kind == 1}">
+				         			허위 상품
+				         		</c:when>
+				         		<c:when test="${Report.rp_kind == 2}">
+				         			과대 홍보
+				         		</c:when>
+				         		<c:when test="${Report.rp_kind == 3}">
+				         			비매너/욕설
+				         		</c:when>
+				         		<c:when test="${Report.rp_kind == 4}">
+				         			결제관련
+				         		</c:when>
+				         		<c:when test="${Report.rp_kind == 5}">
+				         			기타
+				         		</c:when>
+				         	</c:choose>
+		                </td>
+		            </tr>
+		            <tr>
+		                <th scope="row">내용</th>
+		                <td>${Report.content}</td>
+		            </tr>		            
+		            <tr>
+		                <th scope="row">신고 날짜</th>
+		                <td><fmt:formatDate value="${Report.report_date}" type="date"/></td>
+		            </tr>
+		            <tr>
+						<th scope="row">처리 여부</th>
+						<td>
+							<c:choose>
+						      	<c:when test="${Report.result == 'y'}">처리완료</c:when>
+						      	<c:otherwise>미처리</c:otherwise>
+							</c:choose>				
+						</td>
+					</tr>
+        		</tbody>
+    		</table>
+    		
 			<br><br>
+			<div align="center">
 			<c:if test="${Report.result == 'n'}">
 				<input type="hidden" id="rseq" name="rseq" value="${Report.rseq}"/>
 				<input type="button" class="btn btn-success btn-sm" onclick="report_success()" value="처리 완료"/> &nbsp; &nbsp;
 			</c:if>
             <input type="button" class="btn btn-success btn-sm" onclick="location.href='report'" value="리스트로 돌아가기"/>
+            </div>
             
             </div>
             </div>

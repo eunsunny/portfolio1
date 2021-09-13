@@ -5,6 +5,14 @@
 <html>
 <head>
 
+<script type="text/javascript">
+
+	function selectClick(onseq) {
+		location.href = "oneOne_Detail?onseq="+onseq;
+	}
+
+</script>
+
 </head>
 <body>
 <%@ include file="../notice/sub_menu.jsp"%>
@@ -24,7 +32,7 @@
 							<th>번호</th><th>제목</th><th>답변여부</th><th>등록일</th>
 						</tr>
 						</thead>
-						<tbody style="text-align: center; padding: 0; background-color: #F6F6F6;">
+						<tbody class="noticeList">
 						<c:choose>
 							<c:when test="${OneoneList.size() == 0}">
 								<tr>
@@ -35,9 +43,9 @@
 							</c:when>
 							<c:otherwise>
 								<c:forEach items="${OneoneList}" var="OneoneVO">
-									<tr>
+									<tr class="select" onclick="selectClick(${OneoneVO.onseq})">
 										<td height="23" align="center" width="10%">${OneoneVO.onseq}</td>
-										<td width="45%"><a href="oneOne_Detail?onseq=${OneoneVO.onseq}">${OneoneVO.title}</a></td>
+										<td width="45%">${OneoneVO.title}</td>
 										<td width="20%">
 											<c:choose>
 												<c:when test='${OneoneVO.rep=="n"}'>답변 진행중</c:when>								

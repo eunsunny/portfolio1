@@ -41,12 +41,15 @@
 											<li><span><a href="#" onclick="login_empty_check()">찜목록</a></span></li>
 											<li> | </li>
 											<li><span><a href="#" onclick="login_empty_check()">내등급</a></span></li>
+											<li> | </li>
+											<li><span><a href="#" onclick="login_empty_check()">쪽지</a></span></li>
 										</c:when>
 										<c:otherwise>
 											<li style="color:orange">
 											<img src="grade_images/${sessionScope.loginUser.grade}.png" width="20" height="20" >
 											<span>
 												${sessionScope.loginUser.name}(${sessionScope.loginUser.id})
+												<input type="hidden" value="${sessionScope.loginUser.id}" id="session_id"/>
 											</span>
 											</li>
 											<li> | </li>
@@ -55,6 +58,8 @@
 											<li><span><a href="jjim_list">찜목록</a></span></li>
 											<li> | </li>
 											<li><span><a href="grade_detail">내등급</a></span></li>
+											<li> | </li>
+											<li><span><a href="message_list">쪽지</a></span></li>
 										</c:otherwise>
 									</c:choose>
 								</ul>
@@ -159,7 +164,7 @@
     <select  class="form-control" name="search_option" style="background-color:#F6F6F6; width:115px; font-weight:bold; padding-left:1.5em;">
         <option value="id"
 <c:if test="${map.search_option == 'user_id'}">selected</c:if>
-   >작성자&nbsp;&nbsp;▼</option>
+   >작성자</option>
 
         <option value="title" 
 <c:if test="${map.search_option == 'title'}">selected</c:if>

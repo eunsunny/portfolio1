@@ -17,7 +17,7 @@ import com.green.sunny.dto.OrderVO;
 import com.green.sunny.dto.ProductImageVO;
 import com.green.sunny.dto.ProductVO;
 import com.green.sunny.dto.ReportVO;
-import com.green.sunny.utils.Criteria;
+import com.green.sunny.adminUtils.Criteria;
 
 @Repository
 public class AdminDAO {
@@ -169,6 +169,11 @@ public class AdminDAO {
 		map.put("key", key);
 		
 		return mybatis.selectList("AdminDAO.getAllOrderPaging", map);
+	}
+	
+	// 주문 상세보기 조회
+	public OrderVO getOrderDetail(int oseq) {
+		return mybatis.selectOne("AdminDAO.getOrderDetail", oseq);
 	}
 	
 	// 전체 주문의 갯수 조회

@@ -5,6 +5,14 @@
 <html>
 <head>
 
+<script type="text/javascript">
+
+function selectClick(gseq) {
+	location.href = "notice_detail?gseq="+gseq;
+}
+
+</script>
+
 </head>
 <body>
 <%@ include file="../notice/sub_menu.jsp"%>
@@ -20,7 +28,7 @@
 							<th>번호</th><th>제목</th><th>등록일</th><th>조회수</th>
 						</tr>
 						</thead>
-						<tbody style="text-align:center; background-color: #F6F6F6; ">
+						<tbody class="noticeList">
 						<c:choose>
 							<c:when test="${noticeList.size() == 0}">
 								<tr>
@@ -31,9 +39,9 @@
 							</c:when>
 							<c:otherwise>
 								<c:forEach items="${noticeList}" var="NoticeVO">
-									<tr>
+									<tr class="select" onclick="selectClick(${NoticeVO.gseq})">
 										<td align="center" width="10%">${NoticeVO.gseq}</td>
-										<td width="60%"><a href="notice_detail?gseq=${NoticeVO.gseq}">${NoticeVO.title}</a></td>
+										<td width="60%">${NoticeVO.title}</td>
 										<td width="20%"><fmt:formatDate value="${NoticeVO.regdate}"/></td>
 										<td width="10%">${NoticeVO.count}</td>
 									</tr>

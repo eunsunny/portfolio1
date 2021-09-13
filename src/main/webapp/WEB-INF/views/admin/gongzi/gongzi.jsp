@@ -72,15 +72,15 @@
 				<div class="card-body">
                 <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="80%" cellspacing="0">
-                	<tr>
+                	<tr align="center">
                 		<th>번호</th>
                 		<th>제목</th>
                 		<th>등록 날짜</th>
                 		<th>조회 수</th>
                 	</tr>
                		<c:forEach items="${gongziList}"  var="gongziVO">
-       				<tr>      
-       					<td> ${gongziVO.gseq}</td>
+       				<tr align="center">      
+       					<td>${number=number+1}</td>
        					<td> <a href="gongzi_detail?gseq=${gongziVO.gseq}">${gongziVO.title}</a></td>
 				        <td> <fmt:formatDate value="${gongziVO.regdate}" type="date"/></td>
 				        <td> ${gongziVO.count}</td>

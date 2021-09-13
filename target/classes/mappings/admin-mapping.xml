@@ -57,9 +57,9 @@
 	<!-- Product Section -->
 	<select id="getAllProductPaging" parameterType="hashMap" resultType="product">
 		<![CDATA[
-		SELECT pseq, name, kind, price, title, soldyn, regdate
+		SELECT pseq, name, kind, price, title, soldyn, regdate, id
 		  FROM
-    		(SELECT row_number() over(ORDER BY name) rn, pseq, name, kind, price, title, soldyn, regdate
+    		(SELECT row_number() over(ORDER BY regdate DESC) rn, pseq, name, kind, price, title, soldyn, regdate, id
       		   FROM product
      		  WHERE name LIKE '%'||#{key}||'%')
           WHERE rn <= #{criteria.pageNum} * #{criteria.rowsPerPage}
@@ -84,7 +84,7 @@
 		<![CDATA[
 		SELECT id, name, nick_name, email, phone, regdate
 		  FROM
-    		(SELECT row_number() over(ORDER BY name) rn, id, name, nick_name, email, phone, regdate
+    		(SELECT row_number() over(ORDER BY regdate DESC) rn, id, name, nick_name, email, phone, regdate
       		   FROM member
      		  WHERE name LIKE '%'||#{key}||'%')
           WHERE rn <= #{criteria.pageNum} * #{criteria.rowsPerPage}
@@ -103,9 +103,9 @@
 	<!-- Board Section -->
 	<select id="getAllBoardPaging" parameterType="hashMap" resultType="board">
 		<![CDATA[
-		SELECT bseq, title, id, content, image, regdate, count
+		SELECT bseq, title, id, content, regdate, count
 		  FROM
-    		(SELECT row_number() over(ORDER BY id) rn, bseq, title, id, content, image, regdate, count
+    		(SELECT row_number() over(ORDER BY regdate DESC) rn, bseq, title, id, content, regdate, count
       		   FROM board
      		  WHERE title LIKE '%'||#{key}||'%')
           WHERE rn <= #{criteria.pageNum} * #{criteria.rowsPerPage}
@@ -153,14 +153,18 @@
 	<!-- Order Section -->
 	<select id="getAllOrderPaging" parameterType="hashMap" resultType="order">
 		<![CDATA[
-		SELECT oseq, id, pseq, order_date, pay_result, rev_result
+		SELECT oseq, name, oid, order_date, pay_result, rev_result, cod_nm
 		  FROM
-    		(SELECT row_number() over(ORDER BY id) rn, oseq, id, pseq, order_date, pay_result, rev_result
-      		   FROM orders
-     		  WHERE id LIKE '%'||#{key}||'%')
-          WHERE rn <= #{criteria.pageNum} * #{criteria.rowsPerPage}
-		    AND rn > (#{criteria.pageNum}-1) * #{criteria.rowsPerPage}
+    		(SELECT row_number() over(ORDER BY order_date DESC) rn, oseq, name, oid, order_date, pay_result, rev_result, cod_nm
+      		   FROM order_view
+     		  WHERE oid LIKE '%'||#{key}||'%')
+          WHERE rn > (#{criteria.pageNum}-1) * #{criteria.rowsPerPage}
+		    AND rn <= #{criteria.pageNum} * #{criteria.rowsPerPage}
 	    ]]>
+	</select>
+	
+	<select id="getOrderDetail" parameterType="int" resultType="order">
+		SELECT * FROM order_view WHERE oseq=#{oseq}
 	</select>
 	
 	<select id="getTotalOrder" parameterType="String" resultType="int">

@@ -21,6 +21,38 @@
     <!-- Custom styles for this template-->
     <link href="admin_css/sb-admin-2.min.css" rel="stylesheet">
 
+<style>
+	
+table.type05 {
+  border-collapse: separate;
+  border-spacing: 1px;
+  text-align: left;
+  line-height: 1.5;
+  border-top: 4px solid #ccc;
+  border-bottom: 5px double #ccc; 
+  margin: 20px 10px;
+  width : 800px;
+  margin-left:auto; 
+  margin-right:auto;
+  background-color: white;
+}
+table.type05 th {
+  width: 30%;
+  padding: 10px;
+  font-weight: bold;
+  text-align : center;
+  vertical-align: center;
+  border-bottom: 1px solid #ccc;
+  background: #ffc0cb;
+}
+table.type05 td {
+  width: 70%;
+  padding: 10px;
+  vertical-align: top;
+  border-bottom: 1px solid #ccc;
+}
+</style>
+
 </head>
 
 <body id="page-top">
@@ -49,22 +81,40 @@
                 <!-- /.container-fluid -->
                 <div class="card-body">
                 <div class="table-responsive">
-                <label>제목</label>
-                <p> ${gongzi.title} </p>
-                <label>작성일</label>
-                <p><fmt:formatDate value="${gongzi.regdate}" type="date"/></p>
-                <label>조회수</label>
-                <p> ${gongzi.count}</p>
-                <label>이미지</label>
-                <p> <img src="upload_images/gongzi/${gongzi.image}" width="200pt"></p>
-                <label>내용</label>
-                <textarea rows="" cols="100" readonly="readonly" >${gongzi.content}</textarea>
+                <table class="type05">
+        		<tbody>
+		            <tr>
+		                <th scope="row">제목</th>
+		                <td>${gongzi.title}</td>
+		            </tr>
+		            <tr>
+		                <th scope="row">작성일</th>
+		                <td><fmt:formatDate value="${gongzi.regdate}" type="date"/></td>
+		            </tr>		            
+		            <tr>
+		                <th scope="row">조회수</th>
+		                <td>${gongzi.count}</td>
+		            </tr>
+		            <tr>
+		                <th scope="row">이미지</th>
+		                <td>
+          	                <img src="upload_images/gongzi/${gongzi.image}" width="200pt">
+		                </td>
+		            </tr>		            
+		            <tr>
+		                <th scope="row">내용</th>
+		                <td>${gongzi.content}</td>
+		            </tr>
+        		</tbody>
+    			</table>
 				
 				<br><br>
+				<div align="center">
                 <input type="button" class="btn btn-success btn-sm" onclick="location.href='gongzi_add'" value="새 공지사항"/> &nbsp; &nbsp;
                 <input type="button" class="btn btn-success btn-sm" onclick="location.href='gongzi_update?gseq=${gongzi.gseq}'" value="수정"/> &nbsp; &nbsp;
                 <input type="button" class="btn btn-success btn-sm" onclick="location.href='gongzi_delete?gseq=${gongzi.gseq}'" value="삭제"/> &nbsp; &nbsp;                
                 <input type="button" class="btn btn-success btn-sm" onclick="location.href='gongzi'" value="리스트로 돌아가기"/>
+                </div>
                 
                 </div>
                 </div>

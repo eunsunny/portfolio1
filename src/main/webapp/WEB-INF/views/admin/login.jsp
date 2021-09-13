@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>로그인 페이지 입니다?</title>
+    <title>로그인 페이지</title>
 
     <!-- Custom fonts for this template-->
     <link href="admin_vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -18,7 +18,7 @@
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="admin_css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="admin_css/sb-admin-2.css" rel="stylesheet">
 	<script type="text/javascript">
 	function admin_check()
 	{
@@ -51,7 +51,7 @@
                             <div class="col-lg-6">
                                 <div class="p-5">
                                     <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
+                                        <h1 class="h4 text-gray-900 mb-4">환영합니다!</h1>
                                     </div>
                                     <form class="user" method="post" name="frm" action="admin_login">
                                         <div class="form-group">
@@ -64,23 +64,12 @@
                                                 id="adminPassword" name="adminPassword" placeholder="Password">
                                         </div>
                                         <div class="form-group">
-                                            <div class="custom-control custom-checkbox small">
-                                                <input type="checkbox" class="custom-control-input" id="customCheck">
-                                                <label class="custom-control-label" for="customCheck">Remember
-                                                    Me</label>
-                                            </div>
                                         </div>
                                         <input type="submit" value="Login" class="btn btn-primary btn-user btn-block" onclick="return admin_check()">
                                         <hr>
            							 	<h4 style="color:red">${message}</h4>
                                     </form>
                                     <hr>
-                                    <div class="text-center">
-                                        <a class="small" href="forgot-password.html">Forgot Password?</a>
-                                    </div>
-                                    <div class="text-center">
-                                        <a class="small" href="register.html">Create an Account!</a>
-                                    </div>
                                 </div>
                             </div>
                         </div>

@@ -221,20 +221,21 @@
                         </ul>
                     </div>
                     <div class="col-md-6 pb-4">
-                        <div class="d-flex">
-                            <select class="form-control" id="searchBox" name="searchBox" onchange="changeSelectBox()">
-                                <option selected value="1">전체</option>
-                                <option value="2">조회순</option>
-                                <option value="3">최신순</option>
-                                <option value="4">찜순</option>
-                            </select>
-                        </div>
+<!--                         <div class="d-flex"> -->
+<!--                             <select class="form-control" id="searchBox" name="searchBox" onchange="changeSelectBox()"> -->
+<!--                                 <option selected value="1">전체</option> -->
+<!--                                 <option value="2">조회순</option> -->
+<!--                                 <option value="3">최신순</option> -->
+<!--                                 <option value="4">찜순</option> -->
+<!--                             </select> -->
+<!--                         </div> -->
                     </div>
                 </div>
                 
   <form name="frm" id="prod_form" method="post"> 
   <input type="hidden" id="kind" name="kind" value="${productVO.kind}">
   <input type="hidden" id="cnt" name="cnt" value="${productVO.cnt}">
+  <input type="hidden" id="kind_nm" name="kind_nm" value="${productTry.kind_nm}">
    <c:choose>
     <c:when test="${productListSize<=0}">
     <tr>
@@ -250,19 +251,28 @@
                         <div class="card mb-4 product-wap rounded-0">
                             <div class="card rounded-0">
                             <a id="atag" href="product_detail?pseq=${productVO.pseq}">
-                                <img class="card-img rounded-0 img-fluid" style="width:310px;height:200px" src="product_images/${productVO.image}" />
+                            	<c:if test="${productVO.soldyn == 'y'}">
+                            	<div style="position: relative;">
+                            	<img class="card-img rounded-0 img-fluid" style="width:310px; height:250px; opacity:0.3; position: absolute;" src="product_images/판매완료.png" />
+                                <img class="card-img rounded-0 img-fluid" style="width:310px; height:250px; opacity:0.3;" src="product_images/${productVO.image}" />
+                                </div>
+                                </c:if>
+                                <c:if test="${productVO.soldyn == 'n'}">                           
+                                <img class="card-img rounded-0 img-fluid" style="width:310px;height:250px" src="product_images/${productVO.image}" />
+                                </c:if>
+                                
                              </a>
                                 <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
                                     <ul class="list-unstyled">
-                                        <li><a class="btn btn-success text-white" href="product_detail?pseq=${productVO.pseq}"><i class="far fa-heart"></i></a></li>
+                                        <li><a class="btn btn-success text-white" href="jjim_insert_list?pseq=${productVO.pseq}"><i class="far fa-heart"></i></a></li>
                                         <li><a class="btn btn-success text-white mt-2" href="product_detail?pseq=${productVO.pseq}"><i class="far fa-eye"></i></a></li>
-                                        <li><a class="btn btn-success text-white mt-2" href="product_detail?pseq=${productVO.pseq}"><i class="fas fa-cart-plus"></i></a></li>
+<%--                                         <li><a class="btn btn-success text-white mt-2" href="product_detail?pseq=${productVO.pseq}"><i class="fas fa-cart-plus"></i></a></li> --%>
                                     </ul>
                                 </div>
                             </div>
                             <div class="card-body">
                             
-                                <a href="product_detail?pseq=${productVO.pseq}" class="h3 text-decoration-none">${productVO.name}</a>
+                                <a style="font-size: 10em;" href="product_detail?pseq=${productVO.pseq}" class="h3 text-decoration-none">${productVO.name}</a>
                                 <ul class="w-100 list-unstyled d-flex justify-content-between mb-0">
                                     <li><p class="text-center mb-0">조회수 : ${productVO.cnt}</p></li>
                                     <li class="pt-2">
@@ -273,16 +283,17 @@
                                         <span class="product-color-dot color-dot-green float-left rounded-circle ml-1"></span>
                                     </li>
                                 </ul>
-                                <ul class="list-unstyled d-flex justify-content-center mb-1">
-                                    <li>
-                                        <i class="text-warning fa fa-star"></i>
-                                        <i class="text-warning fa fa-star"></i>
-                                        <i class="text-warning fa fa-star"></i>
-                                        <i class="text-muted fa fa-star"></i>
-                                        <i class="text-muted fa fa-star"></i>
-                                    </li>
-                                </ul>
-                                <p class="text-center mb-0">${productVO.price}원</p>
+<!--                                 <ul class="list-unstyled d-flex justify-content-center mb-1"> -->
+<!--                                     <li> -->
+<!--                                         <i class="text-warning fa fa-star"></i> -->
+<!--                                         <i class="text-warning fa fa-star"></i> -->
+<!--                                         <i class="text-warning fa fa-star"></i> -->
+<!--                                         <i class="text-muted fa fa-star"></i> -->
+<!--                                         <i class="text-muted fa fa-star"></i> -->
+<!--                                     </li> -->
+<!--                                 </ul> -->
+                                <p style="font-size: 30px;" class="text-center mb-0">${productVO.price}원</p>
+                                
                             </div>
                         </div>
                     </div>

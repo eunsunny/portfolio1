@@ -31,19 +31,9 @@ public class HomeController {
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
 	public String home(Model model) {	
 		
-//		//신상품 조회 서비스 호출 
-//		List<ProductVO> newProdList =  productService.getNewProductList();
-//		model.addAttribute("newProductList", newProdList);
-//		
-//		
-//		//베스트 상품 조회 서비스
-//		List<ProductVO> bestProdList = productService.getBestProductList();
-//		model.addAttribute("bestProductList", bestProdList);	
-		
 		List<ProductImageVO> allPicture = productService.getAllPicture();
 		model.addAttribute("allPicture", allPicture);
 		
-		System.out.println(allPicture);
 		return "index";		
 	}
 	

@@ -136,4 +136,21 @@ public class ProductServiceImpl implements ProductService {
 	public int insertPayInfo(Map<String,Object> paramMap) {
 		return pDao.insertPayInfo(paramMap);
 	}
+
+	@Override
+	public void updateSoldyn(Map<String, Object> paramMap) {
+		pDao.updateSoldyn(paramMap);
+		
+	}
+
+	@Override
+	public String findCodByKindName(String kind_nm) {
+		return pDao.findCodByKindName(kind_nm);
+	}
+
+	@Override
+	public void deleteFromJjimBypseq(int pseq) {
+		pDao.deleteFromJjimBypseq(pseq);
+		
+	}
 }

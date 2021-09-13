@@ -15,6 +15,26 @@
     }
   
 </style>
+
+<script type="text/javascript">
+
+function selectClick(pseq) {
+	location.href = "product_detail?pseq="+pseq;
+}
+
+function detailClick(oseq) {
+	
+	event.stopPropagation();
+	
+	var url = "myorder_detail?oseq="+oseq;
+	
+	window.open(url, "_blank_1", 
+			"toolbar=no, menubar=no, scrollbars=no, resizable=no, width=550, height=500, "+
+				"top=150, left=400");
+}
+
+</script>
+
 </head>
 <body>
 <%@ include file="../member/sub_menu.jsp"%>
@@ -27,10 +47,10 @@
 					<table>
 						<thead>
 						<tr style="padding: 0;">
-							<th>번호</th><th>카테고리</th><th>상품명</th><th>가격</th><th>구매자</th><th>판매현황</th><th>상품수정</th><th>등록일</th>
+							<th>번호</th><th>카테고리</th><th>상품명</th><th>가격</th><th>판매상세</th><th>판매현황</th><th>상품수정</th><th>등록일</th>
 						</tr>
 						</thead>
-						<tbody class="prodListBody">
+						<tbody class="ListBody">
 						<c:choose>
 							<c:when test="${prodList.size() == 0}">
 								<tr>
@@ -41,16 +61,17 @@
 							</c:when>
 							<c:otherwise>
 								<c:forEach items="${prodList}" var="productVO">
-									<tr>
-										<td height="23" align="center">${productVO.pseq}</td>
-										<td>${productVO.kind_nm}</td>
-										<td><a href="product_detail?pseq=${productVO.pseq}">${productVO.name}</a></td>
+									<tr class="select" onclick="selectClick(${productVO.pseq})">
+										<td height="23" align="center" style="letter-spacing:-2px;">${productVO.pseq}</td>
+										<td style="letter-spacing:-2px;">${productVO.kind_nm}</td>
+										<td>${productVO.name}</td>
 										<td><fmt:formatNumber value="${productVO.price}"/></td>
 										<td>
 											<c:choose>
 												<c:when test="${empty productVO.oid}">-</c:when>
 												<c:otherwise>
-													<a href="#">${productVO.oid}</a><!-- 페이지 새로만들어서 넣기 -->
+													<input type="button" value="상세보기" 
+														onclick="detailClick(${productVO.oseq});"/>
 												</c:otherwise>
 											</c:choose>
 										</td>
@@ -58,7 +79,8 @@
 											<c:when test='${productVO.soldyn=="n"}'>
 												<td>판매중</td>
 												<td>
-													<input type="button" class="btn btn-success btn-lg" value="수정" onclick="location='update_form?pseq=${productVO.pseq}'"/>
+													<button type="button" class="btn btn-success btn-lg" onclick="event.stopPropagation(); location='update_form?pseq=${productVO.pseq}';">
+													 수정</button>
 												</td>
 											</c:when>
 												<c:otherwise>
@@ -73,6 +95,7 @@
 						</c:choose>
 						</tbody>
 					</table>
+					<span style="text-align:right; font-size:12px; color:red; padding:0; height:20px;">* 상품삭제는 상품 상세보기에서 가능합니다.</span>
 						</div>
 					</div>
 				</div>

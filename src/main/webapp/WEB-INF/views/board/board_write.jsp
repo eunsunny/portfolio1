@@ -106,7 +106,7 @@ function boardWirte(){
 
 <body>
 <form name="frm" id="write_form" method="post" enctype="multipart/form-data" style="margin-top : 100px;">
-		<input type="hidden" name="pseq" value="${productVO.pseq}">
+<%-- 		<input type="hidden" name="pseq" value="${productVO.pseq}"> --%>
 			<table id="list" style="margin: 0 auto; font-size : 20px;">
             <tr>
 			  <th>제목: &nbsp;&nbsp;&nbsp;</th>

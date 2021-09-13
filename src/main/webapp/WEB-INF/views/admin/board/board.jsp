@@ -72,7 +72,7 @@
     		<div class="table-responsive">
         	<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
             <thead>
-                <tr>
+                <tr align="center">
                     <th>번호</th>
                     <th>제목</th>
                     <th>작성자</th>
@@ -91,9 +91,9 @@
 	    		</c:when>
 				<c:otherwise>
 				<c:forEach items="${boardList}" var="boardVO">
-				    <tr>
+				    <tr align="center">
 				      <td>${number=number+1}</td>
-				      <td style="text-align: left;">   
+				      <td>   
 				         <a href="admin_board_detail${pageMaker.makeQuery(pageMaker.cri.pageNum)}&bseq=${boardVO.bseq}">${boardVO.title}</a>
 				   	  </td>
 				      <td>${boardVO.id}</td>

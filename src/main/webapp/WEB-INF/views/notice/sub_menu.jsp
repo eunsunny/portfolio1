@@ -6,16 +6,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
 
-<link rel="apple-touch-icon" href="img/apple-icon.png">
-<link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
-
 <link rel="stylesheet" href="css/bootstrap.min.css">
-<link rel="stylesheet" href="css/templatemo.css">
-<link rel="stylesheet" href="css/custom.css">
 
 <!-- Load fonts style after rendering the layout styles -->
-<link rel="stylesheet"
-	href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
 <link rel="stylesheet" href="css/fontawesome.min.css">
 <link rel="stylesheet" href="css/main.css" />
 <script type="text/javascript" src="js/product.js"></script>
@@ -36,7 +29,19 @@
    		background-color : white;
    	}
    	
+   	.noticeList {
+   		text-align:center; 
+    	background-color: #F6F6F6;
+    	padding: 0;
+   	}
    	
+	.noticeList > .select {
+    	cursor: pointer;
+    }
+    
+    .noticeList > .select:hover {
+    	background-color: #FFEAEA;
+    }
 
 </style>
 
