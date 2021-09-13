@@ -21,11 +21,15 @@
 <body>
 	<article>
 	<div class="row">
-		<h1>상품등록</h1>  
+		
 		
 		<!-- [1] 파일을 업로드 하기 위해서는 폼태그를 post 방식으로 전송하고,
 		인코딩 타입을 multipart/form-data 로 지정해야 한다. -->
 		<form name="frm" id="write_form" method="post" enctype="multipart/form-data">
+		<div style="font-size: 30px; margin-top: 60px;">
+		<h1>상품등록</h1>  
+		</div>	
+		<br>
 			<table id="list">
 			<tr>
 			  <th>카테고리</th>
@@ -51,7 +55,7 @@
 			
 			<tr>
 			  <th>제목</th>
-			  <td width="343" colspan="5">
+			  <td width="500" colspan="5">
 			       <input type="text" name="title" id="title" size="47" maxlength="100" value="">
 			  </td>
 			</tr>
@@ -84,8 +88,11 @@
 			    </td>
 			  </tr>    
 			</table>
-		<input class="btn" type="button" value="등록" onClick="go_save()">           
+			<br>
+		<div style="text-align: center;">
+		<input class="btn" type="button" value="등록" onClick="go_save_product()">           
 		<input class="btn" type="button" value="취소" onClick="go_mov()">
+		</div>
 		</form> 
 		</div>
 	</article>

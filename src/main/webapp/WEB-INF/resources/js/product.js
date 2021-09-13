@@ -8,36 +8,30 @@ function go_wrt() {
 /*
  *상품 등록하기 
  */
-function go_save() {
+function go_save_product() {
 	var $price = $("#price");
-//	var $price2 = $("#price2");
-//	var $price3 = $("#price3");
-//	
-//	if ($("#kind").val()=="") {
-//		alert("상품종류를 입력하세요!");
-//		$("#kind").focus();
-//	}else if ($("#name").val()=="") {
-//		alert("상품명을 입력하세요!");
-//		$("#name").focus();
-//	}else if ($price1.val()=="") {
-//		alert("원가를 입력하세요!");
-//		$("#price1").focus();
-//	}else if ($price2.val()=="") {
-//		alert("판매가를 입력하세요!");
-//		$("#price2").focus();
-//	}else if ($("#content").val()=="") {
-//		alert("상품상세를 입력하세요!");
-//		$("#content").focus();
-//	}else if ($("#product_image").val()=="") {
-//		alert("사진을 입력하세요!");
-//		$("#product_image").focus();
-//	}else {
+
+	if ($("#title").val()=="") {
+		alert("제목을 입력하세요");
+		$("#title").focus();
+	}else if ($("#name").val()=="") {
+		alert("상품명을 입력하세요");
+		$("#name").focus();
+	}else if ($price.val()=="") {
+		alert("가격을 입력하세요");
+		$("#price").focus();
+	}else if ($("#content").val()=="") {
+		alert("내용을 입력하세요");
+		$("#content").focus();
+	}else if ($("#file").val()=="") {
+		alert("사진을 입력하세요");
+		$("#file").focus();
+	}else {
 		$price.val(remove_comma($price.val()));
-//		$price2.val(remove_comma($price2.val()));
-//		$price3.val(remove_comma($price3.val()));
-		
 		$("#write_form").attr("encoding", "multipart/form-data");
 		$("#write_form").attr("action", "admin_product_write").submit();
+	}
+		
 }
 
 /*	입력된 금액을 받아 세자리마다 , 를 추가하여 반환
@@ -132,48 +126,32 @@ function go_update() {
 
 function go_mod_save(pseq) {
 	var $price = $("#price");
-//	var $price2 = $("#price2");
-//	var $price3 = $("#price3");
-//	
-//	if ($("#kind").val()=="") {
-//		alert("상품종류를 입력하세요!");
-//		$("#kind").focus();
-//	}else if ($("#name").val()=="") {
-//		alert("상품명을 입력하세요!");
-//		$("#name").focus();
-//	}else if ($price1.val()=="") {
-//		alert("원가를 입력하세요!");
-//		$("#price1").focus();
-//	}else if ($price2.val()=="") {
-//		alert("판매가를 입력하세요!");
-//		$("#price2").focus();
-//	}else if ($("#content").val()=="") {
-//		alert("상품상세를 입력하세요!");
-//		$("#content").focus();
-//	}else {
-//		if (confirm("수정하시겠습니까?")) {
+
+	
+	if ($("#title").val()=="") {
+		alert("제목을 입력하세요");
+		$("#title").focus();
+	}else if ($("#name").val()=="") {
+		alert("상품명을 입력하세요");
+		$("#name").focus();
+	}else if ($price.val()=="") {
+		alert("가격을 입력하세요");
+		$("#price").focus();
+	}else if ($("#content").val()=="") {
+		alert("내용을 입력하세요");
+		$("#content").focus();
+	}else if ($("#file").val()=="") {
+		alert("사진을 입력하세요");
+		$("#file").focus();
+	}else {
+		if (confirm("수정하시겠습니까?")) {
 		
-			/*
-			if($("#bestyn").is(":checked")) {
-				$("#bestyn").val("y");
-			}else {
-				$("#bestyn").val("n");
-			}
-			if($("#useyn").is(":checked")) {
-				$("#useyn").val("y");
-			}else {
-				$("#useyn").val("n");
-			}
-			*/			
-			
 			$price.val(remove_comma($price.val()));
-//			$price2.val(remove_comma($price2.val()));
-//			$price3.val(remove_comma($price3.val()));
-			
+
 			$("#update_form").attr("encoding", "multipart/form-data");
 			$("#update_form").attr("action", "product_update").submit();
-//		}
-//		
-//	}
+		}
+		
+	}
 }
 

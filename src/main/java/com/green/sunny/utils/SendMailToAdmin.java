@@ -17,7 +17,7 @@ import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
-public class SendMailCustomers {
+public class SendMailToAdmin {
 	private static final String bodyEncoding = "UTF-8";
 	private static final String gmailId = "honguniverse902@gmail.com";
 	private static final String password = "mwilzysqjgbfrfjj";

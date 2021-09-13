@@ -185,8 +185,13 @@
 	</select>
 	
 	<select id="getAllPicture" resultType="productImage">
-		select * from product_image
-        where (pseq, fseq) in (select pseq, min(fseq) from product_image group by pseq)
+		select pi.*, p.soldyn
+		from
+			(select * from product_image 
+        	where (pseq, fseq) in (select pseq, min(fseq) from product_image group by pseq)) pi,
+        	product p
+        where pi.pseq = p.pseq
+         and p.soldyn = 'n'
 	</select>
 	
 	<insert id="insertPayInfo" parameterType="java.util.Map" >
