@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +35,7 @@ import com.green.sunny.order.OrderService;
 import com.green.sunny.product.ProductService;
 import com.green.sunny.utils.Criteria;
 import com.green.sunny.utils.PageMaker;
+import com.green.sunny.utils.SendMailCustomers;
 
 @Controller
 public class ProductController {
@@ -46,12 +48,15 @@ public class ProductController {
 	private CommentService commentService;
 	@Autowired
 	private OrderService orderService;
+
+	//For Gmail Mailing
 	
+	
+	//전체 글 조회 
 	@RequestMapping(value="/category", method=RequestMethod.GET)
 	public String productKindAction(ProductVO vo, Model model, @RequestParam(value="key", defaultValue="") String key,
-			Criteria criteria, String kind) {
+			Criteria criteria, String kind) {		
 		
-		System.out.println("vo=" +vo);
 		//페이징 처리 
 		List<ProductVO> prodList = productService.getListWithPaging(criteria, key, kind);
 
@@ -75,17 +80,15 @@ public class ProductController {
 		return "category/product_list";
 	}
 	
+	
 	@RequestMapping(value="/product_detail", method=RequestMethod.GET)
 	public String productDetailAction(ProductVO vo, Model model, HttpSession session, ProductImageVO pvo) {
-		
-		//MemberVO loginUser = (MemberVO)session.getAttribute("loginUser");
 		int count = productService.selectCount(vo.getPseq());
-		
 		
 		vo.setCnt(count);
 		productService.plusCount(vo);
 		ProductVO product = productService.getProduct(vo);	
-		System.out.println(product);
+
 		//댓글 수 
 		int totalComment = commentService.countCommentList(vo.getPseq());
 		
@@ -102,7 +105,6 @@ public class ProductController {
 	
 	@RequestMapping(value="/admin_product_write_form")
 	public String adminProductWriteView(ProductVO vo, Model model, HttpSession session) {
-		System.out.println(("vo=" +vo));
 		
 		String url = "member/login";
 		MemberVO loginUser = (MemberVO)session.getAttribute("loginUser");
@@ -150,7 +152,7 @@ public class ProductController {
 			    List<MultipartFile> fileList = uploadFile.getFiles("file");
 	
 		        String path = session.getServletContext().getRealPath("WEB-INF/resources/product_images/");
-		       
+		       System.out.println(path);
 		        //다중파일 업로드
 		        for (MultipartFile mf : fileList) {
 		            String originFileName = mf.getOriginalFilename(); // 원본 파일 명
@@ -313,7 +315,7 @@ public class ProductController {
 	
 	@RequestMapping(value="/call_iamport_success", method =RequestMethod.GET) 
 	public String callPaySuccessPage(int pseq,
-						Model model, ProductVO vo, HttpSession session) {
+						Model model, HttpSession session) {
 		
 		MemberVO loginUser = (MemberVO)session.getAttribute("loginUser");
 		if (loginUser == null) return "/member/login";
@@ -344,7 +346,7 @@ public class ProductController {
 	@ResponseBody
 	public boolean paySave(@RequestParam Map<String,Object> paramMap, HttpSession session) {
 		//paramMap = {buyer_address=인천 계양구 오리울길 35 , pseq=81, id=one}
-		System.out.println("huj"+paramMap);
+		//System.out.println("huj"+paramMap);
 		
 		MemberVO loginUser = (MemberVO)session.getAttribute("loginUser");
 		
@@ -353,5 +355,30 @@ public class ProductController {
 		productService.updateSoldyn(paramMap);
 		
 		return productService.insertPayInfo(paramMap) == 1 ? true : false; 
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/mail_admin")
+	public Boolean mailAdmin(@RequestParam Map<String,Object> paramMap, HttpSession session) {
+		boolean flag = false;
+		MemberVO loginUser = (MemberVO)session.getAttribute("loginUser");
+		
+		String custId = loginUser.getId();
+		String custNm = loginUser.getName();
+		String email = loginUser.getEmail();
+		paramMap.put("sender", custNm);
+		paramMap.put("custId", custId);
+		paramMap.put("custNm", custNm);
+		paramMap.put("email", email);
+		
+		try {
+			SendMailCustomers.sendMail(paramMap);
+			flag = true;
+		} catch (Exception e) {
+			flag = false;
+			e.printStackTrace();
+		}
+		
+		return flag; 
 	}
 }	
