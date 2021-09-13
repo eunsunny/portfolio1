@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.green.sunny.dto.AdminVO;
 import com.green.sunny.dto.MessageVO;
 
 @Repository
@@ -23,6 +24,11 @@ public class MessageDAO {
 		
 		return mybatis.selectList("MessageDAO.messageList", vo);
 	}
+
+	public List<MessageVO> messageSendList(MessageVO vo) {
+		
+		return mybatis.selectList("MessageDAO.messageSendList", vo);
+	}
 	
 	public void readMessage(int no) {
 		
@@ -37,6 +43,11 @@ public class MessageDAO {
 	public MessageVO messageDetail(int no) {
 		
 		return mybatis.selectOne("MessageDAO.messageDetail", no);
+	}
+	
+	public String adminMessage(String id) {
+		
+		return mybatis.selectOne("MessageDAO.adminMessage", id);
 	}
 	
 }
