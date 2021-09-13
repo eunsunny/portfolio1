@@ -35,7 +35,7 @@ import com.green.sunny.order.OrderService;
 import com.green.sunny.product.ProductService;
 import com.green.sunny.utils.Criteria;
 import com.green.sunny.utils.PageMaker;
-import com.green.sunny.utils.SendMailCustomers;
+import com.green.sunny.utils.SendMailToAdmin;
 
 @Controller
 public class ProductController {
@@ -65,7 +65,7 @@ public class ProductController {
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(criteria); 	//현재 페이지와 페이지당 항목 수 설정 
 		
-		System.out.println("prodList="+prodList);
+		//System.out.println("prodList="+prodList);
 		
 		//전체 게시글의 수 조회
 		int totalCount = productService.countProductList(key, kind);
@@ -151,14 +151,15 @@ public class ProductController {
 				
 			    List<MultipartFile> fileList = uploadFile.getFiles("file");
 	
-		        String path = session.getServletContext().getRealPath("WEB-INF/resources/product_images/");
+		       String path = session.getServletContext().getRealPath("WEB-INF/resources/product_images/");
 		       System.out.println(path);
 		        //다중파일 업로드
 		        for (MultipartFile mf : fileList) {
 		            String originFileName = mf.getOriginalFilename(); // 원본 파일 명
 		           
-		            String safeFile = path + System.currentTimeMillis() + originFileName;
-		            pvo.setProduct_image(System.currentTimeMillis() + originFileName);
+		            //String safeFile = path + System.currentTimeMillis() + originFileName;
+		            String safeFile = path + originFileName;
+		            pvo.setProduct_image(originFileName);
 		            pvo.setPseq(pseq);
 		           
 		            productService.insertImage(pvo);
@@ -244,7 +245,7 @@ public class ProductController {
 			            pvo.setProduct_image(originFileName);
 			            pvo.setPseq(pseq);
 			            
-			            String safeFile = path + System.currentTimeMillis() + originFileName;
+			            String safeFile = path + originFileName;
 			            productService.insertImage(pvo);
 			            try {
 			                mf.transferTo(new File(safeFile));
@@ -290,7 +291,7 @@ public class ProductController {
         mav.addObject("map", map);
         
         
-        System.out.println("map : "+map);
+        //System.out.println("map : "+map);
         mav.setViewName("category/product_list2");
 		
 		return mav;
@@ -372,7 +373,7 @@ public class ProductController {
 		paramMap.put("email", email);
 		
 		try {
-			SendMailCustomers.sendMail(paramMap);
+			SendMailToAdmin.sendMail(paramMap);
 			flag = true;
 		} catch (Exception e) {
 			flag = false;

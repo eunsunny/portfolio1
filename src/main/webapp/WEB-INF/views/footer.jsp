@@ -15,7 +15,14 @@
   
 </head>
 <script>
+
 function send_mail() {
+	var id ='${sessionScope.loginUser.id}'
+	
+	if (id == '') {
+        alert("로그인 후 글쓰기가 가능합니다.");
+        return false;
+	}
 	if($('#message').val() == '' || $('#message').val() == null) {
 		alert('메세지를 입력 후 발송버튼을 눌러주세요.');
 		return false;

@@ -21,11 +21,16 @@
 <body>
 	<article>
 	<div class="row">
-		<h1>상품수정</h1>  
+<!-- 		<h1>상품수정</h1>   -->
 		
 	
 		<form name="frm" id="update_form" method="post" enctype="multipart/form-data">
 		<input type="hidden" name="pseq" value="${productVO.pseq}">
+		
+		<div style="font-size: 30px; margin-top: 60px;">
+		<h1>상품수정</h1>  
+		</div>	
+		<br>
 			<table id="list">
 			
 <!-- 			<tr> -->
@@ -87,7 +92,7 @@
 			
 			<tr>
 			  <th>제목</th>
-			  <td width="343" colspan="5">
+			  <td width="500" colspan="5">
 			       <input type="text" name="title" id="title" size="47" maxlength="100" value="${productVO.title}">
 			  </td>
 			</tr>
@@ -133,8 +138,10 @@
 			  
 			  
 			</table>
+		<div style="text-align: center;">
 		<input class="btn" type="button" value="수정" onClick="go_mod_save('${productVO.pseq}')">           
 		<input class="btn" type="button" value="취소" onClick="go_mov()">
+		</div>
 		</form> 
 		</div>
 	</article>
