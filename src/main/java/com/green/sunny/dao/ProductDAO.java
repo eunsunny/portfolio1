@@ -128,4 +128,8 @@ public class ProductDAO {
 	public int insertPayInfo(Map<String, Object> paramMap) {
 		return mybatis.insert("ProductDAO.insertPayInfo", paramMap);
 	}
+	
+	public void updateSoldyn(Map<String,Object> paramMap) {
+		mybatis.update("ProductDAO.updateSoldyn", paramMap);
+	}
 }

@@ -47,6 +47,7 @@
 											<img src="grade_images/${sessionScope.loginUser.grade}.png" width="20" height="20" >
 											<span>
 												${sessionScope.loginUser.name}(${sessionScope.loginUser.id})
+												<input type="hidden" value="${sessionScope.loginUser.id}" id="session_id"/>
 											</span>
 											</li>
 											<li> | </li>

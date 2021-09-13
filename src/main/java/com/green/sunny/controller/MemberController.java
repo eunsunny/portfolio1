@@ -1,7 +1,5 @@
 package com.green.sunny.controller;
 
-import java.util.List;
-
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,8 +12,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
-import com.green.sunny.dto.AddressDoroVO;
-import com.green.sunny.dto.AddressJibunVO;
 import com.green.sunny.dto.MemberVO;
 import com.green.sunny.member.MemberService;
 
@@ -124,27 +120,6 @@ public class MemberController {
 
 	@RequestMapping("/find_zip_num_doro")
 	public String findZipNum2() {
-
-		return "member/findZipNumDoro";
-	}
-
-	// 주소찾기
-	@RequestMapping(value = "/find_zip_dong", method = RequestMethod.POST)
-	public String findZipNumDongAction(AddressJibunVO vo, Model model) {
-
-		List<AddressJibunVO> addrList = memberService.selectAddressByDong(vo.getDong());
-
-		model.addAttribute("addressList", addrList);
-
-		return "member/findZipNumDong";
-	}
-
-	@RequestMapping(value = "/find_zip_doro", method = RequestMethod.POST)
-	public String findZipNumDoroAction(AddressDoroVO vo, Model model) {
-
-		List<AddressDoroVO> addrList = memberService.selectAddressByDoro(vo.getDoro());
-
-		model.addAttribute("addressList", addrList);
 
 		return "member/findZipNumDoro";
 	}

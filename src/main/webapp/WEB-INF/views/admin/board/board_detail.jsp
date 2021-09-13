@@ -19,20 +19,52 @@
     <!-- Custom styles for this template-->
     <link href="admin_css/sb-admin-2.min.css" rel="stylesheet">
     
-    <script type="text/javascript">
-    	function delete_check(){
-    		var bseq = $("#bseq");
-    		
-    		var check = confirm("삭제하시겠습니까?");
-    		
-    		if(check == true){
-    			location.href="admin_board_delete?bseq="+bseq.val();
-    			return true;
-    		}
-    		else
-    			return false;
-    	}
-    </script>
+<style>
+	
+table.type05 {
+  border-collapse: separate;
+  border-spacing: 1px;
+  text-align: left;
+  line-height: 1.5;
+  border-top: 4px solid #ccc;
+  border-bottom: 5px double #ccc; 
+  margin: 20px 10px;
+  width : 800px;
+  margin-left:auto; 
+  margin-right:auto;
+  background-color: white;
+}
+table.type05 th {
+  width: 30%;
+  padding: 10px;
+  font-weight: bold;
+  text-align : center;
+  vertical-align: center;
+  border-bottom: 1px solid #ccc;
+  background: #ffc0cb;
+}
+table.type05 td {
+  width: 70%;
+  padding: 10px;
+  vertical-align: top;
+  border-bottom: 1px solid #ccc;
+}
+</style>  
+    
+<script type="text/javascript">
+	function delete_check(){
+		var bseq = $("#bseq");
+		
+		var check = confirm("삭제하시겠습니까?");
+		
+		if(check == true){
+			location.href="admin_board_delete?bseq="+bseq.val();
+			return true;
+		}
+		else
+			return false;
+	}
+</script>
 </head>
 
 <body id="page-top">
@@ -60,13 +92,34 @@
             <!-- /.container-fluid -->
             <div class="card-body">
             <div class="table-responsive">
-            <input type="hidden" id="bseq" name="bseq" value="${board.bseq}"/>
-            <label>제목</label> &nbsp; ${board.title}<br>
-            <label>작성자 아이디</label> &nbsp; ${board.id}<br>           
-            <label>내용</label> &nbsp; ${board.content}<br>
-            <label>첨부 이미지</label> &nbsp; ${board.image}<br>
-            <label>등록일</label> &nbsp; <fmt:formatDate value="${board.regdate}" type="date"/><br>
-            <label>조회수</label> &nbsp; ${board.count}<br>               
+            <table  class="type05">
+        		<tbody>
+		            <tr>
+		                <th scope="row">제목</th>
+		                <td>${board.title}</td>
+		            </tr>
+		            <tr>
+		                <th scope="row">작성자 아이디</th>
+		                <td>${board.id}</td>
+		            </tr>
+		            <tr>
+		                <th scope="row">작성일</th>
+		                <td><fmt:formatDate value="${board.regdate}" type="date"/></td>
+		            </tr>
+		            <tr>
+						<th scope="row">조회수</th>
+						<td>${board.count}</td>
+					</tr>
+					<tr>
+						<th scope="row" style="height:300px;">내용</th>
+						<td colspan="3">
+							<img class="card-img img-fluid" src="product_images/${map.IMAGE}"><br>
+							${board.content}
+						</td>
+		            </tr>
+        		</tbody>
+    		</table>
+            <input type="hidden" id="bseq" name="bseq" value="${board.bseq}"/>             
 
 			<br><br>
             <input type="button" class="btn btn-success btn-sm" onclick="delete_check()" value="삭제"/> &nbsp; &nbsp;                

@@ -58,4 +58,16 @@ public class BoardServiceImpl implements BoardService {
 	public int seletcBSeq() {
 		return bDao.seletcBSeq();
 	}
+
+	@Override
+	public void updateBoardInfo(Map<String, Object> param) {
+		bDao.updateBoardInfo(param);
+		
+	}
+
+	@Override
+	public void deleteBoardPicture(int bseq) {
+		bDao.deleteBoardPicture(bseq);
+		
+	}
 }

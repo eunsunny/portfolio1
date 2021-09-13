@@ -12,7 +12,7 @@ import com.green.sunny.dto.OrderVO;
 import com.green.sunny.dto.ProductImageVO;
 import com.green.sunny.dto.ProductVO;
 import com.green.sunny.dto.ReportVO;
-import com.green.sunny.utils.Criteria;
+import com.green.sunny.adminUtils.Criteria;
 
 public interface AdminService {
 	public int adminCheck(String id, String pwd);
@@ -69,6 +69,8 @@ public interface AdminService {
 
 	// Order Section
 	public List<OrderVO> getAllOrderPaging(Criteria criteria, String key);
+	
+	public OrderVO getOrderDetail(int oseq);
 	
 	public int getTotalOrder(String id);
 	
