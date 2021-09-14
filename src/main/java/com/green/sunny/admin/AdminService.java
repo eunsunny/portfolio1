@@ -6,6 +6,7 @@ import com.green.sunny.dto.AdminVO;
 import com.green.sunny.dto.BoardVO;
 import com.green.sunny.dto.KindCount;
 import com.green.sunny.dto.MemberVO;
+import com.green.sunny.dto.MessageVO;
 import com.green.sunny.dto.MostOrderMember;
 import com.green.sunny.dto.OneoneVO;
 import com.green.sunny.dto.OrderVO;
@@ -82,5 +83,8 @@ public interface AdminService {
 	public ReportVO getReportDetail(int rseq);
 	
 	public void updateReportResult(int rseq);
+	
+	// Message Section
+	public void insertMessage(String pid);
 
 }

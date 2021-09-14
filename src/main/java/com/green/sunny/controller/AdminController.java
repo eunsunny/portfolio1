@@ -242,6 +242,13 @@ public class AdminController {
 		return "admin/order/order_detail";
 	}
 	
+	// 판매자에게 돈 송금 메소드
+	@RequestMapping(value="admin_money_send")
+	public String sendMoney(@RequestParam(value="pid")String pid) {
+		adminService.insertMessage(pid);
+		return "redirect:/order_manage";
+	}
+	
 	// 게시판관리 페이지로 이동
 	@RequestMapping(value="/board")
 	public String boardView(@RequestParam(value="key", defaultValue="")String key, Model model, Criteria criteria) {
