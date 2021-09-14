@@ -121,7 +121,7 @@
 												<li><a href="jjim_list">찜목록</a></li>
 												<li><a href="admin_product_write_form">상품등록</a></li>
 												<li><a href="my_prod_list">내상품조회/수정</a></li>
-												<li><a href=order_list>주문결제내역</a></li>
+												<li><a href="order_list">주문결제내역</a></li>
 												<li><a href="grade_detail">내등급관리</a></li>
 		
 											</ul></li>
