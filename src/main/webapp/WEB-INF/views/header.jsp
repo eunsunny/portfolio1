@@ -33,7 +33,6 @@
 								<ul>
 									<c:choose>
 										<c:when test="${empty sessionScope.loginUser}">
-											<li><span><a href="admin_index">admin</a></span></li>
 											<li><span><a href="login_form">login</a></span></li>
 											<li> | </li>
 											<li><span><a href="contract">회원가입</a></span></li>
