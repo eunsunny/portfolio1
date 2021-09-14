@@ -253,8 +253,17 @@
                              </a>
                                 <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
                                     <ul class="list-unstyled">
-                                       	<li><a class="btn btn-success text-white mt-2" href="product_detail?pseq=${productVO.pseq}"><i class="far fa-eye"></i></a></li>
-                                       	<li><a class="btn btn-success text-white" href="jjim_insert_list?pseq=${productVO.pseq}"><i class="far fa-heart"></i></a></li>
+                                    	<c:choose>
+                                    		<c:when test="${empty sessionScope.loginUser}">
+                                        		<li><a class="btn btn-success text-white" href="#" onclick="login_empty_check()">
+                                        			<i class="far fa-heart"></i></a></li>
+                                        	</c:when>
+                                    		<c:otherwise>
+                                        		<li><a class="btn btn-success text-white" href="jjim_insert_list?pseq=${productVO.pseq}">
+                                        			<i class="far fa-heart"></i></a></li>
+                                        	</c:otherwise>
+                                        </c:choose>                                        
+                                        <li><a class="btn btn-success text-white mt-2" href="product_detail?pseq=${productVO.pseq}"><i class="far fa-eye"></i></a></li>
 <%--                                         <li><a class="btn btn-success text-white mt-2" href="product_detail?pseq=${productVO.pseq}"><i class="fas fa-cart-plus"></i></a></li> --%>
                                     </ul>
                                 </div>

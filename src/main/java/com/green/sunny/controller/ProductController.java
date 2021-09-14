@@ -82,12 +82,17 @@ public class ProductController {
 	
 	
 	@RequestMapping(value="/product_detail", method=RequestMethod.GET)
-	public String productDetailAction(ProductVO vo, Model model, HttpSession session, ProductImageVO pvo) {
+	public String productDetailAction(MemberVO mvo, ProductVO vo, Model model, HttpSession session, ProductImageVO pvo) {
+		
 		int count = productService.selectCount(vo.getPseq());
 		
 		vo.setCnt(count);
 		productService.plusCount(vo);
 		ProductVO product = productService.getProduct(vo);	
+		
+		mvo.setId(product.getId());
+		
+		MemberVO member = memberService.getMember(mvo);
 
 		//´ñ±Û ¼ö 
 		int totalComment = commentService.countCommentList(vo.getPseq());
@@ -98,6 +103,7 @@ public class ProductController {
 		model.addAttribute("productVO", product);
 		model.addAttribute("productImageList", productImageList);
 		model.addAttribute("totalComment", totalComment);
+		model.addAttribute("member", member);
 		
 		return "category/product_detail";
 	}
