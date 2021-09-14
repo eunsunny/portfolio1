@@ -54,7 +54,7 @@
                     <li class="pb-3">
                         <a class="collapsed d-flex justify-content-between h3 text-decoration-none" href="category?kind=1">
                             패션의류/잡화
-                            <i class="fa fa-fw fa-chevron-circle-down mt-1"></i>
+
                         </a>
 <!--                         <ul class="collapse show list-unstyled pl-3"> -->
 <!--                             <li><a class="text-decoration-none" href="#">Men</a></li> -->
@@ -64,7 +64,7 @@
                     <li class="pb-3">
                         <a class="collapsed d-flex justify-content-between h3 text-decoration-none" href="category?kind=2">
                             뷰티
-                            <i class="pull-right fa fa-fw fa-chevron-circle-down mt-1"></i>
+                           
                         </a>
                         <ul id="collapseTwo" class="collapse list-unstyled pl-3">
                             <li><a class="text-decoration-none" href="#">Sport</a></li>
@@ -74,7 +74,7 @@
                                         <li class="pb-3">
                         <a class="collapsed d-flex justify-content-between h3 text-decoration-none" href="category?kind=3">
                             출산/유아동
-                            <i class="pull-right fa fa-fw fa-chevron-circle-down mt-1"></i>
+                           
                         </a>
                         <ul id="collapseTwo" class="collapse list-unstyled pl-3">
                             <li><a class="text-decoration-none" href="#">Sport</a></li>
@@ -85,7 +85,6 @@
                                         <li class="pb-3">
                         <a class="collapsed d-flex justify-content-between h3 text-decoration-none" href="category?kind=4">
                             식품
-                            <i class="pull-right fa fa-fw fa-chevron-circle-down mt-1"></i>
                         </a>
                         <ul id="collapseTwo" class="collapse list-unstyled pl-3">
                             <li><a class="text-decoration-none" href="#">Sport</a></li>
@@ -95,7 +94,6 @@
                                         <li class="pb-3">
                         <a class="collapsed d-flex justify-content-between h3 text-decoration-none" href="category?kind=5">
                             주방/생활용품
-                            <i class="pull-right fa fa-fw fa-chevron-circle-down mt-1"></i>
                         </a>
                         <ul id="collapseThree" class="collapse list-unstyled pl-3">
                             <li><a class="text-decoration-none" href="#">Bag</a></li>
@@ -106,7 +104,6 @@
                                         <li class="pb-3">
                         <a class="collapsed d-flex justify-content-between h3 text-decoration-none" href="category?kind=6">
                             인테리어
-                            <i class="pull-right fa fa-fw fa-chevron-circle-down mt-1"></i>
                         </a>
                         <ul id="collapseThree" class="collapse list-unstyled pl-3">
                             <li><a class="text-decoration-none" href="#">Bag</a></li>
@@ -117,7 +114,6 @@
                                         <li class="pb-3">
                         <a class="collapsed d-flex justify-content-between h3 text-decoration-none" href="category?kind=7">
                             가전디지털
-                            <i class="pull-right fa fa-fw fa-chevron-circle-down mt-1"></i>
                         </a>
                         <ul id="collapseThree" class="collapse list-unstyled pl-3">
                             <li><a class="text-decoration-none" href="#">Bag</a></li>
@@ -128,7 +124,6 @@
                                         <li class="pb-3">
                         <a class="collapsed d-flex justify-content-between h3 text-decoration-none" href="category?kind=8">
                             스포츠/레저
-                            <i class="pull-right fa fa-fw fa-chevron-circle-down mt-1"></i>
                         </a>
                         <ul id="collapseThree" class="collapse list-unstyled pl-3">
                             <li><a class="text-decoration-none" href="#">Bag</a></li>
@@ -139,7 +134,6 @@
                                         <li class="pb-3">
                         <a class="collapsed d-flex justify-content-between h3 text-decoration-none" href="category?kind=9">
                             자동차용품
-                            <i class="pull-right fa fa-fw fa-chevron-circle-down mt-1"></i>
                         </a>
                         <ul id="collapseThree" class="collapse list-unstyled pl-3">
                             <li><a class="text-decoration-none" href="#">Bag</a></li>
@@ -150,7 +144,6 @@
                                         <li class="pb-3">
                         <a class="collapsed d-flex justify-content-between h3 text-decoration-none" href="category?kind=10">
                             도서/음반/DVD
-                            <i class="pull-right fa fa-fw fa-chevron-circle-down mt-1"></i>
                         </a>
                         <ul id="collapseThree" class="collapse list-unstyled pl-3">
                             <li><a class="text-decoration-none" href="#">Bag</a></li>
@@ -161,7 +154,6 @@
                                         <li class="pb-3">
                         <a class="collapsed d-flex justify-content-between h3 text-decoration-none" href="category?kind=11">
                             완구/문구/취미
-                            <i class="pull-right fa fa-fw fa-chevron-circle-down mt-1"></i>
                         </a>
                         <ul id="collapseThree" class="collapse list-unstyled pl-3">
                             <li><a class="text-decoration-none" href="#">Bag</a></li>
@@ -172,7 +164,6 @@
                     <li class="pb-3">
                         <a class="collapsed d-flex justify-content-between h3 text-decoration-none" href="category?kind=12">
                             반려동물
-                            <i class="pull-right fa fa-fw fa-chevron-circle-down mt-1"></i>
                         </a>
                         <ul id="collapseThree" class="collapse list-unstyled pl-3">
                             <li><a class="text-decoration-none" href="#">Bag</a></li>
@@ -183,7 +174,6 @@
                     <li class="pb-3">
                         <a class="collapsed d-flex justify-content-between h3 text-decoration-none" href="category?kind=13">
                             헬스/건강식품
-                            <i class="pull-right fa fa-fw fa-chevron-circle-down mt-1"></i>
                         </a>
                         <ul id="collapseThree" class="collapse list-unstyled pl-3">
                             <li><a class="text-decoration-none" href="#">Bag</a></li>
@@ -194,7 +184,6 @@
                     <li class="pb-3">
                         <a class="collapsed d-flex justify-content-between h3 text-decoration-none" href="category?kind=14">
                             무료나눔
-                            <i class="pull-right fa fa-fw fa-chevron-circle-down mt-1"></i>
                         </a>
                         <ul id="collapseThree" class="collapse list-unstyled pl-3">
                             <li><a class="text-decoration-none" href="#">Bag</a></li>
