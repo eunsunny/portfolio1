@@ -120,7 +120,8 @@ function send_mail() {
 				</div>
 				<div id="copyright" class="container">
 					<ul class="links">
-						<li>&copy; Untitled. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+						<li>&copy; Untitled. All rights reserved.</li>
+						<li><span><a href="admin_index">go to Admin</a></span></li>
 					</ul>
 				</div>
 			</section>
