@@ -195,4 +195,10 @@
 	<update id="updateReportResult" parameterType="int">
 		UPDATE report SET result='y' WHERE rseq=#{rseq}
 	</update>
+	
+	<!-- Message Section(쪽지) -->
+	<insert id="insertMessage" parameterType="String">
+		INSERT INTO message(no, send_id, recv_id, title, content)
+		VALUES(msg_seq.NEXTVAL, 'admin', #{recv_id}, '송금완료되었습니다.', '상품의 수령여부가 확인되어 관리자가 돈을 송금했습니다. 확인하시고 문의사항은 1:1 문의를 이용해 주시기 바랍니다.')
+	</insert>
 </mapper>
