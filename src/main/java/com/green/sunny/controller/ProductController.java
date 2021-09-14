@@ -55,7 +55,7 @@ public class ProductController {
 	//전체 글 조회 
 	@RequestMapping(value="/category", method=RequestMethod.GET)
 	public String productKindAction(ProductVO vo, Model model, @RequestParam(value="key", defaultValue="") String key,
-			Criteria criteria, String kind) {		
+			Criteria criteria, String kind) {
 		
 		//페이징 처리 
 		List<ProductVO> prodList = productService.getListWithPaging(criteria, key, kind);
