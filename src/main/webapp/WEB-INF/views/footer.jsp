@@ -15,7 +15,14 @@
   
 </head>
 <script>
+
 function send_mail() {
+	var id ='${sessionScope.loginUser.id}'
+	
+	if (id == '') {
+        alert("로그인 후 글쓰기가 가능합니다.");
+        return false;
+	}
 	if($('#message').val() == '' || $('#message').val() == null) {
 		alert('메세지를 입력 후 발송버튼을 눌러주세요.');
 		return false;
@@ -113,7 +120,8 @@ function send_mail() {
 				</div>
 				<div id="copyright" class="container">
 					<ul class="links">
-						<li>&copy; Untitled. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+						<li>&copy; Untitled. All rights reserved.</li>
+						<li><span><a href="admin_index">go to Admin</a></span></li>
 					</ul>
 				</div>
 			</section>

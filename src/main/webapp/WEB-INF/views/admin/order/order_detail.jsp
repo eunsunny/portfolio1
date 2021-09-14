@@ -52,17 +52,20 @@ table.type05 td {
 </style>    
     
 <script type="text/javascript">
-   	function delete_check(){
-   		var bseq = $("#bseq");
+   	function sendMoney(){
+   		var pid = $("#pid");
    		
-   		var check = confirm("삭제하시겠습니까?");
+   		var check = confirm("송급하시겠습니까? (상품수령여부가 체크되어있는지 확인하세요!)");
    		
    		if(check == true){
-   			location.href="admin_board_delete?bseq="+bseq.val();
+   			location.href="admin_money_send?pid="+pid.val();
+   			alert("송금되었습니다.");
    			return true;
    		}
-   		else
+   		else{
+   			alert("송금이 취소되었습니다.");
    			return false;
+   		}
    	}
 </script>
 </head>
@@ -95,7 +98,7 @@ table.type05 td {
             <table  class="type05">
         		<tbody>
 		            <tr>
-		                <th scope="row">제품명</th>
+		                <th scope="row">상품명</th>
 		                <td>${order.name}</td>
 		            </tr>
 		            <tr>
@@ -124,7 +127,7 @@ table.type05 td {
 						</td>
 					</tr>
 					<tr>
-						<th scope="row">제품 수령 여부</th>
+						<th scope="row">상품 수령 여부</th>
 						<td>
 							<c:choose>
 						      	<c:when test="${order.rev_result == 'y'}">수령완료</c:when>
@@ -134,11 +137,13 @@ table.type05 td {
 		            </tr>
         		</tbody>
     		</table>
-            <input type="hidden" id="bseq" name="bseq" value="${order.oseq}"/>                           
+            <input type="hidden" id="pid" name="pid" value="${order.pid}"/>                           
 			<br><br>
 			
 			<div align="center">
-	            <!-- <input type="button" class="btn btn-success btn-sm" onclick="delete_check()" value="삭제"/> &nbsp; &nbsp; -->                
+				<c:if test="${order.pay_result == 'y' && order.rev_result == 'y'}">
+					<input type="button" class="btn btn-success btn-sm" onclick="sendMoney()" value="판매자에게 송금"/> &nbsp; &nbsp;
+				</c:if>
 	            <input type="button" class="btn btn-success btn-sm" onclick="location.href='order_manage'" value="리스트로 돌아가기"/>
             </div>
             

@@ -35,7 +35,7 @@ import com.green.sunny.order.OrderService;
 import com.green.sunny.product.ProductService;
 import com.green.sunny.utils.Criteria;
 import com.green.sunny.utils.PageMaker;
-import com.green.sunny.utils.SendMailCustomers;
+import com.green.sunny.utils.SendMailToAdmin;
 
 @Controller
 public class ProductController {
@@ -55,7 +55,7 @@ public class ProductController {
 	//전체 글 조회 
 	@RequestMapping(value="/category", method=RequestMethod.GET)
 	public String productKindAction(ProductVO vo, Model model, @RequestParam(value="key", defaultValue="") String key,
-			Criteria criteria, String kind) {		
+			Criteria criteria, String kind) {
 		
 		//페이징 처리 
 		List<ProductVO> prodList = productService.getListWithPaging(criteria, key, kind);
@@ -65,7 +65,7 @@ public class ProductController {
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(criteria); 	//현재 페이지와 페이지당 항목 수 설정 
 		
-		System.out.println("prodList="+prodList);
+		//System.out.println("prodList="+prodList);
 		
 		//전체 게시글의 수 조회
 		int totalCount = productService.countProductList(key, kind);
@@ -82,12 +82,17 @@ public class ProductController {
 	
 	
 	@RequestMapping(value="/product_detail", method=RequestMethod.GET)
-	public String productDetailAction(ProductVO vo, Model model, HttpSession session, ProductImageVO pvo) {
+	public String productDetailAction(MemberVO mvo, ProductVO vo, Model model, HttpSession session, ProductImageVO pvo) {
+		
 		int count = productService.selectCount(vo.getPseq());
 		
 		vo.setCnt(count);
 		productService.plusCount(vo);
 		ProductVO product = productService.getProduct(vo);	
+		
+		mvo.setId(product.getId());
+		
+		MemberVO member = memberService.getMember(mvo);
 
 		//댓글 수 
 		int totalComment = commentService.countCommentList(vo.getPseq());
@@ -98,6 +103,7 @@ public class ProductController {
 		model.addAttribute("productVO", product);
 		model.addAttribute("productImageList", productImageList);
 		model.addAttribute("totalComment", totalComment);
+		model.addAttribute("member", member);
 		
 		return "category/product_detail";
 	}
@@ -151,14 +157,15 @@ public class ProductController {
 				
 			    List<MultipartFile> fileList = uploadFile.getFiles("file");
 	
-		        String path = session.getServletContext().getRealPath("WEB-INF/resources/product_images/");
+		       String path = session.getServletContext().getRealPath("WEB-INF/resources/product_images/");
 		       System.out.println(path);
 		        //다중파일 업로드
 		        for (MultipartFile mf : fileList) {
 		            String originFileName = mf.getOriginalFilename(); // 원본 파일 명
 		           
-		            String safeFile = path + System.currentTimeMillis() + originFileName;
-		            pvo.setProduct_image(System.currentTimeMillis() + originFileName);
+		            //String safeFile = path + System.currentTimeMillis() + originFileName;
+		            String safeFile = path + originFileName;
+		            pvo.setProduct_image(originFileName);
 		            pvo.setPseq(pseq);
 		           
 		            productService.insertImage(pvo);
@@ -244,7 +251,7 @@ public class ProductController {
 			            pvo.setProduct_image(originFileName);
 			            pvo.setPseq(pseq);
 			            
-			            String safeFile = path + System.currentTimeMillis() + originFileName;
+			            String safeFile = path + originFileName;
 			            productService.insertImage(pvo);
 			            try {
 			                mf.transferTo(new File(safeFile));
@@ -290,7 +297,7 @@ public class ProductController {
         mav.addObject("map", map);
         
         
-        System.out.println("map : "+map);
+        //System.out.println("map : "+map);
         mav.setViewName("category/product_list2");
 		
 		return mav;
@@ -372,7 +379,7 @@ public class ProductController {
 		paramMap.put("email", email);
 		
 		try {
-			SendMailCustomers.sendMail(paramMap);
+			SendMailToAdmin.sendMail(paramMap);
 			flag = true;
 		} catch (Exception e) {
 			flag = false;

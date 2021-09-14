@@ -81,7 +81,7 @@ function callIamport(){
 //결제정보 Insert
 function insertFuntion(){
 	var returnflag = true;
-	var param = {buyer_address : $('#addr1').val()+$('#addr2').val(),
+	var param = {buyer_address : $('#zip_num').val()+$('#addr1').val()+$('#addr2').val(),
 				 pseq : $('#pseq').val()
 				 };
 	$.ajax({

@@ -54,7 +54,7 @@
                     <li class="pb-3">
                         <a class="collapsed d-flex justify-content-between h3 text-decoration-none" href="category?kind=1">
                             패션의류/잡화
-                            <i class="fa fa-fw fa-chevron-circle-down mt-1"></i>
+
                         </a>
 <!--                         <ul class="collapse show list-unstyled pl-3"> -->
 <!--                             <li><a class="text-decoration-none" href="#">Men</a></li> -->
@@ -64,7 +64,7 @@
                     <li class="pb-3">
                         <a class="collapsed d-flex justify-content-between h3 text-decoration-none" href="category?kind=2">
                             뷰티
-                            <i class="pull-right fa fa-fw fa-chevron-circle-down mt-1"></i>
+                           
                         </a>
                         <ul id="collapseTwo" class="collapse list-unstyled pl-3">
                             <li><a class="text-decoration-none" href="#">Sport</a></li>
@@ -74,7 +74,7 @@
                                         <li class="pb-3">
                         <a class="collapsed d-flex justify-content-between h3 text-decoration-none" href="category?kind=3">
                             출산/유아동
-                            <i class="pull-right fa fa-fw fa-chevron-circle-down mt-1"></i>
+                           
                         </a>
                         <ul id="collapseTwo" class="collapse list-unstyled pl-3">
                             <li><a class="text-decoration-none" href="#">Sport</a></li>
@@ -85,7 +85,6 @@
                                         <li class="pb-3">
                         <a class="collapsed d-flex justify-content-between h3 text-decoration-none" href="category?kind=4">
                             식품
-                            <i class="pull-right fa fa-fw fa-chevron-circle-down mt-1"></i>
                         </a>
                         <ul id="collapseTwo" class="collapse list-unstyled pl-3">
                             <li><a class="text-decoration-none" href="#">Sport</a></li>
@@ -95,7 +94,6 @@
                                         <li class="pb-3">
                         <a class="collapsed d-flex justify-content-between h3 text-decoration-none" href="category?kind=5">
                             주방/생활용품
-                            <i class="pull-right fa fa-fw fa-chevron-circle-down mt-1"></i>
                         </a>
                         <ul id="collapseThree" class="collapse list-unstyled pl-3">
                             <li><a class="text-decoration-none" href="#">Bag</a></li>
@@ -106,7 +104,6 @@
                                         <li class="pb-3">
                         <a class="collapsed d-flex justify-content-between h3 text-decoration-none" href="category?kind=6">
                             인테리어
-                            <i class="pull-right fa fa-fw fa-chevron-circle-down mt-1"></i>
                         </a>
                         <ul id="collapseThree" class="collapse list-unstyled pl-3">
                             <li><a class="text-decoration-none" href="#">Bag</a></li>
@@ -117,7 +114,6 @@
                                         <li class="pb-3">
                         <a class="collapsed d-flex justify-content-between h3 text-decoration-none" href="category?kind=7">
                             가전디지털
-                            <i class="pull-right fa fa-fw fa-chevron-circle-down mt-1"></i>
                         </a>
                         <ul id="collapseThree" class="collapse list-unstyled pl-3">
                             <li><a class="text-decoration-none" href="#">Bag</a></li>
@@ -128,7 +124,6 @@
                                         <li class="pb-3">
                         <a class="collapsed d-flex justify-content-between h3 text-decoration-none" href="category?kind=8">
                             스포츠/레저
-                            <i class="pull-right fa fa-fw fa-chevron-circle-down mt-1"></i>
                         </a>
                         <ul id="collapseThree" class="collapse list-unstyled pl-3">
                             <li><a class="text-decoration-none" href="#">Bag</a></li>
@@ -139,7 +134,6 @@
                                         <li class="pb-3">
                         <a class="collapsed d-flex justify-content-between h3 text-decoration-none" href="category?kind=9">
                             자동차용품
-                            <i class="pull-right fa fa-fw fa-chevron-circle-down mt-1"></i>
                         </a>
                         <ul id="collapseThree" class="collapse list-unstyled pl-3">
                             <li><a class="text-decoration-none" href="#">Bag</a></li>
@@ -150,7 +144,6 @@
                                         <li class="pb-3">
                         <a class="collapsed d-flex justify-content-between h3 text-decoration-none" href="category?kind=10">
                             도서/음반/DVD
-                            <i class="pull-right fa fa-fw fa-chevron-circle-down mt-1"></i>
                         </a>
                         <ul id="collapseThree" class="collapse list-unstyled pl-3">
                             <li><a class="text-decoration-none" href="#">Bag</a></li>
@@ -161,7 +154,6 @@
                                         <li class="pb-3">
                         <a class="collapsed d-flex justify-content-between h3 text-decoration-none" href="category?kind=11">
                             완구/문구/취미
-                            <i class="pull-right fa fa-fw fa-chevron-circle-down mt-1"></i>
                         </a>
                         <ul id="collapseThree" class="collapse list-unstyled pl-3">
                             <li><a class="text-decoration-none" href="#">Bag</a></li>
@@ -172,7 +164,6 @@
                     <li class="pb-3">
                         <a class="collapsed d-flex justify-content-between h3 text-decoration-none" href="category?kind=12">
                             반려동물
-                            <i class="pull-right fa fa-fw fa-chevron-circle-down mt-1"></i>
                         </a>
                         <ul id="collapseThree" class="collapse list-unstyled pl-3">
                             <li><a class="text-decoration-none" href="#">Bag</a></li>
@@ -183,7 +174,6 @@
                     <li class="pb-3">
                         <a class="collapsed d-flex justify-content-between h3 text-decoration-none" href="category?kind=13">
                             헬스/건강식품
-                            <i class="pull-right fa fa-fw fa-chevron-circle-down mt-1"></i>
                         </a>
                         <ul id="collapseThree" class="collapse list-unstyled pl-3">
                             <li><a class="text-decoration-none" href="#">Bag</a></li>
@@ -194,7 +184,6 @@
                     <li class="pb-3">
                         <a class="collapsed d-flex justify-content-between h3 text-decoration-none" href="category?kind=14">
                             무료나눔
-                            <i class="pull-right fa fa-fw fa-chevron-circle-down mt-1"></i>
                         </a>
                         <ul id="collapseThree" class="collapse list-unstyled pl-3">
                             <li><a class="text-decoration-none" href="#">Bag</a></li>
@@ -221,14 +210,14 @@
                         </ul>
                     </div>
                     <div class="col-md-6 pb-4">
-                        <div class="d-flex">
-                            <select class="form-control" id="searchBox" name="searchBox" onchange="changeSelectBox()">
-                                <option selected value="1">전체</option>
-                                <option value="2">조회순</option>
-                                <option value="3">최신순</option>
-                                <option value="4">찜순</option>
-                            </select>
-                        </div>
+<!--                         <div class="d-flex"> -->
+<!--                             <select class="form-control" id="searchBox" name="searchBox" onchange="changeSelectBox()"> -->
+<!--                                 <option selected value="1">전체</option> -->
+<!--                                 <option value="2">조회순</option> -->
+<!--                                 <option value="3">최신순</option> -->
+<!--                                 <option value="4">찜순</option> -->
+<!--                             </select> -->
+<!--                         </div> -->
                     </div>
                 </div>
                 
@@ -253,26 +242,35 @@
                             <a id="atag" href="product_detail?pseq=${productVO.pseq}">
                             	<c:if test="${productVO.soldyn == 'y'}">
                             	<div style="position: relative;">
-                            	<img class="card-img rounded-0 img-fluid" style="width:310px; height:200px; opacity:0.3; position: absolute;" src="product_images/판매완료.png" />
-                                <img class="card-img rounded-0 img-fluid" style="width:310px; height:200px; opacity:0.3;" src="product_images/${productVO.image}" />
+                            	<img class="card-img rounded-0 img-fluid" style="width:310px; height:250px; opacity:0.3; position: absolute;" src="product_images/판매완료.png" />
+                                <img class="card-img rounded-0 img-fluid" style="width:310px; height:250px; opacity:0.3;" src="product_images/${productVO.image}" />
                                 </div>
                                 </c:if>
                                 <c:if test="${productVO.soldyn == 'n'}">                           
-                                <img class="card-img rounded-0 img-fluid" style="width:310px;height:200px" src="product_images/${productVO.image}" />
+                                <img class="card-img rounded-0 img-fluid" style="width:310px;height:250px" src="product_images/${productVO.image}" />
                                 </c:if>
                                 
                              </a>
                                 <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
                                     <ul class="list-unstyled">
-                                        <li><a class="btn btn-success text-white" href="product_detail?pseq=${productVO.pseq}"><i class="far fa-heart"></i></a></li>
+                                    	<c:choose>
+                                    		<c:when test="${empty sessionScope.loginUser}">
+                                        		<li><a class="btn btn-success text-white" href="#" onclick="login_empty_check()">
+                                        			<i class="far fa-heart"></i></a></li>
+                                        	</c:when>
+                                    		<c:otherwise>
+                                        		<li><a class="btn btn-success text-white" href="jjim_insert_list?pseq=${productVO.pseq}">
+                                        			<i class="far fa-heart"></i></a></li>
+                                        	</c:otherwise>
+                                        </c:choose>                                        
                                         <li><a class="btn btn-success text-white mt-2" href="product_detail?pseq=${productVO.pseq}"><i class="far fa-eye"></i></a></li>
-                                        <li><a class="btn btn-success text-white mt-2" href="product_detail?pseq=${productVO.pseq}"><i class="fas fa-cart-plus"></i></a></li>
+<%--                                         <li><a class="btn btn-success text-white mt-2" href="product_detail?pseq=${productVO.pseq}"><i class="fas fa-cart-plus"></i></a></li> --%>
                                     </ul>
                                 </div>
                             </div>
                             <div class="card-body">
                             
-                                <a href="product_detail?pseq=${productVO.pseq}" class="h3 text-decoration-none">${productVO.name}</a>
+                                <a style="font-size: 10em;" href="product_detail?pseq=${productVO.pseq}" class="h3 text-decoration-none">${productVO.name}</a>
                                 <ul class="w-100 list-unstyled d-flex justify-content-between mb-0">
                                     <li><p class="text-center mb-0">조회수 : ${productVO.cnt}</p></li>
                                     <li class="pt-2">
@@ -283,16 +281,17 @@
                                         <span class="product-color-dot color-dot-green float-left rounded-circle ml-1"></span>
                                     </li>
                                 </ul>
-                                <ul class="list-unstyled d-flex justify-content-center mb-1">
-                                    <li>
-                                        <i class="text-warning fa fa-star"></i>
-                                        <i class="text-warning fa fa-star"></i>
-                                        <i class="text-warning fa fa-star"></i>
-                                        <i class="text-muted fa fa-star"></i>
-                                        <i class="text-muted fa fa-star"></i>
-                                    </li>
-                                </ul>
-                                <p class="text-center mb-0">${productVO.price}원</p>
+<!--                                 <ul class="list-unstyled d-flex justify-content-center mb-1"> -->
+<!--                                     <li> -->
+<!--                                         <i class="text-warning fa fa-star"></i> -->
+<!--                                         <i class="text-warning fa fa-star"></i> -->
+<!--                                         <i class="text-warning fa fa-star"></i> -->
+<!--                                         <i class="text-muted fa fa-star"></i> -->
+<!--                                         <i class="text-muted fa fa-star"></i> -->
+<!--                                     </li> -->
+<!--                                 </ul> -->
+                                <p style="font-size: 30px;" class="text-center mb-0">${productVO.price}원</p>
+                                
                             </div>
                         </div>
                     </div>

@@ -11,6 +11,7 @@ import com.green.sunny.dto.AdminVO;
 import com.green.sunny.dto.BoardVO;
 import com.green.sunny.dto.KindCount;
 import com.green.sunny.dto.MemberVO;
+import com.green.sunny.dto.MessageVO;
 import com.green.sunny.dto.MostOrderMember;
 import com.green.sunny.dto.OneoneVO;
 import com.green.sunny.dto.OrderVO;
@@ -204,5 +205,10 @@ public class AdminDAO {
 	// 신고완료 처리 업데이트
 	public void updateReportResult(int rseq) {
 		mybatis.update("AdminDAO.updateReportResult", rseq);
+	}
+	
+	/* Message Section(쪽지) */
+	public void insertMessage(String pid) {
+		mybatis.insert("AdminDAO.insertMessage", pid);
 	}
 }

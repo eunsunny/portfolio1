@@ -195,19 +195,20 @@
                             
                             <p class="h3 py-2">${productVO.price}원</p>
                             <p class="py-2">
-                                <i class="fa fa-star text-warning"></i>
-                                <i class="fa fa-star text-warning"></i>
-                                <i class="fa fa-star text-warning"></i>
-                                <i class="fa fa-star text-warning"></i>
-                                <i class="fa fa-star text-secondary"></i>
-                                <span class="list-inline-item text-dark">Rating 4.8 | ${totalComment} Comments</span>
+<!--                                 <i class="fa fa-star text-warning"></i> -->
+<!--                                 <i class="fa fa-star text-warning"></i> -->
+<!--                                 <i class="fa fa-star text-warning"></i> -->
+<!--                                 <i class="fa fa-star text-warning"></i> -->
+<!--                                 <i class="fa fa-star text-secondary"></i> -->
+                                <span class="list-inline-item text-dark">${totalComment} Comments</span> 
+<%--                                 <span class="list-inline-item text-dark">Rating 4.8 | ${totalComment} Comments</span> --%>
                             </p>
                             <ul class="list-inline">
                                 <li class="list-inline-item">
                                     <h6>id</h6>
                                 </li>
                                 <li class="list-inline-item">
-                                    <p class="text-muted"><strong>:  ${productVO.id}</strong></p>
+                                    <p class="text-muted"><strong>:  ${productVO.id}</strong><img style="margin-left: 10px;"src="grade_images/${member.grade}.png" width="20" height="20" ></p>
                                     
                                 </li>
                             </ul>
