@@ -22,7 +22,7 @@
 			alert("본인은 신고할 수 없습니다.");
 			return false;
 		} else {
-			alert("신고가 접수되었습니다.");
+			alert("정말 신고하시겠습니까?");
 			$("#reportWrite").attr("action", "report_write").submit();
 		}
 	}
@@ -57,6 +57,7 @@
 							<td>
 								<input type="text" id="report_id" name="report_id" placeholder="정확하게 입력해 주세요."/>
 							</td>
+							
 						</tr>
 						<tr>
 							<th>신고사유</th>

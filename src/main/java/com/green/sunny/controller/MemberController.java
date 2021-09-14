@@ -83,8 +83,6 @@ public class MemberController {
 
 		int result = memberService.userIdCheck(id);
 
-		System.out.println(result);
-
 		return result;
 
 	}
@@ -110,18 +108,6 @@ public class MemberController {
 			
 		}
 
-	}
-
-	@RequestMapping("/find_zip_num_dong")
-	public String findZipNum1() {
-
-		return "member/findZipNumDong";
-	}
-
-	@RequestMapping("/find_zip_num_doro")
-	public String findZipNum2() {
-
-		return "member/findZipNumDoro";
 	}
 
 	// 회원정보 페이지 넘기기 및 정보 가져오기

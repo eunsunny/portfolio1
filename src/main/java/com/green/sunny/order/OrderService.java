@@ -1,5 +1,6 @@
 package com.green.sunny.order;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -30,4 +31,7 @@ public interface OrderService {
 	public int orderSetCount(String id);
 	
 	public Map<String,Object> selectAllByPseq(int pseq);
+	
+	// 주문 상세
+	public HashMap<String, Object> orderDetail(int oseq);
 }

@@ -235,6 +235,7 @@
   <form name="frm" id="prod_form" method="post"> 
   <input type="hidden" id="kind" name="kind" value="${productVO.kind}">
   <input type="hidden" id="cnt" name="cnt" value="${productVO.cnt}">
+  <input type="hidden" id="kind_nm" name="kind_nm" value="${productTry.kind_nm}">
    <c:choose>
     <c:when test="${productListSize<=0}">
     <tr>
@@ -250,7 +251,16 @@
                         <div class="card mb-4 product-wap rounded-0">
                             <div class="card rounded-0">
                             <a id="atag" href="product_detail?pseq=${productVO.pseq}">
+                            	<c:if test="${productVO.soldyn == 'y'}">
+                            	<div style="position: relative;">
+                            	<img class="card-img rounded-0 img-fluid" style="width:310px; height:200px; opacity:0.3; position: absolute;" src="product_images/판매완료.png" />
+                                <img class="card-img rounded-0 img-fluid" style="width:310px; height:200px; opacity:0.3;" src="product_images/${productVO.image}" />
+                                </div>
+                                </c:if>
+                                <c:if test="${productVO.soldyn == 'n'}">                           
                                 <img class="card-img rounded-0 img-fluid" style="width:310px;height:200px" src="product_images/${productVO.image}" />
+                                </c:if>
+                                
                              </a>
                                 <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
                                     <ul class="list-unstyled">

@@ -16,12 +16,12 @@
 				<div class="row">
 					<table style="border-top: solid 1px black; border-bottom: solid 1px black;">
 						<tr>
-							<th>등록자</th>
+							<th width="20%">등록자</th>
 							<td colspan="3">관리자</td>
 						</tr>
 						<tr>
 							<th>등록일</th>
-							<td><fmt:formatDate value="${NoticeVO.regdate}"/></td>
+							<td width="50%"><fmt:formatDate value="${NoticeVO.regdate}"/></td>
 							<th>조회수</th>
 							<td>${NoticeVO.count}</td>
 						</tr>
@@ -30,8 +30,11 @@
 							<td colspan="3">${NoticeVO.title}</td>
 						</tr>
 						<tr>
-							<th>내용</th>
-							<td colspan="3">${NoticeVO.content}</td>
+							<th rowspan="2">내용</th>
+							<td colspan="3" style="border-bottom:solid 0px;">${NoticeVO.content}
+								<br><br>
+								<img src="upload_images/gongzi/${NoticeVO.image}" style="max-width:80%">
+							</td>
 						</tr>
 					</table>
 					</div>

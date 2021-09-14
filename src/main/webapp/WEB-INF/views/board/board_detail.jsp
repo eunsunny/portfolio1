@@ -123,6 +123,7 @@ function popOpenUpdate() {
 		window.open(url,"",popupOption);
 	}
 
+
  
  </script>     
 <%@include file="board_comment.jsp" %> 

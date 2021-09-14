@@ -17,6 +17,7 @@ public class OrderVO {
 	private String oid;
 	private String pid;
 	private String price;
+	private String buyer_address;
 	
 	public String getPrice() {
 		return price;
@@ -103,13 +104,21 @@ public class OrderVO {
 	public void setPid(String pid) {
 		this.pid = pid;
 	}
-	
+
+	public String getBuyer_address() {
+		return buyer_address;
+	}
+	public void setBuyer_address(String buyer_address) {
+		this.buyer_address = buyer_address;
+	}
 	@Override
 	public String toString() {
 		return "OrderVO [oseq=" + oseq + ", id=" + id + ", order_date=" + order_date + ", pseq=" + pseq
 				+ ", pay_result=" + pay_result + ", rev_result=" + rev_result + ", name=" + name + ", title=" + title
 				+ ", cod=" + cod + ", cod_grp_id=" + cod_grp_id + ", cod_nm=" + cod_nm + ", oid=" + oid + ", pid=" + pid
-				+ ", price=" + price + "]";
+				+ ", price=" + price + ", buyer_address=" + buyer_address + "]";
 	}
+	
+	
 	
 }

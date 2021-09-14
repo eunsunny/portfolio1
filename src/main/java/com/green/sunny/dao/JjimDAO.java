@@ -47,5 +47,10 @@ public class JjimDAO {
 		
 		return mybatis.selectOne("JjimDAO.countJjimList", id);
 	}
+	
+	public int jjimCheck(int pseq) {
+		
+		return mybatis.selectOne("JjimDAO.jjimCheck", pseq);
+	}
 
 }

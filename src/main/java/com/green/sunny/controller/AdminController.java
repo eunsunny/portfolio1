@@ -312,7 +312,7 @@ public class AdminController {
 		model.addAttribute("gongziList", gongziList);
 		model.addAttribute("number", gongziNum);
 		model.addAttribute("pageMaker", pageMaker);
-		model.addAttribute("number", totalCount);
+		model.addAttribute("totalCount", totalCount);
 		
 		return "admin/gongzi/gongzi";
 	}

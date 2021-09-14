@@ -20,6 +20,38 @@
 
     <!-- Custom styles for this template-->
     <link href="admin_css/sb-admin-2.min.css" rel="stylesheet">
+    
+<style>
+	
+table.type05 {
+  border-collapse: separate;
+  border-spacing: 1px;
+  text-align: left;
+  line-height: 1.5;
+  border-top: 4px solid #ccc;
+  border-bottom: 5px double #ccc; 
+  margin: 20px 10px;
+  width : 800px;
+  margin-left:auto; 
+  margin-right:auto;
+  background-color: white;
+}
+table.type05 th {
+  width: 30%;
+  padding: 10px;
+  font-weight: bold;
+  text-align : center;
+  vertical-align: center;
+  border-bottom: 1px solid #ccc;
+  background: #ffc0cb;
+}
+table.type05 td {
+  width: 70%;
+  padding: 10px;
+  vertical-align: top;
+  border-bottom: 1px solid #ccc;
+}
+</style>    
 
 </head>
 
@@ -50,25 +82,37 @@
                 <form action="oneone_reply_action" method="get">
 	                <div class="card-body">
 	                <div class="table-responsive">
+	                <table  class="type05">
+		        		<tbody>
+				            <tr>
+				                <th scope="row">제목</th>
+				                <td>${oneone.title}</td>
+				            </tr>
+				            <tr>
+				                <th scope="row">작성자 아이디</th>
+				                <td>${oneone.id}</td>
+				            </tr>
+				            <tr>
+				                <th scope="row">내용</th>
+				                <td>${oneone.content}</td>
+				            </tr>
+				            <tr>
+				                <th scope="row">등록일</th>
+				                <td><fmt:formatDate value="${oneone.regdate}" type="date"/></td>
+				            </tr>
+							<tr>
+								<th scope="row">답변</th>
+								<td><textarea rows="10" cols="50" id="reply" name="reply"></textarea></td>
+				            </tr>
+		        		</tbody>
+		    		</table>
 	                <input type="hidden" id="onseq" name="onseq" value="${oneone.onseq}"/>
-	                <label>제목</label>
-	                <input type="text" id="title" name="title" value="${oneone.title}">
-	                
-	                <label>작성자</label>
-	                <input type="text" id="id" name="id" value="${oneone.id}"/>
-	                
-					<label>등록일</label>
-	               	<fmt:formatDate value="${oneone.regdate}"/><br>
-	                
-	                <label>내용</label>
-	                <textarea rows="10" cols="50" id="content" name="content">${oneone.content}</textarea><br>
-	                
-					<label>답변</label>
-	                <textarea rows="10" cols="50" id="reply" name="reply"></textarea><br>
 	                
 					<br><br>
+					<div align="center">
 	                <input type="submit" class="btn btn-success btn-sm" value="답변입력"/> &nbsp; &nbsp;
 	                <input type="button" class="btn btn-success btn-sm" onclick="location.href='oneone'" value="리스트로 돌아가기"/>
+	                </div>
 	                
 	                </div>
 	                </div>

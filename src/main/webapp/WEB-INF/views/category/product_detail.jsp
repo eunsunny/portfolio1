@@ -47,7 +47,9 @@
 <input type="hidden" name="price" value="${productVO.price}">
 <input type="hidden" name="id" value="${productVO.id}">
 <input type="hidden" name="name" value="${productVO.name}">
-<input type="hidden" name="name" value="${productVO.regdate}">
+<input type="hidden" name="regdate" value="${productVO.regdate}">
+<input type="hidden" name="soldyn" id="soldyn" value="${productVO.soldyn}">
+
    <div class="modal fade bg-white" id="templatemo_search" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="w-100 pt-1 mb-5 text-right">
@@ -177,19 +179,20 @@
                 <div class="col-lg-7 mt-5">
                     <div class="card">
                         <div class="card-body">
-                        	<div style="display : inline-flex;">
+                        	<div style="display : flex;">
+                        	
                         	<div>
                             <h1 class="h2">${productVO.title} </h1>
                             </div>
-                            <span style="width:500px;"></span>
-                            <div>
                             
-                            
+                            <div style="margin-left: auto;">
                           	<a id="btnTwitter" class="link-icon twitter" href="javascript:shareTwitter();"><img alt="" src="images/icon-twitter.png"></a>
 							<a id="btnFacebook" class="link-icon facebook" href="javascript:shareFacebook();"><img alt="" src="images/icon-facebook.png"></a>    
 							<a id="btnKakao" class="link-icon kakao" href="javascript:shareKakao();"><img alt="" src="images/icon-kakao.png"></a>   
 							</div>
+							
                             </div>
+                            
                             <p class="h3 py-2">${productVO.price}원</p>
                             <p class="py-2">
                                 <i class="fa fa-star text-warning"></i>
@@ -302,7 +305,15 @@
 <!--                                 </div> -->
                                 <div class="row pb-3">
                                     <div class="col d-grid">
+                                     <c:choose>
+                                    <c:when test="${sessionScope.loginUser.id == productVO.id}">
+                                       <button type="button" class="btn btn-success btn-lg" id="but" name="submit" onclick="DontmovePayForm()">구매하기</button>
+                                    </c:when>
+                                    <c:otherwise>
                                        <button type="button" class="btn btn-success btn-lg" id="but" name="submit" onclick="movePayForm()">구매하기</button>
+                                    </c:otherwise>
+                                 </c:choose>
+                                      
                                     </div>
 										<div class="col d-grid">
                                  <c:choose>
@@ -319,10 +330,6 @@
                                        <button type="button" class="btn btn-success btn-lg"
                                           name="submit" id="jjim_check"
                                           onclick="jjim_check_form('${productVO.pseq}')">찜 등록</button>
-                                       <%-- <button type="button" class="btn btn-success btn-lg"
-                                          name="submit" id="jjim_check"
-                                          onclick="location='jjim_insert_list?pseq=${productVO.pseq}'">찜 등록</button>--%>
-
                                     </c:otherwise>
                                  </c:choose>
                               </div>

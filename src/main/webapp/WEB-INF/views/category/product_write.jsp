@@ -30,9 +30,9 @@
 			<tr>
 			  <th>카테고리</th>
 			  <td colspan="5">
-			  <select name="kind" id="kind">
+			  <select name="kind_nm" id="kind_nm">
 			    <c:forEach items="${kindList}" var="kind" varStatus="status">
-			      <option value="${status.count}">${kind}</option>  <!-- ${status.count} 1부터의 순서 -->
+			      <option value="${kind}">${kind}</option>  <!-- ${status.count} 1부터의 순서 -->
 			   </c:forEach>
 			  </select>     
 			  </td>

@@ -45,4 +45,10 @@ public class JjimServiceImpl implements JjimService {
 		return jjimDao.countJjimList(id);
 	}
 
+	@Override
+	public int jjimCheck(int pseq) {
+		
+		return jjimDao.jjimCheck(pseq);
+	}
+
 }

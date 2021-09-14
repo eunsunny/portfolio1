@@ -122,8 +122,10 @@ table.type05 td {
             <input type="hidden" id="bseq" name="bseq" value="${board.bseq}"/>             
 
 			<br><br>
-            <input type="button" class="btn btn-success btn-sm" onclick="delete_check()" value="삭제"/> &nbsp; &nbsp;                
+			<div align="center">
+            <!-- <input type="button" class="btn btn-success btn-sm" onclick="delete_check()" value="삭제"/> &nbsp; &nbsp; -->                
             <input type="button" class="btn btn-success btn-sm" onclick="location.href='board'" value="리스트로 돌아가기"/>
+            </div>
             
             </div>
             </div>

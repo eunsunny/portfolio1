@@ -3,21 +3,22 @@
 <mapper namespace="OrderDAO">
 	
 	<!-- 상품관련 -->
-	<!-- 내 등록상품 관련 -->
-	<select id="myProductList" resultType="product">
+	<!-- 내 등록상품 관련(하단 페이징 처리에서 사용) -->
+<!-- 	<select id="myProductList" resultType="product">
 		SELECT p.*
        ,(select cod_nm from com_cod where cod_grp_id = 'CATEGORY' and cod = p.kind) as kind_nm
        ,(select cod_nm from com_cod where cod_grp_id = 'DELIVERY' and cod = p.kind2) as delivery_nm 
 		FROM product p 
 		WHERE id=#{id} ORDER BY regdate DESC
+	</select> -->
+	
+	<!--  주문(구매) 상세내역 관련 -->
+	<select id="orderDetail" parameterType="int" resultType="hashMap">
+		SELECT o.price, o.pid, o.oid, o.order_date, o.pseq, o.oseq, m.phone, m.email, o.buyer_address  
+		  FROM order_view o, member m
+		 WHERE o.oid=m.id AND oseq=#{oseq}
 	</select>
 	
-	<!--  주문(구매)내역 관련 -->
-	<select id="orderList" resultType="order">
-		SELECT name, title, price, id, oid, order_date, pseq, rev_result, oseq, cod, cod_grp_id, cod_nm 
-		  FROM order_view 
-		 WHERE oid=#{id} ORDER BY order_date DESC
-	</select>
 	
 	<!-- 구매 확정 버튼 -->
 	<update id="orderUpdate" parameterType="order">
@@ -31,11 +32,6 @@
 	<insert id="insertOrder">
 		INSERT INTO orders(oseq, id, pseq) VALUES(order_seq.NEXTVAL, #{id}, #{pseq})
 	</insert>
-	
-	<!-- 주문 상세내역(보류) -->
-	<select id="orderDetail" resultType="order">
-		
-	</select>
 	
 	<!-- 삭제는 보류
 	<delete id="deleteOrder" parameterType="int">
@@ -53,6 +49,14 @@
      	   AND rn > (#{criteria.pageNum}-1) * #{criteria.rowsPerPage}
 		]]>
 	</select>
+	<!-- 뷰생성 my_prod_view -->
+	<!-- 
+		CREATE OR REPLACE VIEW my_prod_view
+		AS
+		SELECT p.pseq, p.name, p.title, p.price, p.soldyn, p.regdate, p.id, o.id oid, o.oseq, c.cod, c.cod_grp_id, c.cod_nm kind_nm
+    	  FROM product p, com_cod c, orders o 
+    	 WHERE p.pseq=o.pseq(+) AND p.kind=c.cod AND c.cod_grp_id = 'CATEGORY';
+    -->
 	
 	<select id="countMyProduct" parameterType="String" resultType="int">
 		SELECT COUNT(*) FROM product WHERE id=#{id}
@@ -69,6 +73,14 @@
      	   AND rn > (#{criteria.pageNum}-1) * #{criteria.rowsPerPage} ORDER BY order_date DESC
 		]]>
 	</select>
+	<!-- 뷰생성 order_view -->
+	<!-- CREATE OR REPLACE VIEW order_view
+		 AS
+		 SELECT P.name, P.title, P.price, P.id pid, O.id oid, O.order_date, O.pseq, O.pay_result, O.rev_result, O.oseq, O.buyer_address, c.cod, c.cod_grp_id, c.cod_nm
+    	   FROM product P, orders O, com_cod c
+    	  WHERE P.pseq = O.pseq AND P.kind=c.cod AND c.cod_grp_id = 'CATEGORY';
+     -->	
+	
 	<!-- 페이징처리용카운트 -->
 	<select id="countMyOrder" parameterType="String" resultType="int">
 		SELECT COUNT(*) FROM order_view WHERE oid=#{id}

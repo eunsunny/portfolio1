@@ -147,8 +147,8 @@ table.type05 td {
 				
 				<br><br>
 				<div align="center">
-                <input type="button" class="btn btn-success btn-sm" onclick="location.href='admin_product_delete?pseq=${Product.pseq}'" value="삭제"/> &nbsp; &nbsp;                
-                <input type="button" class="btn btn-success btn-sm" onclick="location.href='product_manage'" value="리스트로 돌아가기"/>
+	                <%-- <input type="button" class="btn btn-success btn-sm" onclick="location.href='admin_product_delete?pseq=${Product.pseq}'" value="삭제"/> &nbsp; &nbsp; --%>                
+	                <input type="button" class="btn btn-success btn-sm" onclick="location.href='product_manage'" value="리스트로 돌아가기"/>
                 </div>
                 
                 </div>

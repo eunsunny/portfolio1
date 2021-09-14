@@ -98,7 +98,25 @@
 					  <td>${reportVO.id}</td>
 					  <td>${reportVO.report_id}</td>
 				      <td style="text-align: left;">   
-				         <a href="admin_report_detail${pageMaker.makeQuery(pageMaker.cri.pageNum)}&rseq=${reportVO.rseq}">${reportVO.rp_kind}</a>
+				         <a href="admin_report_detail${pageMaker.makeQuery(pageMaker.cri.pageNum)}&rseq=${reportVO.rseq}">
+				         	<c:choose>
+				         		<c:when test="${reportVO.rp_kind == 1}">
+				         			허위 상품
+				         		</c:when>
+				         		<c:when test="${reportVO.rp_kind == 2}">
+				         			과대 홍보
+				         		</c:when>
+				         		<c:when test="${reportVO.rp_kind == 3}">
+				         			비매너/욕설
+				         		</c:when>
+				         		<c:when test="${reportVO.rp_kind == 4}">
+				         			결제관련
+				         		</c:when>
+				         		<c:when test="${reportVO.rp_kind == 5}">
+				         			기타
+				         		</c:when>
+				         	</c:choose>
+				         </a>
 				   	  </td>
 				   	  <td><fmt:formatDate value="${reportVO.report_date}" type="date"/></td>
 				      <td>
