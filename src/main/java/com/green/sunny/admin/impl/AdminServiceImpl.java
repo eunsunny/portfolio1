@@ -11,6 +11,7 @@ import com.green.sunny.dto.AdminVO;
 import com.green.sunny.dto.BoardVO;
 import com.green.sunny.dto.KindCount;
 import com.green.sunny.dto.MemberVO;
+import com.green.sunny.dto.MessageVO;
 import com.green.sunny.dto.MostOrderMember;
 import com.green.sunny.dto.OneoneVO;
 import com.green.sunny.dto.OrderVO;
@@ -193,6 +194,12 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public int getNoResultReport() {
 		return adminDao.getNoResultReport();
+	}
+
+	/* Message */
+	@Override
+	public void insertMessage(String pid) {
+		adminDao.insertMessage(pid);
 	}
 
 }
