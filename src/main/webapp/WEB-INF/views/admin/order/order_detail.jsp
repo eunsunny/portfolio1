@@ -98,7 +98,7 @@ table.type05 td {
             <table  class="type05">
         		<tbody>
 		            <tr>
-		                <th scope="row">제품명</th>
+		                <th scope="row">상품명</th>
 		                <td>${order.name}</td>
 		            </tr>
 		            <tr>
@@ -127,7 +127,7 @@ table.type05 td {
 						</td>
 					</tr>
 					<tr>
-						<th scope="row">제품 수령 여부</th>
+						<th scope="row">상품 수령 여부</th>
 						<td>
 							<c:choose>
 						      	<c:when test="${order.rev_result == 'y'}">수령완료</c:when>
