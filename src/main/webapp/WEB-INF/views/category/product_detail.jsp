@@ -208,7 +208,7 @@
                                     <h6>id</h6>
                                 </li>
                                 <li class="list-inline-item">
-                                    <p class="text-muted"><strong>:  ${productVO.id}</strong></p>
+                                    <p class="text-muted"><strong>:  ${productVO.id}</strong><img style="margin-left: 10px;"src="grade_images/${member.grade}.png" width="20" height="20" ></p>
                                     
                                 </li>
                             </ul>
