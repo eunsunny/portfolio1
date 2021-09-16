@@ -47,8 +47,9 @@ public class MyPageController {
 		
 		JjimVO vo = new JjimVO();
 		vo.setId(loginUser.getId());
+		vo.setPseq(pseq);
 		
-		int pseqCnt = jjimService.jjimCheck(pseq);
+		int pseqCnt = jjimService.jjimCheck(vo);
 			
 		if(pseqCnt != 0) {
 			return "mypage/jjim_fail";
@@ -69,8 +70,9 @@ public class MyPageController {
 		
 		JjimVO vo = new JjimVO();
 		vo.setId(loginUser.getId());
+		vo.setPseq(pseq);
 		
-		int pseqCnt = jjimService.jjimCheck(pseq);
+		int pseqCnt = jjimService.jjimCheck(vo);
 			
 		if(pseqCnt != 0) {
 			return "mypage/jjim_fail";

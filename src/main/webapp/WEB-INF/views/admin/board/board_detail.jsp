@@ -112,10 +112,7 @@ table.type05 td {
 					</tr>
 					<tr>
 						<th scope="row" style="height:300px;">내용</th>
-						<td colspan="3">
-							<img class="card-img img-fluid" src="product_images/${map.IMAGE}"><br>
-							${board.content}
-						</td>
+						<td colspan="3">${board.content}</td>
 		            </tr>
         		</tbody>
     		</table>
@@ -123,7 +120,7 @@ table.type05 td {
 
 			<br><br>
 			<div align="center">
-            <!-- <input type="button" class="btn btn-success btn-sm" onclick="delete_check()" value="삭제"/> &nbsp; &nbsp; -->                
+            <input type="button" class="btn btn-success btn-sm" onclick="delete_check()" value="삭제"/> &nbsp; &nbsp;             
             <input type="button" class="btn btn-success btn-sm" onclick="location.href='board'" value="리스트로 돌아가기"/>
             </div>
             
