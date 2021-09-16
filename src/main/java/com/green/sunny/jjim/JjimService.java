@@ -17,6 +17,6 @@ public interface JjimService {
 	
 	public int countJjimList(String id);
 	
-	public int jjimCheck(int pseq);
+	public int jjimCheck(JjimVO vo);
 
 }

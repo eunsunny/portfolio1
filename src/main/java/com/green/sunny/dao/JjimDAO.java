@@ -48,9 +48,9 @@ public class JjimDAO {
 		return mybatis.selectOne("JjimDAO.countJjimList", id);
 	}
 	
-	public int jjimCheck(int pseq) {
+	public int jjimCheck(JjimVO vo) {
 		
-		return mybatis.selectOne("JjimDAO.jjimCheck", pseq);
+		return mybatis.selectOne("JjimDAO.jjimCheck", vo);
 	}
 
 }

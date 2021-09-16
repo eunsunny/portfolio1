@@ -46,9 +46,9 @@ public class JjimServiceImpl implements JjimService {
 	}
 
 	@Override
-	public int jjimCheck(int pseq) {
+	public int jjimCheck(JjimVO vo) {
 		
-		return jjimDao.jjimCheck(pseq);
+		return jjimDao.jjimCheck(vo);
 	}
 
 }
