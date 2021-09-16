@@ -206,16 +206,16 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="col-md-6 pb-4">
-                        <div class="d-flex">
-                            <select class="form-control" id="searchBox" name="searchBox" onchange="changeSelectBox()">
-                                <option selected value="1">전체</option>
-                                <option value="2">조회순</option>
-                                <option value="3">최신순</option>
-                                <option value="4">찜순</option>
-                            </select>
-                        </div>
-                    </div>
+<!--                     <div class="col-md-6 pb-4"> -->
+<!--                         <div class="d-flex"> -->
+<!--                             <select class="form-control" id="searchBox" name="searchBox" onchange="changeSelectBox()"> -->
+<!--                                 <option selected value="1">전체</option> -->
+<!--                                 <option value="2">조회순</option> -->
+<!--                                 <option value="3">최신순</option> -->
+<!--                                 <option value="4">찜순</option> -->
+<!--                             </select> -->
+<!--                         </div> -->
+<!--                     </div> -->
                 </div>
                 
   <form name="frm" id="prod_form" method="post"> 
@@ -267,15 +267,15 @@
                                         <span class="product-color-dot color-dot-green float-left rounded-circle ml-1"></span>
                                     </li>
                                 </ul>
-                                <ul class="list-unstyled d-flex justify-content-center mb-1">
-                                    <li>
-                                        <i class="text-warning fa fa-star"></i>
-                                        <i class="text-warning fa fa-star"></i>
-                                        <i class="text-warning fa fa-star"></i>
-                                        <i class="text-muted fa fa-star"></i>
-                                        <i class="text-muted fa fa-star"></i>
-                                    </li>
-                                </ul>
+<!--                                 <ul class="list-unstyled d-flex justify-content-center mb-1"> -->
+<!--                                     <li> -->
+<!--                                         <i class="text-warning fa fa-star"></i> -->
+<!--                                         <i class="text-warning fa fa-star"></i> -->
+<!--                                         <i class="text-warning fa fa-star"></i> -->
+<!--                                         <i class="text-muted fa fa-star"></i> -->
+<!--                                         <i class="text-muted fa fa-star"></i> -->
+<!--                                     </li> -->
+<!--                                 </ul> -->
                                 <p class="text-center mb-0">${productVO.price}원</p>
                             </div>
                         </div>

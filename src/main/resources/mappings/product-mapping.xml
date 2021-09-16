@@ -94,7 +94,7 @@
 	<![CDATA[
 		SELECT pseq, name, kind, kind2, price, content, cnt, image, soldyn, regdate
 		FROM
-		    (select row_number() over(order by p.name desc)rn, p.pseq, p.name, p.kind, p.kind2, p.price, p.content, p.soldyn, p.regdate, 
+		    (select row_number() over(order by p.pseq desc) rn, p.pseq, p.name, p.kind, p.kind2, p.price, p.content, p.soldyn, p.regdate, 
 		    		p.cnt, image.product_image as image
 		     from product p
 		     left outer join (select pseq, fseq, product_image as product_image
@@ -109,7 +109,7 @@
 		     )
 		WHERE rn <=#{criteria.pageNum} * #{criteria.rowsPerPage}
 	 		AND rn > (#{criteria.pageNum}-1) * #{criteria.rowsPerPage}
-	 		order by regdate
+	 		order by regdate desc
 		]]>
 	</select>
 	

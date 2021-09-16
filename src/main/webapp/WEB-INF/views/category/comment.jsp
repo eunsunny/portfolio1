@@ -112,7 +112,7 @@
 				
 				if(loginUser == item.id) {
 					
-					html += "<span style='margin-left : 53em;'></span>"
+					html += "<span style='margin-left : 50em;'></span>"
 					html +=	"<a href='#HH' title='"+param+"' onclick='updateComment(this)' id='modify'>수정</a> &nbsp;&nbsp;&nbsp;"
 					html +=	"<a href='#HH' title='"+param+"' onclick='updateComment(this)' id='delete'>삭제</a><br>" 
 				}else {
