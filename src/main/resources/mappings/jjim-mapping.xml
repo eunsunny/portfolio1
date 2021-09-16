@@ -20,8 +20,8 @@
 	</select>
 	
 	<!-- 찜 여부확인 -->
-	<select id="jjimCheck" parameterType="int" resultType="int">
-		SELECT COUNT(pseq) FROM jjim WHERE pseq=#{pseq}
+	<select id="jjimCheck" parameterType="jjim" resultType="int">
+		SELECT COUNT(pseq) FROM jjim WHERE pseq=#{pseq} AND id=#{id}
 	</select>
 	
 	<!-- 찜리스트 페이지번호별 상품 목록 조회 -->
