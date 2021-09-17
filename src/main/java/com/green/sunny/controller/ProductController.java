@@ -327,21 +327,24 @@ public class ProductController {
 		MemberVO loginUser = (MemberVO)session.getAttribute("loginUser");
 		if (loginUser == null) return "/member/login";
 		
-		Map<String, Object> paramMap = new HashMap<String, Object>();
-		Map<String, Object> resultMap = new HashMap<String, Object>();
+//		Map<String, Object> paramMap = new HashMap<String, Object>();
+//		OrderVO resultMap = new OrderVO();
+//		
+//		resultMap = orderService.selectAllByPseq(pseq);
+//		System.out.println("pseq"+pseq);
+//		System.out.println("resultMap"+resultMap);
+//		
+//		paramMap.put("loginUserName", loginUser.getName());  
+//		paramMap.put("email", loginUser.getEmail()); 
+//		paramMap.put("phone", loginUser.getPhone()); 
+//		paramMap.put("address", resultMap.getBuyer_address()); 
+//		paramMap.put("price", resultMap.getPrice());
+//		
+//		model.addAttribute("buyerInfo", paramMap);
 		
-		resultMap = orderService.selectAllByPseq(pseq);
 		
-		paramMap.put("loginUserName", loginUser.getName());  
-		paramMap.put("email", loginUser.getEmail()); 
-		paramMap.put("phone", loginUser.getPhone()); 
-		paramMap.put("address", resultMap.get("BUYER_ADDRESS")); 
-		paramMap.put("price", resultMap.get("PRICE"));
-		
-		model.addAttribute("buyerInfo", paramMap);
-		
-		
-		return "category/product_pay_success";
+//		return "category/product_pay_success";
+		return "redirect:order_list";
 	}
 	
 	@RequestMapping(value="/call_iamport_fail", method =RequestMethod.GET) 

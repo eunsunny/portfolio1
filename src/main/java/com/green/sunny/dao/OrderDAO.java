@@ -73,7 +73,7 @@ public class OrderDAO {
 		return mybatis.selectOne("OrderDAO.orderSetCount", id);
 	}
 	
-	public Map<String,Object> selectAllByPseq(int pseq) {
+	public OrderVO selectAllByPseq(int pseq) {
 		
 		return mybatis.selectOne("OrderDAO.selectAllByPseq", pseq);
 	}
