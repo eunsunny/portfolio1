@@ -54,6 +54,10 @@ function go_mov() {
 	$("#write_form").attr("action", "cancel").submit();
 }
 
+function go_mov_back() {
+	$("#update_form").attr("action", "cancel").submit();
+}
+
 function go_cancel(){
 
 	$("#formm").attr("action", "cancel").submit();

@@ -140,7 +140,7 @@
 			</table>
 		<div style="text-align: center;">
 		<input class="btn" type="button" value="수정" onClick="go_mod_save('${productVO.pseq}')">           
-		<input class="btn" type="button" value="취소" onClick="go_mov()">
+		<input class="btn" type="button" value="취소" onClick="go_mov_back()">
 		</div>
 		</form> 
 		</div>

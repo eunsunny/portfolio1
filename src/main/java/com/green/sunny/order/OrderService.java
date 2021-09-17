@@ -30,7 +30,7 @@ public interface OrderService {
 	// 주문 확정에 따른 등급 관리
 	public int orderSetCount(String id);
 	
-	public Map<String,Object> selectAllByPseq(int pseq);
+	public OrderVO selectAllByPseq(int pseq);
 	
 	// 주문 상세
 	public HashMap<String, Object> orderDetail(int oseq);

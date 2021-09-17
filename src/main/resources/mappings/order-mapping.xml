@@ -86,12 +86,8 @@
 		SELECT COUNT(*) FROM order_view WHERE oid=#{id}
 	</select>
 	
-	<select id="selectAllByPseq" resultType="java.util.Map">
-	select o.*, p.price 
-	 from orders o
-	 inner join product p
-	 on o.pseq = p.pseq
-	 and o.pseq = #{pseq}
+	<select id="selectAllByPseq" parameterType="int" resultType="order">
+		SELECT * FROM order_view WHERE pseq=#{pseq}
 	</select>
 
 </mapper>
