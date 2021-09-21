@@ -5,8 +5,8 @@
     * 김영웅 : 관리자 페이지 전체 프론트엔드 / 백엔드
 
 2. 프로젝트 개요
-    * 이렇습니당
-  
+    * ![KakaoTalk_20210917_094841923_03](https://user-images.githubusercontent.com/82167997/134119533-a1fcc6e2-fe11-4a8b-a874-e0051819d10f.jpg)
+
 3. 주요 화면
     * 사용자 메인 페이지
     * <img src="https://user-images.githubusercontent.com/71301492/133545246-a2f2166c-9b2f-4a21-aa5c-c8e10e9d387e.png" width="400" height="700" title="사용자 메인 페이지">
